@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="windows-1250" ?>
+<web version="8.1" propfont="true" foot="© 2007 - 2020 Teco a.s." dwMode="1" MaxUid="15773">
+	<panels></panels>
+	<Grid Enable="1" X="5" Y="5" />
+	<globalset newdim="1" />
+	<group caption="" Uid="15721">
+		<page caption="Index" name="PAGE1.XML" ajax="true" pause="1000" default="true" Uid="15720" ucid="1704985198" width="785" height="683">
+			<object caption="" X="3" Y="19" xoff="4" yoff="6" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15722">
+				<image optcap="" variable="fourthFloorElevDoorsOpen" type="BOOL" on="VYTAHO_4.PNG" off="VYTAHZ_2.PNG" />
+			</object>
+			<object caption="" X="3" Y="36" xoff="4" yoff="5" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15723">
+				<image optcap="" variable="thirdFloorElevDoorsOpen" type="BOOL" on="VYTAHO_4.PNG" off="VYTAHZ_2.PNG" />
+			</object>
+			<object caption="" X="3" Y="53" xoff="4" yoff="4" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15724">
+				<image optcap="" variable="secondFloorElevDoorsOpen" type="BOOL" on="VYTAHO_4.PNG" off="VYTAHZ_2.PNG" />
+			</object>
+			<object caption="" X="3" Y="70" xoff="4" yoff="3" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15725">
+				<image optcap="" variable="firstFloorElevDoorsOpen" type="BOOL" on="VYTAHO_4.PNG" off="VYTAHZ_2.PNG" />
+			</object>
+			<object caption="" X="14" Y="26" xoff="6" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15726">
+				<imagebtn variable="fourthFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+			</object>
+			<object caption="" X="14" Y="43" xoff="6" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15727">
+				<imagebtn variable="thirdFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+			</object>
+			<object caption="" X="14" Y="60" xoff="6" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15728">
+				<imagebtn variable="secondFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+			</object>
+			<object caption="" X="14" Y="77" xoff="6" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15729">
+				<imagebtn variable="firstFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+			</object>
+			<object caption="" X="58" Y="14" xoff="4" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15730">
+				<picture href="" img="ELEVAT_3.PNG" />
+			</object>
+			<object caption="" X="82" Y="3" xoff="2" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15731">
+				<image optcap="" variable="elevatorButtonStopPressed" type="BOOL" on="SPINAC1.PNG" off="SPINAC0.PNG" />
+			</object>
+			<object caption="" X="91" Y="18" xoff="0" yoff="4" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15732">
+				<image optcap="" variable="elevatorFourthFloorButtonPressed" type="BOOL" on="ZAROVKA1.PNG" off="ZAROVKA0.PNG" />
+			</object>
+			<object caption="" X="86" Y="20" xoff="0" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15733">
+				<imagebtn variable="elevatorFourthFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+			</object>
+			<object caption="" X="86" Y="27" xoff="0" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15734">
+				<imagebtn variable="elevatorThirdFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+			</object>
+			<object caption="" X="85" Y="35" xoff="6" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15735">
+				<imagebtn variable="elevatorSecondFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+			</object>
+			<object caption="" X="86" Y="42" xoff="0" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15736">
+				<imagebtn variable="elevatorFirstFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+			</object>
+			<object caption="" X="91" Y="26" xoff="0" yoff="0" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15737">
+				<image optcap="" variable="elevatorThirdFloorButtonPressed" type="BOOL" on="ZAROVKA1.PNG" off="ZAROVKA0.PNG" />
+			</object>
+			<object caption="" X="91" Y="33" xoff="0" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15738">
+				<image optcap="" variable="elevatorSecondFloorButtonPressed" type="BOOL" on="ZAROVKA1.PNG" off="ZAROVKA0.PNG" />
+			</object>
+			<object caption="" X="91" Y="41" xoff="0" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15739">
+				<image optcap="" variable="elevatorFirstFloorButtonPressed" type="BOOL" on="ZAROVKA1.PNG" off="ZAROVKA0.PNG" />
+			</object>
+			<object caption="" X="3" Y="2" xoff="4" yoff="7" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15741">
+				<image optcap="" variable="fifthFloorElevDoorsOpen" type="BOOL" on="VYTAHO_4.PNG" off="VYTAHZ_2.PNG" />
+			</object>
+			<object caption="" X="14" Y="9" xoff="6" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15742">
+				<imagebtn variable="fifthFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+			</object>
+			<object caption="" X="91" Y="11" xoff="0" yoff="0" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15743">
+				<image optcap="" variable="elevatorFifthFloorButtonPressed" type="BOOL" on="ZAROVKA1.PNG" off="ZAROVKA0.PNG" />
+			</object>
+			<object caption="" X="86" Y="12" xoff="0" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15744">
+				<imagebtn variable="elevatorFifthFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+			</object>
+			<object caption="" X="8" Y="2" xoff="4" yoff="7" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15745">
+				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="28" height="22" tabindex="1" />
+			</object>
+			<object caption="" X="8" Y="19" xoff="4" yoff="6" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15748">
+				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="28" height="22" tabindex="11" />
+			</object>
+			<object caption="" X="8" Y="36" xoff="4" yoff="5" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15749">
+				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="28" height="22" tabindex="12" />
+			</object>
+			<object caption="" X="8" Y="53" xoff="4" yoff="4" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15750">
+				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="28" height="22" tabindex="13" />
+			</object>
+			<object caption="" X="8" Y="70" xoff="4" yoff="3" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15751">
+				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="28" height="22" tabindex="14" />
+			</object>
+			<object caption="" X="69" Y="21" xoff="1" yoff="5" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15752">
+				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="28" height="22" tabindex="15" />
+			</object>
+			<object caption="" X="74" Y="19" xoff="1" yoff="6" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15753">
+				<image optcap="" variable="stopSignActivated" type="BOOL" on="STOPSI_2.PNG" off="" />
+			</object>
+			<object caption="" X="29" Y="13" xoff="1" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15754" hint="Enter the weight of all people and cargo">
+				<edit variable="elevatorWeight" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="false" border="true" width="46" height="22" tabindex="16" />
+			</object>
+			<object caption="" X="29" Y="9" xoff="1" yoff="6" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15755">
+				<edit variable="textElevatorWeight" type="STRING" intf="0" timf="" align="left" zero="false" prec="-1" size="25" global="true" border="true" width="235" height="22" tabindex="2" />
+			</object>
+			<object caption="" X="29" Y="17" xoff="1" yoff="2" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15756">
+				<edit variable="textMaxElevatorWeight" type="STRING" intf="0" timf="" align="left" zero="false" prec="-1" size="25" global="true" border="true" width="235" height="22" tabindex="3" />
+			</object>
+			<object caption="" X="29" Y="21" xoff="1" yoff="0" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15757">
+				<edit variable="elevatorMaximumWeight" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="3" global="true" border="true" width="37" height="22" tabindex="10" />
+			</object>
+			<object caption="" X="90" Y="2" xoff="3" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15758">
+				<picture href="" img="STOPSI_2.PNG" />
+			</object>
+			<object caption="" X="6" Y="9" xoff="0" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15760" hint="Toggle obstacle">
+				<image optcap="" variable="obstacleElevatorFifthFloor" type="BOOL" on="TRASH__2.PNG" off="TRASH__1.PNG" />
+			</object>
+			<object caption="" X="6" Y="26" xoff="0" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15761" hint="Toggle obstacle">
+				<image optcap="" variable="obstacleElevatorFourthFloor" type="BOOL" on="TRASH__2.PNG" off="TRASH__1.PNG" />
+			</object>
+			<object caption="" X="6" Y="43" xoff="0" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15762" hint="Toggle obstacle">
+				<image optcap="" variable="obstacleElevatorThirdFloor" type="BOOL" on="TRASH__2.PNG" off="TRASH__1.PNG" />
+			</object>
+			<object caption="" X="6" Y="60" xoff="0" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15763" hint="Toggle obstacle">
+				<image optcap="" variable="obstacleElevatorSecondFloor" type="BOOL" on="TRASH__2.PNG" off="TRASH__1.PNG" />
+			</object>
+			<object caption="" X="6" Y="77" xoff="0" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15764" hint="Toggle obstacle">
+				<image optcap="" variable="obstacleElevatorFirstFloor" type="BOOL" on="TRASH__2.PNG" off="TRASH__1.PNG" />
+			</object>
+			<object caption="" X="66" Y="37" xoff="5" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15765" hint="Toggle obstacle">
+				<image optcap="" variable="obstacleElevator" type="BOOL" on="TRASH__2.PNG" off="TRASH__1.PNG" />
+			</object>
+			<object caption="" X="24" Y="36" xoff="1" yoff="5" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15766" hint="timeLPC">
+				<edit variable="timePLC" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="46" height="22" tabindex="9" />
+			</object>
+			<object caption="" X="24" Y="39" xoff="1" yoff="6" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15767" hint="timeDelayed">
+				<edit variable="timeDelayed" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="46" height="22" tabindex="5" />
+			</object>
+			<object caption="" X="31" Y="38" xoff="0" yoff="4" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15768" hint="elevator direction">
+				<edit variable="elevatorDirection" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="46" height="22" tabindex="4" />
+			</object>
+			<object caption="" X="34" Y="48" xoff="6" yoff="4" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15769" hint="forceOpenDoors">
+				<edit variable="forceOpenDoors" type="BOOL" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="46" height="22" tabindex="8" />
+			</object>
+			<object caption="" X="34" Y="52" xoff="6" yoff="7" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15771" hint="WAS detected">
+				<edit variable="anyObstacleWasDetected" type="BOOL" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="46" height="22" tabindex="7" />
+			</object>
+			<object caption="" X="34" Y="56" xoff="6" yoff="5" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15772" hint="waitingForDoors">
+				<edit variable="waitingForDoors" type="BOOL" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="46" height="22" tabindex="6" />
+			</object>
+		</page>
+	</group>
+	<images>
+		<img name="VYTAHO_3.PNG" type="PNG" height="128" width="128" longname="vytah otevreny128" />
+		<img name="VYTAHZ_2.PNG" type="PNG" height="128" width="128" longname="vytah zavreny128" />
+		<img name="BUTTON_1.PNG" type="PNG" height="100" width="100" longname="button_0_fix" />
+		<img name="BUTTON_2.PNG" type="PNG" height="100" width="100" longname="button_1_fix" />
+		<img name="BUTTON_4.PNG" type="PNG" height="20" width="20" longname="button_0_fix_SMALL" />
+		<img name="BUTTON_3.PNG" type="PNG" height="20" width="20" longname="button_1_fix_SMALL" />
+		<img name="BU98A7_1.PNG" type="PNG" height="35" width="35" longname="button_0_fix_medium" />
+		<img name="BUF2B2_1.PNG" type="PNG" height="35" width="35" longname="button_1_fix_medium" />
+		<img name="VYTAHO_2.PNG" type="PNG" height="512" width="512" longname="vytah otevreny" />
+		<img name="SPINAC0.PNG" type="PNG" height="64" width="64" longname="Spinac0" />
+		<img name="SPINAC1.PNG" type="PNG" height="64" width="64" longname="Spinac1" />
+		<img name="ELEVAT_1.PNG" type="PNG" height="271" width="200" longname="elevatorCabin" />
+		<img name="ZAROVKA0.PNG" type="PNG" height="64" width="64" longname="Zarovka0" />
+		<img name="ZAROVKA1.PNG" type="PNG" height="64" width="64" longname="Zarovka1" />
+		<img name="ELEVAT_2.PNG" type="PNG" height="106" width="79" longname="elevatorCabin_2" />
+		<img name="VYTAHO_4.PNG" type="PNG" height="128" width="128" longname="vytah otevreny128_2" />
+		<img name="ELEVAT_3.PNG" type="PNG" height="271" width="200" longname="elevatorCabin_3" />
+		<img name="STOPSI_1.PNG" type="PNG" height="522" width="523" longname="stop sign" />
+		<img name="BUTTON_5.PNG" type="PNG" height="20" width="20" longname="button_1_fix_SMALL" />
+		<img name="STOPSI_2.PNG" type="PNG" height="70" width="70" longname="stop sign_resized" />
+		<img name="TRASH__1.PNG" type="PNG" height="71" width="64" longname="trash_can_resize" />
+		<img name="TRASH__2.PNG" type="PNG" height="71" width="64" longname="trash_can_resize_on" />
+	</images>
+	<Languages>
+		<Language Code="5" Editor="1" />
+	</Languages>
+	<Layers active="0" pasteMode="0">
+		<layer visible="1" frozen="0" name="" />
+		<layer visible="1" frozen="0" name="" />
+		<layer visible="1" frozen="0" name="" />
+		<layer visible="1" frozen="0" name="" />
+		<layer visible="1" frozen="0" name="" />
+		<layer visible="1" frozen="0" name="" />
+		<layer visible="1" frozen="0" name="" />
+		<layer visible="1" frozen="0" name="" />
+		<layer visible="1" frozen="0" name="" />
+		<layer visible="1" frozen="0" name="" />
+		<layer visible="1" frozen="0" name="" />
+		<layer visible="1" frozen="0" name="" />
+		<layer visible="1" frozen="0" name="" />
+		<layer visible="1" frozen="0" name="" />
+		<layer visible="1" frozen="0" name="" />
+		<layer visible="1" frozen="0" name="" />
+	</Layers>
+	<security crypt="1" count="10">
+		<user level="-1" name="0" pass="CF" />
+		<user level="-1" name="1" pass="CE" />
+		<user level="-1" name="2" pass="CD" />
+		<user level="-1" name="3" pass="CC" />
+		<user level="-1" name="4" pass="CB" />
+		<user level="-1" name="5" pass="CA" />
+		<user level="-1" name="6" pass="C9" />
+		<user level="-1" name="7" pass="C8" />
+		<user level="-1" name="8" pass="C7" />
+		<user level="-1" name="9" pass="C6" />
+	</security>
+	<autologin count="10">
+		<mac level="0" mac="00:00:00:00:00:00" note="" />
+		<mac level="0" mac="00:00:00:00:00:00" note="" />
+		<mac level="0" mac="00:00:00:00:00:00" note="" />
+		<mac level="0" mac="00:00:00:00:00:00" note="" />
+		<mac level="0" mac="00:00:00:00:00:00" note="" />
+		<mac level="0" mac="00:00:00:00:00:00" note="" />
+		<mac level="0" mac="00:00:00:00:00:00" note="" />
+		<mac level="0" mac="00:00:00:00:00:00" note="" />
+		<mac level="0" mac="00:00:00:00:00:00" note="" />
+		<mac level="0" mac="00:00:00:00:00:00" note="" />
+	</autologin>
+	<tecoapi count="10">
+		<api level="-1" name="" pass="" />
+		<api level="-1" name="" pass="" />
+		<api level="-1" name="" pass="" />
+		<api level="-1" name="" pass="" />
+		<api level="-1" name="" pass="" />
+		<api level="-1" name="" pass="" />
+		<api level="-1" name="" pass="" />
+		<api level="-1" name="" pass="" />
+		<api level="-1" name="" pass="" />
+		<api level="-1" name="" pass="" />
+	</tecoapi>
+</web>

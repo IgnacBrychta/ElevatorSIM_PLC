@@ -1,0 +1,36 @@
+<Variables>
+	<Item Name="FOURTHFLOORBUTTONPRESSED" Pos="03000058" Type="1" />
+	<Item Name="THIRDFLOORBUTTONPRESSED" Pos="03000058" Type="2" />
+	<Item Name="SECONDFLOORBUTTONPRESSED" Pos="03000058" Type="3" />
+	<Item Name="FIRSTFLOORBUTTONPRESSED" Pos="03000058" Type="4" />
+	<Item Name="ELEVATORFOURTHFLOORBUTTONPRESSED" Pos="03000058" Type="6" />
+	<Item Name="ELEVATORTHIRDFLOORBUTTONPRESSED" Pos="03000058" Type="7" />
+	<Item Name="ELEVATORSECONDFLOORBUTTONPRESSED" Pos="03000059" Type="0" />
+	<Item Name="ELEVATORFIRSTFLOORBUTTONPRESSED" Pos="03000059" Type="1" />
+	<Item Name="FIFTHFLOORBUTTONPRESSED" Pos="03000058" Type="0" />
+	<Item Name="ELEVATORFIFTHFLOORBUTTONPRESSED" Pos="03000058" Type="5" />
+	<Item Name="fourthFloorElevDoorsOpen" Pos="03000055" Type="1" />
+	<Item Name="thirdFloorElevDoorsOpen" Pos="03000055" Type="2" />
+	<Item Name="secondFloorElevDoorsOpen" Pos="03000055" Type="3" />
+	<Item Name="firstFloorElevDoorsOpen" Pos="03000055" Type="4" />
+	<Item Name="elevatorButtonStopPressed" Pos="03000059" Type="2" />
+	<Item Name="fifthFloorElevDoorsOpen" Pos="03000055" Type="0" />
+	<Item Name="elevatorFloor" Pos="03000056" Type="11" />
+	<Item Name="stopSignActivated" Pos="03000112" Type="0" />
+	<Item Name="elevatorWeight" Pos="0300005F" Type="11" />
+	<Item Name="textElevatorWeight" Pos="03000070" Type="48" />
+	<Item Name="textMaxElevatorWeight" Pos="030000C1" Type="48" />
+	<Item Name="elevatorMaximumWeight" Pos="0300005D" Type="11" />
+	<Item Name="obstacleElevatorFifthFloor" Pos="0300005C" Type="3" />
+	<Item Name="obstacleElevatorFourthFloor" Pos="0300005C" Type="4" />
+	<Item Name="obstacleElevatorThirdFloor" Pos="0300005C" Type="5" />
+	<Item Name="obstacleElevatorSecondFloor" Pos="0300005C" Type="6" />
+	<Item Name="obstacleElevatorFirstFloor" Pos="0300005C" Type="7" />
+	<Item Name="obstacleElevator" Pos="0300005C" Type="2" />
+	<Item Name="timePLC" Pos="02000010" Type="11" />
+	<Item Name="timeDelayed" Pos="03000051" Type="11" />
+	<Item Name="elevatorDirection" Pos="0300005A" Type="11" />
+	<Item Name="forceOpenDoors" Pos="03000059" Type="3" />
+	<Item Name="anyObstacleWasDetected" Pos="0300005C" Type="1" />
+	<Item Name="waitingForDoors" Pos="03000065" Type="0" />
+</Variables>

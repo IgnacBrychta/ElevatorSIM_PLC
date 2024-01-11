@@ -1,0 +1,58 @@
+#srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\PRGMAIN.ST'
+
+#defpou ResetAllButtons
+  bool __fc__ResetAllButtons
+#reg ResetAllButtons  __Instance__ResetAllButtons
+
+
+#defpou prgMain
+  byte dummy
+
+ 
+#srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\PRGMAIN.ST'
+#pou ResetAllButtons
+#srcline 1 ;FUNCTION ResetAllButtons : BOOL
+P     61
+ResetAllButtons_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__ResetAllButtons
+; End initialize - variables
+#srcline 3 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ResetAllButtons
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou prgMain
+#srcline 5 ;PROGRAM prgMain
+P     61
+prgMain_L0:
+ LINK 0
+#srcline 15 ;  HandleObstacles();
+ LEA  __Instance__HandleObstacles
+ CAL  HandleObstacles_L0
+#srcline 16 ;  HandleButtonPress();
+ LEA  __Instance__HandleButtonPress
+ CAL  HandleButtonPress_L0
+#srcline 17 ;  HandleDoors();
+ LEA  __Instance__HandleDoors
+ CAL  HandleDoors_L0
+#srcline 18 ;  HandleMovement();
+ LEA  __Instance__HandleMovement
+ CAL  HandleMovement_L0
+#srcline 19 ;END_PROGRAM
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''

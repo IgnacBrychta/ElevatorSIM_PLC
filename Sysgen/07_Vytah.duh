@@ -1,0 +1,48 @@
+
+
+FUNCTION ElevatorUp : BOOL
+(**)
+
+
+
+
+END_FUNCTION 
+
+FUNCTION HandleButtonPress : BOOL
+(**)
+
+
+
+
+END_FUNCTION 
+
+FUNCTION HandleDoors : BOOL
+(**)
+
+
+
+
+END_FUNCTION 
+
+FUNCTION HandleMovement : BOOL
+(**)
+
+
+
+
+END_FUNCTION 
+
+FUNCTION HandleObstacles : BOOL
+(**)
+
+
+
+
+END_FUNCTION 
+
+FUNCTION ResetAllButtons : BOOL
+(**)
+END_FUNCTION 
+
+
+

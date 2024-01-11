@@ -1,0 +1,287 @@
+#srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\HANDLEDOORS.ST'
+
+#defpou HandleDoors
+  bool __fc__HandleDoors
+#reg HandleDoors  __Instance__HandleDoors
+
+ 
+#srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\HANDLEDOORS.ST'
+#pou HandleDoors
+#srcline 1 ;FUNCTION HandleDoors : BOOL
+P     61
+HandleDoors_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__HandleDoors
+; End initialize - variables
+#srcline 11 ;  IF NOT forceOpenDoors THEN
+ LD   forceOpenDoors
+#debug bool forceOpenDoors
+ NEG
+ JMC  HandleDoors_L1
+#srcline 12 ;    IF elevatorFloor = 5 THEN
+ LD   elevatorFloor
+#debug int elevatorFloor
+ EXTW 
+ LD   int 5
+ EQ
+ JMC  HandleDoors_L3
+#srcline 13 ;      fifthFloorElevDoorsOpen := TRUE;
+ LD   bool -1       ; true
+ WR   fifthFloorElevDoorsOpen
+#debug_left bool fifthFloorElevDoorsOpen
+#srcline 14 ;    ELSIF elevatorFloor = 4 THEN
+ JMP  HandleDoors_L4
+HandleDoors_L3:
+ LD   elevatorFloor
+#debug int elevatorFloor
+ EXTW 
+ LD   int 4
+ EQ
+ JMC  HandleDoors_L5
+#srcline 15 ;      fourthFloorElevDoorsOpen := TRUE;
+ LD   bool -1       ; true
+ WR   fourthFloorElevDoorsOpen
+#debug_left bool fourthFloorElevDoorsOpen
+#srcline 16 ;    ELSIF elevatorFloor = 3 THEN
+ JMP  HandleDoors_L4
+HandleDoors_L5:
+ LD   elevatorFloor
+#debug int elevatorFloor
+ EXTW 
+ LD   int 3
+ EQ
+ JMC  HandleDoors_L6
+#srcline 17 ;      thirdFloorElevDoorsOpen := TRUE;
+ LD   bool -1       ; true
+ WR   thirdFloorElevDoorsOpen
+#debug_left bool thirdFloorElevDoorsOpen
+#srcline 18 ;    ELSIF elevatorFloor = 2 THEN
+ JMP  HandleDoors_L4
+HandleDoors_L6:
+ LD   elevatorFloor
+#debug int elevatorFloor
+ EXTW 
+ LD   int 2
+ EQ
+ JMC  HandleDoors_L7
+#srcline 19 ;      secondFloorElevDoorsOpen := TRUE;
+ LD   bool -1       ; true
+ WR   secondFloorElevDoorsOpen
+#debug_left bool secondFloorElevDoorsOpen
+#srcline 20 ;    ELSIF elevatorFloor = 1 THEN
+ JMP  HandleDoors_L4
+HandleDoors_L7:
+ LD   elevatorFloor
+#debug int elevatorFloor
+ EXTW 
+ LD   int 1
+ EQ
+ JMC  HandleDoors_L8
+#srcline 21 ;      firstFloorElevDoorsOpen := TRUE;
+ LD   bool -1       ; true
+ WR   firstFloorElevDoorsOpen
+#debug_left bool firstFloorElevDoorsOpen
+#srcline 22 ;    END_IF;
+ JMP  HandleDoors_L4
+HandleDoors_L8:
+HandleDoors_L4:
+#srcline 23 ;  ELSIF elevatorDirection = 0 THEN
+ JMP  HandleDoors_L2
+HandleDoors_L1:
+ LD   elevatorDirection
+#debug int elevatorDirection
+ EXTW 
+ LD   int 0
+ EQ
+ JMC  HandleDoors_L9
+#srcline 24 ;    IF elevatorFloor = 1 THEN
+ LD   elevatorFloor
+#debug int elevatorFloor
+ EXTW 
+ LD   int 1
+ EQ
+ JMC  HandleDoors_L10
+#srcline 25 ;      firstFloorElevDoorsOpen := TRUE;
+ LD   bool -1       ; true
+ WR   firstFloorElevDoorsOpen
+#debug_left bool firstFloorElevDoorsOpen
+#srcline 26 ;      secondFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   secondFloorElevDoorsOpen
+#debug_left bool secondFloorElevDoorsOpen
+#srcline 27 ;      thirdFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   thirdFloorElevDoorsOpen
+#debug_left bool thirdFloorElevDoorsOpen
+#srcline 28 ;      fourthFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   fourthFloorElevDoorsOpen
+#debug_left bool fourthFloorElevDoorsOpen
+#srcline 29 ;      fifthFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   fifthFloorElevDoorsOpen
+#debug_left bool fifthFloorElevDoorsOpen
+#srcline 30 ;    ELSIF elevatorFloor = 2 THEN
+ JMP  HandleDoors_L11
+HandleDoors_L10:
+ LD   elevatorFloor
+#debug int elevatorFloor
+ EXTW 
+ LD   int 2
+ EQ
+ JMC  HandleDoors_L12
+#srcline 31 ;      firstFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   firstFloorElevDoorsOpen
+#debug_left bool firstFloorElevDoorsOpen
+#srcline 32 ;      secondFloorElevDoorsOpen := TRUE;
+ LD   bool -1       ; true
+ WR   secondFloorElevDoorsOpen
+#debug_left bool secondFloorElevDoorsOpen
+#srcline 33 ;      thirdFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   thirdFloorElevDoorsOpen
+#debug_left bool thirdFloorElevDoorsOpen
+#srcline 34 ;      fourthFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   fourthFloorElevDoorsOpen
+#debug_left bool fourthFloorElevDoorsOpen
+#srcline 35 ;      fifthFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   fifthFloorElevDoorsOpen
+#debug_left bool fifthFloorElevDoorsOpen
+#srcline 36 ;    ELSIF elevatorFloor = 3 THEN
+ JMP  HandleDoors_L11
+HandleDoors_L12:
+ LD   elevatorFloor
+#debug int elevatorFloor
+ EXTW 
+ LD   int 3
+ EQ
+ JMC  HandleDoors_L13
+#srcline 37 ;      firstFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   firstFloorElevDoorsOpen
+#debug_left bool firstFloorElevDoorsOpen
+#srcline 38 ;      secondFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   secondFloorElevDoorsOpen
+#debug_left bool secondFloorElevDoorsOpen
+#srcline 39 ;      thirdFloorElevDoorsOpen := TRUE;
+ LD   bool -1       ; true
+ WR   thirdFloorElevDoorsOpen
+#debug_left bool thirdFloorElevDoorsOpen
+#srcline 40 ;      fourthFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   fourthFloorElevDoorsOpen
+#debug_left bool fourthFloorElevDoorsOpen
+#srcline 41 ;      fifthFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   fifthFloorElevDoorsOpen
+#debug_left bool fifthFloorElevDoorsOpen
+#srcline 42 ;    ELSIF elevatorFloor = 4 THEN
+ JMP  HandleDoors_L11
+HandleDoors_L13:
+ LD   elevatorFloor
+#debug int elevatorFloor
+ EXTW 
+ LD   int 4
+ EQ
+ JMC  HandleDoors_L14
+#srcline 43 ;      firstFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   firstFloorElevDoorsOpen
+#debug_left bool firstFloorElevDoorsOpen
+#srcline 44 ;      secondFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   secondFloorElevDoorsOpen
+#debug_left bool secondFloorElevDoorsOpen
+#srcline 45 ;      thirdFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   thirdFloorElevDoorsOpen
+#debug_left bool thirdFloorElevDoorsOpen
+#srcline 46 ;      fourthFloorElevDoorsOpen := TRUE;
+ LD   bool -1       ; true
+ WR   fourthFloorElevDoorsOpen
+#debug_left bool fourthFloorElevDoorsOpen
+#srcline 47 ;      fifthFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   fifthFloorElevDoorsOpen
+#debug_left bool fifthFloorElevDoorsOpen
+#srcline 48 ;    ELSE
+ JMP  HandleDoors_L11
+HandleDoors_L14:
+#srcline 49 ;      firstFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   firstFloorElevDoorsOpen
+#debug_left bool firstFloorElevDoorsOpen
+#srcline 50 ;      secondFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   secondFloorElevDoorsOpen
+#debug_left bool secondFloorElevDoorsOpen
+#srcline 51 ;      thirdFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   thirdFloorElevDoorsOpen
+#debug_left bool thirdFloorElevDoorsOpen
+#srcline 52 ;      fourthFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   fourthFloorElevDoorsOpen
+#debug_left bool fourthFloorElevDoorsOpen
+#srcline 53 ;      fifthFloorElevDoorsOpen := TRUE;
+ LD   bool -1       ; true
+ WR   fifthFloorElevDoorsOpen
+#debug_left bool fifthFloorElevDoorsOpen
+#srcline 54 ;    END_IF;
+HandleDoors_L11:
+#srcline 55 ;  ELSIF NOT waitingForDoors AND NOT anyObstacleWasDetected THEN  
+ JMP  HandleDoors_L2
+HandleDoors_L9:
+ LD   waitingForDoors
+#debug bool waitingForDoors
+ NEG
+ LD   anyObstacleWasDetected
+#debug bool anyObstacleWasDetected
+ NEG
+ AND
+ JMC  HandleDoors_L15
+#srcline 56 ;    firstFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   firstFloorElevDoorsOpen
+#debug_left bool firstFloorElevDoorsOpen
+#srcline 57 ;    secondFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   secondFloorElevDoorsOpen
+#debug_left bool secondFloorElevDoorsOpen
+#srcline 58 ;    thirdFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   thirdFloorElevDoorsOpen
+#debug_left bool thirdFloorElevDoorsOpen
+#srcline 59 ;    fourthFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   fourthFloorElevDoorsOpen
+#debug_left bool fourthFloorElevDoorsOpen
+#srcline 60 ;    fifthFloorElevDoorsOpen := FALSE;
+ LD   bool 0       ; false
+ WR   fifthFloorElevDoorsOpen
+#debug_left bool fifthFloorElevDoorsOpen
+#srcline 61 ;  END_IF;
+ JMP  HandleDoors_L2
+HandleDoors_L15:
+HandleDoors_L2:
+#srcline 62 ;  
+#srcline 63 ;END_FUNCTION
+ PRV  
+ LDX  __fc__HandleDoors
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''

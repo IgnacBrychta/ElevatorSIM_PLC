@@ -1,0 +1,173 @@
+#srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\07_VYTAH.ST'
+
+; Global variables
+#def  timePLC int %S16
+#reg  int timeDelayed
+#reg  int switchCase
+#reg  bool fifthFloorElevDoorsOpen
+#reg  bool fourthFloorElevDoorsOpen
+#reg  bool thirdFloorElevDoorsOpen
+#reg  bool secondFloorElevDoorsOpen
+#reg  bool firstFloorElevDoorsOpen
+#reg  int elevatorFloor  ; 1, 2, 3, 4
+#reg  bool fifthFloorButtonPressed
+#reg  bool fourthFloorButtonPressed
+#reg  bool thirdFloorButtonPressed
+#reg  bool secondFloorButtonPressed
+#reg  bool firstFloorButtonPressed
+#reg  bool elevatorFifthFloorButtonPressed
+#reg  bool elevatorFourthFloorButtonPressed
+#reg  bool elevatorThirdFloorButtonPressed
+#reg  bool elevatorSecondFloorButtonPressed
+#reg  bool elevatorFirstFloorButtonPressed
+#reg  bool elevatorButtonStopPressed
+#reg  bool forceOpenDoors
+#reg  int elevatorDirection
+#reg  bool anyObstacleDetected
+#reg  bool anyObstacleWasDetected
+#reg  bool obstacleElevator
+#reg  bool obstacleElevatorFifthFloor
+#reg  bool obstacleElevatorFourthFloor
+#reg  bool obstacleElevatorThirdFloor
+#reg  bool obstacleElevatorSecondFloor
+#reg  bool obstacleElevatorFirstFloor
+#reg  int elevatorMaximumWeight
+#reg  int elevatorWeight
+#reg  int elevatorFloorTravelTime
+#reg  int elevatorFloorDoorsOpenTime
+#reg  bool waitingForDoors
+#reg  int highestFloor
+#reg  int targetFloorDefaultValue
+#reg  bool anyFloorButtonPressed
+#reg  bool anyFifthFloorButtonPressed
+#reg  bool anyFourthFloorButtonPressed
+#reg  bool anyThirdFloorButtonPressed
+#reg  bool anySecondFloorButtonPressed
+#reg  bool anyFirstFloorButtonPressed
+#reg  int targetFloor
+#reg  int floorDifference
+#reg  bool inputLocked
+#reg  string textElevatorWeight[81]
+#reg  string textMaxElevatorWeight[81]
+#reg  bool stopSignActivated
+#table byte __Init____textElevatorWeight = 
+    'S','i','m','u','l','o','v','a','n','a',' ','v','a','h','a',' ','v','y','t','a','h',
+    'u',' ','[','k','g',']',':';
+#table byte __Init____textMaxElevatorWeight = 
+    'M','a','x','i','m','a','l','n','i',' ','v','a','h','a',' ','v','y','t','a','h','u',
+    ' ','[','k','g',']',':';
+ 
+#srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\07_VYTAH.ST'
+
+P     58
+; Initialize non retain global variables 
+ LD   int 0
+ WR   timePLC
+ LD   int 0
+ WR   timeDelayed
+ LD   int 0
+ WR   switchCase
+ LD   bool 0   ; false
+ WR   fifthFloorElevDoorsOpen
+ LD   bool 0   ; false
+ WR   fourthFloorElevDoorsOpen
+ LD   bool 0   ; false
+ WR   thirdFloorElevDoorsOpen
+ LD   bool 0   ; false
+ WR   secondFloorElevDoorsOpen
+ LD   bool -1   ; true
+ WR   firstFloorElevDoorsOpen
+ LD   int 5
+ WR   elevatorFloor
+ LD   bool 0   ; false
+ WR   fifthFloorButtonPressed
+ LD   bool 0   ; false
+ WR   fourthFloorButtonPressed
+ LD   bool 0   ; false
+ WR   thirdFloorButtonPressed
+ LD   bool 0   ; false
+ WR   secondFloorButtonPressed
+ LD   bool 0   ; false
+ WR   firstFloorButtonPressed
+ LD   bool 0   ; false
+ WR   elevatorFifthFloorButtonPressed
+ LD   bool 0   ; false
+ WR   elevatorFourthFloorButtonPressed
+ LD   bool 0   ; false
+ WR   elevatorThirdFloorButtonPressed
+ LD   bool 0   ; false
+ WR   elevatorSecondFloorButtonPressed
+ LD   bool 0   ; false
+ WR   elevatorFirstFloorButtonPressed
+ LD   bool 0   ; false
+ WR   elevatorButtonStopPressed
+ LD   bool 0   ; false
+ WR   forceOpenDoors
+ LD   int 0
+ WR   elevatorDirection
+ LD   bool 0   ; false
+ WR   anyObstacleDetected
+ LD   bool 0   ; false
+ WR   anyObstacleWasDetected
+ LD   bool 0   ; false
+ WR   obstacleElevator
+ LD   bool 0   ; false
+ WR   obstacleElevatorFifthFloor
+ LD   bool 0   ; false
+ WR   obstacleElevatorFourthFloor
+ LD   bool 0   ; false
+ WR   obstacleElevatorThirdFloor
+ LD   bool 0   ; false
+ WR   obstacleElevatorSecondFloor
+ LD   bool 0   ; false
+ WR   obstacleElevatorFirstFloor
+ LD   int 300
+ WR   elevatorMaximumWeight
+ LD   int 0
+ WR   elevatorWeight
+ LD   int 1
+ WR   elevatorFloorTravelTime
+ LD   int 2
+ WR   elevatorFloorDoorsOpenTime
+ LD   bool 0   ; false
+ WR   waitingForDoors
+ LD   int 5
+ WR   highestFloor
+ LD   int -1
+ WR   targetFloorDefaultValue
+ LD   bool 0   ; false
+ WR   anyFloorButtonPressed
+ LD   bool 0   ; false
+ WR   anyFifthFloorButtonPressed
+ LD   bool 0   ; false
+ WR   anyFourthFloorButtonPressed
+ LD   bool 0   ; false
+ WR   anyThirdFloorButtonPressed
+ LD   bool 0   ; false
+ WR   anySecondFloorButtonPressed
+ LD   bool 0   ; false
+ WR   anyFirstFloorButtonPressed
+ LD   int -1
+ WR   targetFloor
+ LD   int -10
+ WR   floorDifference
+ LD   bool 0   ; false
+ WR   inputLocked
+ LD   0
+ SRC  byte __Init____textElevatorWeight
+ LD   0
+ LD   81
+ MOV  byte textElevatorWeight
+ LD   0
+ SRC  byte __Init____textMaxElevatorWeight
+ LD   0
+ LD   81
+ MOV  byte textMaxElevatorWeight
+ LD   bool -1   ; true
+ WR   stopSignActivated
+E     58
+
+
+ 
+
+#srcfile ''

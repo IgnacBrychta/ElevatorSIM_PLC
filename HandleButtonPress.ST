@@ -1,0 +1,74 @@
+FUNCTION HandleButtonPress : BOOL
+  VAR_INPUT
+  END_VAR
+  VAR_IN_OUT
+  END_VAR
+  VAR
+  END_VAR
+  VAR_TEMP
+  END_VAR
+
+  IF NOT inputLocked THEN 
+    anyFirstFloorButtonPressed :=
+      elevatorFirstFloorButtonPressed OR
+      firstFloorButtonPressed;
+    anySecondFloorButtonPressed :=
+      elevatorSecondFloorButtonPressed OR
+      secondFloorButtonPressed;
+    anyThirdFloorButtonPressed :=
+      elevatorThirdFloorButtonPressed OR
+      thirdFloorButtonPressed;
+    anyFourthFloorButtonPressed := 
+      elevatorFourthFloorButtonPressed OR
+      fourthFloorButtonPressed;
+    anyFifthFloorButtonPressed := 
+      elevatorFifthFloorButtonPressed OR
+      fifthFloorButtonPressed;
+    anyFloorButtonPressed := 
+      anyFirstFloorButtonPressed OR
+      anySecondFloorButtonPressed OR 
+      anyThirdFloorButtonPressed OR 
+      anyFourthFloorButtonPressed OR
+      anyFifthFloorButtonPressed;
+    IF anyFifthFloorButtonPressed THEN
+      targetFloor := 5;
+    ELSIF anyFourthFloorButtonPressed THEN
+      targetFloor := 4;
+    ELSIF anyThirdFloorButtonPressed THEN
+      targetFloor := 3;
+    ELSIF anySecondFloorButtonPressed THEN
+      targetFloor := 2;
+    ELSIF anyFirstFloorButtonPressed THEN
+      targetFloor := 1;
+    END_IF;
+
+    IF NOT targetFloor = targetFloorDefaultValue THEN
+      floorDifference := elevatorFloor - targetFloor;
+      IF floorDifference = 0 THEN
+        // if the user pressed an elevator button on the
+        // same floor the elevator is at
+        fifthFloorButtonPressed          := FALSE;
+        fourthFloorButtonPressed         := FALSE;
+        thirdFloorButtonPressed          := FALSE;
+        secondFloorButtonPressed         := FALSE;
+        firstFloorButtonPressed          := FALSE;
+        elevatorFifthFloorButtonPressed  := FALSE;
+        elevatorFourthFloorButtonPressed := FALSE;
+        elevatorThirdFloorButtonPressed  := FALSE;
+        elevatorSecondFloorButtonPressed := FALSE;
+        elevatorFirstFloorButtonPressed  := FALSE;
+      ELSIF floorDifference > 0 THEN
+        elevatorDirection := -1;
+        inputLocked := TRUE;
+        waitingForDoors := TRUE;
+      ELSIF floorDifference < 0 THEN
+        elevatorDirection := 1;
+        inputLocked := TRUE;
+        waitingForDoors := TRUE;
+      END_IF;
+      floorDifference := ABS(floorDifference);
+    END_IF;
+  END_IF;
+END_FUNCTION
+
+

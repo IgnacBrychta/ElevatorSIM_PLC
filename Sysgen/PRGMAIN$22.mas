@@ -1,0 +1,40 @@
+#srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\PRGMAIN.ST'
+
+#defpou prgMain
+  byte dummy
+
+ 
+#srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\PRGMAIN.ST'
+#pou prgMain
+#srcline 1 ;PROGRAM prgMain
+P     61
+prgMain_L0:
+ LINK 0
+#srcline 11 ;  HandleObstacles();
+ LEA  __Instance__HandleObstacles
+ CAL  HandleObstacles_L0
+#srcline 12 ;  HandleButtonPress();
+ LEA  __Instance__HandleButtonPress
+ CAL  HandleButtonPress_L0
+#srcline 13 ;  HandleDoors();
+ LEA  __Instance__HandleDoors
+ CAL  HandleDoors_L0
+#srcline 14 ;  HandleMovement();
+ LEA  __Instance__HandleMovement
+ CAL  HandleMovement_L0
+#srcline 15 ;  elevatorDirection := 0;
+ LD   int 0
+ WR   elevatorDirection
+#debug_left int elevatorDirection
+#srcline 16 ;  //elevatorFloor := (elevatorFloor + 1) MOD 7;
+#srcline 17 ;END_PROGRAM
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''

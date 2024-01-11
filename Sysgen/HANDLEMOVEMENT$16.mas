@@ -1,0 +1,249 @@
+#srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\HANDLEMOVEMENT.ST'
+
+#defpou HandleMovement
+  bool __fc__HandleMovement
+#reg HandleMovement  __Instance__HandleMovement
+
+ 
+#srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\HANDLEMOVEMENT.ST'
+#pou HandleMovement
+#srcline 1 ;FUNCTION HandleMovement : BOOL
+P     61
+HandleMovement_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__HandleMovement
+; End initialize - variables
+#srcline 11 ;  IF waitingForDoors THEN
+ LD   waitingForDoors
+#debug bool waitingForDoors
+ JMC  HandleMovement_L1
+#srcline 12 ;    // do nothing or light something up idk
+#srcline 13 ;  ELSE
+ JMP  HandleMovement_L2
+HandleMovement_L1:
+#srcline 14 ;    IF elevatorDirection = -1 THEN
+ LD   elevatorDirection
+#debug int elevatorDirection
+ EXTW 
+ LD   int -1
+ EQ
+ JMC  HandleMovement_L3
+#srcline 15 ;      elevatorFloor := elevatorFloor - 1;
+ LD   elevatorFloor
+#debug int elevatorFloor
+ EXTW 
+ LD   int 1
+ SUB
+ EXTW
+ WR   elevatorFloor
+#debug_left int elevatorFloor
+#srcline 16 ;      floorDifference := floorDifference - 1;
+ LD   floorDifference
+#debug int floorDifference
+ EXTW 
+ LD   int 1
+ SUB
+ EXTW
+ WR   floorDifference
+#debug_left int floorDifference
+#srcline 17 ;      //IF elevatorFloor = 1 OR floorDifference = 0 THEN 
+#srcline 18 ;      IF floorDifference = 0 THEN 
+ LD   floorDifference
+#debug int floorDifference
+ EXTW 
+ LD   int 0
+ EQ
+ JMC  HandleMovement_L5
+#srcline 19 ;        elevatorDirection := 0;
+ LD   int 0
+ WR   elevatorDirection
+#debug_left int elevatorDirection
+#srcline 20 ;        //ResetAllButtons();
+#srcline 21 ;  ///----------------------------------------
+#srcline 22 ;  fifthFloorButtonPressed          := FALSE;
+ LD   bool 0       ; false
+ WR   fifthFloorButtonPressed
+#debug_left bool fifthFloorButtonPressed
+#srcline 23 ;  fourthFloorButtonPressed         := FALSE;
+ LD   bool 0       ; false
+ WR   fourthFloorButtonPressed
+#debug_left bool fourthFloorButtonPressed
+#srcline 24 ;  thirdFloorButtonPressed          := FALSE;
+ LD   bool 0       ; false
+ WR   thirdFloorButtonPressed
+#debug_left bool thirdFloorButtonPressed
+#srcline 25 ;  secondFloorButtonPressed         := FALSE;
+ LD   bool 0       ; false
+ WR   secondFloorButtonPressed
+#debug_left bool secondFloorButtonPressed
+#srcline 26 ;  firstFloorButtonPressed          := FALSE;
+ LD   bool 0       ; false
+ WR   firstFloorButtonPressed
+#debug_left bool firstFloorButtonPressed
+#srcline 27 ;  elevatorFifthFloorButtonPressed  := FALSE;
+ LD   bool 0       ; false
+ WR   elevatorFifthFloorButtonPressed
+#debug_left bool elevatorFifthFloorButtonPressed
+#srcline 28 ;  elevatorFourthFloorButtonPressed := FALSE;
+ LD   bool 0       ; false
+ WR   elevatorFourthFloorButtonPressed
+#debug_left bool elevatorFourthFloorButtonPressed
+#srcline 29 ;  elevatorThirdFloorButtonPressed  := FALSE;
+ LD   bool 0       ; false
+ WR   elevatorThirdFloorButtonPressed
+#debug_left bool elevatorThirdFloorButtonPressed
+#srcline 30 ;  elevatorSecondFloorButtonPressed := FALSE;
+ LD   bool 0       ; false
+ WR   elevatorSecondFloorButtonPressed
+#debug_left bool elevatorSecondFloorButtonPressed
+#srcline 31 ;  elevatorFirstFloorButtonPressed  := FALSE;
+ LD   bool 0       ; false
+ WR   elevatorFirstFloorButtonPressed
+#debug_left bool elevatorFirstFloorButtonPressed
+#srcline 32 ;  inputLocked := FALSE;
+ LD   bool 0       ; false
+ WR   inputLocked
+#debug_left bool inputLocked
+#srcline 33 ;  targetFloor := targetFloorDefaultValue;
+ LD   targetFloorDefaultValue
+#debug int targetFloorDefaultValue
+ EXTW 
+ WR   targetFloor
+#debug_left int targetFloor
+#srcline 34 ;  ///----------------------------------------
+#srcline 35 ;      END_IF;
+HandleMovement_L5:
+#srcline 36 ;    ELSIF elevatorDirection = 1 THEN
+ JMP  HandleMovement_L4
+HandleMovement_L3:
+ LD   elevatorDirection
+#debug int elevatorDirection
+ EXTW 
+ LD   int 1
+ EQ
+ JMC  HandleMovement_L7
+#srcline 37 ;      elevatorFloor := elevatorFloor + 1;
+ LD   elevatorFloor
+#debug int elevatorFloor
+ EXTW 
+ LD   int 1
+ ADD
+ EXTW
+ WR   elevatorFloor
+#debug_left int elevatorFloor
+#srcline 38 ;      floorDifference := floorDifference - 1;
+ LD   floorDifference
+#debug int floorDifference
+ EXTW 
+ LD   int 1
+ SUB
+ EXTW
+ WR   floorDifference
+#debug_left int floorDifference
+#srcline 39 ;      //IF elevatorFloor = highestFloor OR floorDifference = 0 THEN 
+#srcline 40 ;      IF floorDifference = 0 THEN 
+ LD   floorDifference
+#debug int floorDifference
+ EXTW 
+ LD   int 0
+ EQ
+ JMC  HandleMovement_L8
+#srcline 41 ;        elevatorDirection := 0;
+ LD   int 0
+ WR   elevatorDirection
+#debug_left int elevatorDirection
+#srcline 42 ;        //ResetAllButtons();
+#srcline 43 ;///----------------------------------------
+#srcline 44 ;  fifthFloorButtonPressed          := FALSE;
+ LD   bool 0       ; false
+ WR   fifthFloorButtonPressed
+#debug_left bool fifthFloorButtonPressed
+#srcline 45 ;  fourthFloorButtonPressed         := FALSE;
+ LD   bool 0       ; false
+ WR   fourthFloorButtonPressed
+#debug_left bool fourthFloorButtonPressed
+#srcline 46 ;  thirdFloorButtonPressed          := FALSE;
+ LD   bool 0       ; false
+ WR   thirdFloorButtonPressed
+#debug_left bool thirdFloorButtonPressed
+#srcline 47 ;  secondFloorButtonPressed         := FALSE;
+ LD   bool 0       ; false
+ WR   secondFloorButtonPressed
+#debug_left bool secondFloorButtonPressed
+#srcline 48 ;  firstFloorButtonPressed          := FALSE;
+ LD   bool 0       ; false
+ WR   firstFloorButtonPressed
+#debug_left bool firstFloorButtonPressed
+#srcline 49 ;  elevatorFifthFloorButtonPressed  := FALSE;
+ LD   bool 0       ; false
+ WR   elevatorFifthFloorButtonPressed
+#debug_left bool elevatorFifthFloorButtonPressed
+#srcline 50 ;  elevatorFourthFloorButtonPressed := FALSE;
+ LD   bool 0       ; false
+ WR   elevatorFourthFloorButtonPressed
+#debug_left bool elevatorFourthFloorButtonPressed
+#srcline 51 ;  elevatorThirdFloorButtonPressed  := FALSE;
+ LD   bool 0       ; false
+ WR   elevatorThirdFloorButtonPressed
+#debug_left bool elevatorThirdFloorButtonPressed
+#srcline 52 ;  elevatorSecondFloorButtonPressed := FALSE;
+ LD   bool 0       ; false
+ WR   elevatorSecondFloorButtonPressed
+#debug_left bool elevatorSecondFloorButtonPressed
+#srcline 53 ;  elevatorFirstFloorButtonPressed  := FALSE;
+ LD   bool 0       ; false
+ WR   elevatorFirstFloorButtonPressed
+#debug_left bool elevatorFirstFloorButtonPressed
+#srcline 54 ;  inputLocked := FALSE;   
+ LD   bool 0       ; false
+ WR   inputLocked
+#debug_left bool inputLocked
+#srcline 55 ;  targetFloor := targetFloorDefaultValue;
+ LD   targetFloorDefaultValue
+#debug int targetFloorDefaultValue
+ EXTW 
+ WR   targetFloor
+#debug_left int targetFloor
+#srcline 57 ;  ///----------------------------------------
+#srcline 58 ;        END_IF;
+HandleMovement_L8:
+#srcline 59 ;    ELSIF floorDifference = 0 THEN
+ JMP  HandleMovement_L4
+HandleMovement_L7:
+ LD   floorDifference
+#debug int floorDifference
+ EXTW 
+ LD   int 0
+ EQ
+ JMC  HandleMovement_L10
+#srcline 60 ;      elevatorDirection := 0;
+ LD   int 0
+ WR   elevatorDirection
+#debug_left int elevatorDirection
+#srcline 62 ;    END_IF;
+ JMP  HandleMovement_L4
+HandleMovement_L10:
+HandleMovement_L4:
+#srcline 63 ;    
+#srcline 64 ;  END_IF;
+HandleMovement_L2:
+#srcline 65 ;  
+#srcline 66 ;  
+#srcline 67 ;  
+#srcline 68 ;  
+#srcline 70 ;END_FUNCTION
+ PRV  
+ LDX  __fc__HandleMovement
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''

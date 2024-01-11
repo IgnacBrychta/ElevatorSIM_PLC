@@ -1,0 +1,40 @@
+#srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\ELEVATORUP.ST'
+
+#defpou ElevatorUp
+  bool __fc__ElevatorUp
+#reg ElevatorUp  __Instance__ElevatorUp
+
+ 
+#srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\ELEVATORUP.ST'
+#pou ElevatorUp
+#srcline 1 ;FUNCTION ElevatorUp : BOOL
+P     61
+ElevatorUp_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__ElevatorUp
+; End initialize - variables
+#srcline 11 ;  elevatorFloor := elevatorFloor + 1;
+ LD   elevatorFloor
+#debug int elevatorFloor
+ EXTW 
+ LD   int 1
+ ADD
+ EXTW
+ WR   elevatorFloor
+#debug_left int elevatorFloor
+#srcline 12 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ElevatorUp
+ ULNK
+RET
+E     61
+#endpou 
+
+
+
+ 
+
+#srcfile ''
