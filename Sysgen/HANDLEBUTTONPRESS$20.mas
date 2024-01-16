@@ -16,11 +16,6 @@ HandleButtonPress_L0:
  LD   0
  WRX  __fc__HandleButtonPress
 ; End initialize - variables
-#srcline 11 ;  IF NOT inputLocked THEN 
- LD   inputLocked
-#debug bool inputLocked
- NEG
- JMC  HandleButtonPress_L1
 #srcline 12 ;    anyFirstFloorButtonPressed :=
 #srcline 13 ;      elevatorFirstFloorButtonPressed OR
  LD   elevatorFirstFloorButtonPressed
@@ -93,59 +88,64 @@ HandleButtonPress_L0:
  OR  
  WR   anyFloorButtonPressed
 #debug_left bool anyFloorButtonPressed
-#srcline 33 ;    IF anyFifthFloorButtonPressed THEN
+#srcline 33 ;  IF NOT inputLocked THEN
+ LD   inputLocked
+#debug bool inputLocked
+ NEG
+ JMC  HandleButtonPress_L1
+#srcline 34 ;    IF anyFifthFloorButtonPressed THEN
  LD   anyFifthFloorButtonPressed
 #debug bool anyFifthFloorButtonPressed
  JMC  HandleButtonPress_L3
-#srcline 34 ;      targetFloor := 5;
+#srcline 35 ;      targetFloor := 5;
  LD   int 5
  WR   targetFloor
 #debug_left int targetFloor
-#srcline 35 ;    ELSIF anyFourthFloorButtonPressed THEN
+#srcline 36 ;    ELSIF anyFourthFloorButtonPressed THEN
  JMP  HandleButtonPress_L4
 HandleButtonPress_L3:
  LD   anyFourthFloorButtonPressed
 #debug bool anyFourthFloorButtonPressed
  JMC  HandleButtonPress_L5
-#srcline 36 ;      targetFloor := 4;
+#srcline 37 ;      targetFloor := 4;
  LD   int 4
  WR   targetFloor
 #debug_left int targetFloor
-#srcline 37 ;    ELSIF anyThirdFloorButtonPressed THEN
+#srcline 38 ;    ELSIF anyThirdFloorButtonPressed THEN
  JMP  HandleButtonPress_L4
 HandleButtonPress_L5:
  LD   anyThirdFloorButtonPressed
 #debug bool anyThirdFloorButtonPressed
  JMC  HandleButtonPress_L6
-#srcline 38 ;      targetFloor := 3;
+#srcline 39 ;      targetFloor := 3;
  LD   int 3
  WR   targetFloor
 #debug_left int targetFloor
-#srcline 39 ;    ELSIF anySecondFloorButtonPressed THEN
+#srcline 40 ;    ELSIF anySecondFloorButtonPressed THEN
  JMP  HandleButtonPress_L4
 HandleButtonPress_L6:
  LD   anySecondFloorButtonPressed
 #debug bool anySecondFloorButtonPressed
  JMC  HandleButtonPress_L7
-#srcline 40 ;      targetFloor := 2;
+#srcline 41 ;      targetFloor := 2;
  LD   int 2
  WR   targetFloor
 #debug_left int targetFloor
-#srcline 41 ;    ELSIF anyFirstFloorButtonPressed THEN
+#srcline 42 ;    ELSIF anyFirstFloorButtonPressed THEN
  JMP  HandleButtonPress_L4
 HandleButtonPress_L7:
  LD   anyFirstFloorButtonPressed
 #debug bool anyFirstFloorButtonPressed
  JMC  HandleButtonPress_L8
-#srcline 42 ;      targetFloor := 1;
+#srcline 43 ;      targetFloor := 1;
  LD   int 1
  WR   targetFloor
 #debug_left int targetFloor
-#srcline 43 ;    END_IF;
+#srcline 44 ;    END_IF;
  JMP  HandleButtonPress_L4
 HandleButtonPress_L8:
 HandleButtonPress_L4:
-#srcline 45 ;    IF NOT targetFloor = targetFloorDefaultValue THEN
+#srcline 46 ;    IF NOT targetFloor = targetFloorDefaultValue THEN
  LD   targetFloor
 #debug int targetFloor
  EXTW 
@@ -155,7 +155,7 @@ HandleButtonPress_L4:
  EQ
  NEG
  JMC  HandleButtonPress_L9
-#srcline 46 ;      floorDifference := elevatorFloor - targetFloor;
+#srcline 47 ;      floorDifference := elevatorFloor - targetFloor;
  LD   elevatorFloor
 #debug int elevatorFloor
  EXTW 
@@ -166,56 +166,56 @@ HandleButtonPress_L4:
  EXTW
  WR   floorDifference
 #debug_left int floorDifference
-#srcline 47 ;      IF floorDifference = 0 THEN
+#srcline 48 ;      IF floorDifference = 0 THEN
  LD   floorDifference
 #debug int floorDifference
  EXTW 
  LD   int 0
  EQ
  JMC  HandleButtonPress_L11
-#srcline 48 ;        // if the user pressed an elevator button on the
-#srcline 49 ;        // same floor the elevator is at
-#srcline 50 ;        fifthFloorButtonPressed          := FALSE;
+#srcline 49 ;        // if the user pressed an elevator button on the
+#srcline 50 ;        // same floor the elevator is at
+#srcline 51 ;        fifthFloorButtonPressed          := FALSE;
  LD   bool 0       ; false
  WR   fifthFloorButtonPressed
 #debug_left bool fifthFloorButtonPressed
-#srcline 51 ;        fourthFloorButtonPressed         := FALSE;
+#srcline 52 ;        fourthFloorButtonPressed         := FALSE;
  LD   bool 0       ; false
  WR   fourthFloorButtonPressed
 #debug_left bool fourthFloorButtonPressed
-#srcline 52 ;        thirdFloorButtonPressed          := FALSE;
+#srcline 53 ;        thirdFloorButtonPressed          := FALSE;
  LD   bool 0       ; false
  WR   thirdFloorButtonPressed
 #debug_left bool thirdFloorButtonPressed
-#srcline 53 ;        secondFloorButtonPressed         := FALSE;
+#srcline 54 ;        secondFloorButtonPressed         := FALSE;
  LD   bool 0       ; false
  WR   secondFloorButtonPressed
 #debug_left bool secondFloorButtonPressed
-#srcline 54 ;        firstFloorButtonPressed          := FALSE;
+#srcline 55 ;        firstFloorButtonPressed          := FALSE;
  LD   bool 0       ; false
  WR   firstFloorButtonPressed
 #debug_left bool firstFloorButtonPressed
-#srcline 55 ;        elevatorFifthFloorButtonPressed  := FALSE;
+#srcline 56 ;        elevatorFifthFloorButtonPressed  := FALSE;
  LD   bool 0       ; false
  WR   elevatorFifthFloorButtonPressed
 #debug_left bool elevatorFifthFloorButtonPressed
-#srcline 56 ;        elevatorFourthFloorButtonPressed := FALSE;
+#srcline 57 ;        elevatorFourthFloorButtonPressed := FALSE;
  LD   bool 0       ; false
  WR   elevatorFourthFloorButtonPressed
 #debug_left bool elevatorFourthFloorButtonPressed
-#srcline 57 ;        elevatorThirdFloorButtonPressed  := FALSE;
+#srcline 58 ;        elevatorThirdFloorButtonPressed  := FALSE;
  LD   bool 0       ; false
  WR   elevatorThirdFloorButtonPressed
 #debug_left bool elevatorThirdFloorButtonPressed
-#srcline 58 ;        elevatorSecondFloorButtonPressed := FALSE;
+#srcline 59 ;        elevatorSecondFloorButtonPressed := FALSE;
  LD   bool 0       ; false
  WR   elevatorSecondFloorButtonPressed
 #debug_left bool elevatorSecondFloorButtonPressed
-#srcline 59 ;        elevatorFirstFloorButtonPressed  := FALSE;
+#srcline 60 ;        elevatorFirstFloorButtonPressed  := FALSE;
  LD   bool 0       ; false
  WR   elevatorFirstFloorButtonPressed
 #debug_left bool elevatorFirstFloorButtonPressed
-#srcline 60 ;      ELSIF floorDifference > 0 THEN
+#srcline 61 ;      ELSIF floorDifference > 0 THEN
  JMP  HandleButtonPress_L12
 HandleButtonPress_L11:
  LD   floorDifference
@@ -224,19 +224,19 @@ HandleButtonPress_L11:
  LD   int 0
  GTS
  JMC  HandleButtonPress_L13
-#srcline 61 ;        elevatorDirection := -1;
+#srcline 62 ;        elevatorDirection := -1;
  LD   int -1
  WR   elevatorDirection
 #debug_left int elevatorDirection
-#srcline 62 ;        inputLocked := TRUE;
+#srcline 63 ;        inputLocked := TRUE;
  LD   bool -1       ; true
  WR   inputLocked
 #debug_left bool inputLocked
-#srcline 63 ;        waitingForDoors := TRUE;
+#srcline 64 ;        waitingForDoors := TRUE;
  LD   bool -1       ; true
  WR   waitingForDoors
 #debug_left bool waitingForDoors
-#srcline 64 ;      ELSIF floorDifference < 0 THEN
+#srcline 65 ;      ELSIF floorDifference < 0 THEN
  JMP  HandleButtonPress_L12
 HandleButtonPress_L13:
  LD   floorDifference
@@ -245,34 +245,34 @@ HandleButtonPress_L13:
  LD   int 0
  LTS
  JMC  HandleButtonPress_L14
-#srcline 65 ;        elevatorDirection := 1;
+#srcline 66 ;        elevatorDirection := 1;
  LD   int 1
  WR   elevatorDirection
 #debug_left int elevatorDirection
-#srcline 66 ;        inputLocked := TRUE;
+#srcline 67 ;        inputLocked := TRUE;
  LD   bool -1       ; true
  WR   inputLocked
 #debug_left bool inputLocked
-#srcline 67 ;        waitingForDoors := TRUE;
+#srcline 68 ;        waitingForDoors := TRUE;
  LD   bool -1       ; true
  WR   waitingForDoors
 #debug_left bool waitingForDoors
-#srcline 68 ;      END_IF;
+#srcline 69 ;      END_IF;
  JMP  HandleButtonPress_L12
 HandleButtonPress_L14:
 HandleButtonPress_L12:
-#srcline 69 ;      floorDifference := ABS(floorDifference);
+#srcline 70 ;      floorDifference := ABS(floorDifference);
  LD   floorDifference
 #debug int floorDifference
  EXTW 
  ABSL
  WR   floorDifference
 #debug_left int floorDifference
-#srcline 70 ;    END_IF;
+#srcline 71 ;    END_IF;
 HandleButtonPress_L9:
-#srcline 71 ;  END_IF;
+#srcline 72 ;  END_IF;
 HandleButtonPress_L1:
-#srcline 72 ;END_FUNCTION
+#srcline 73 ;END_FUNCTION
  PRV  
  LDX  __fc__HandleButtonPress
  ULNK

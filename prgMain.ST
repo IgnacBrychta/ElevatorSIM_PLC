@@ -17,6 +17,9 @@ PROGRAM prgMain
   VAR_OUTPUT
   END_VAR
   VAR
+    tempFourthFloor : BOOL := FALSE;
+    tempThirdFloor : BOOL := FALSE;
+    tempSecondFloor : BOOL := FALSE;
   END_VAR
   VAR_TEMP
   END_VAR
@@ -31,9 +34,11 @@ PROGRAM prgMain
   elevatorWeight := ABS(elevatorWeight);
   
   forceOpenDoors := 
-    NOT elevatorButtonStopPressed AND
-    elevatorWeight <= elevatorMaximumWeight AND 
-    NOT anyObstacleDetected;
+      NOT elevatorButtonStopPressed 
+    AND
+      elevatorWeight <= elevatorMaximumWeight 
+    AND 
+      NOT anyObstacleDetected;
 
   CASE switchCase OF
     0: // timer
@@ -46,13 +51,29 @@ PROGRAM prgMain
             switchCase := 2;
           ELSE
             IF forceOpenDoors THEN
-              IF anyObstacleWasDetected THEN
+              tempFourthFloor := elevatorFloor = 4 AND anyFourthFloorButtonPressed AND elevatorDirection = -1;
+              tempThirdFloor := elevatorFloor = 3 AND anyThirdFloorButtonPressed AND elevatorDirection = -1;
+              tempSecondFloor := elevatorFloor = 2 AND anySecondFloorButtonPressed AND elevatorDirection = -1;
+              IF (
+                  anyObstacleWasDetected 
+                OR
+                  tempFourthFloor
+                OR
+                  tempThirdFloor
+                OR
+                  tempSecondFloor
+              ) THEN
                 switchCase := 2;
                 timeDelayed := timePLC + elevatorFloorDoorsOpenTime;
                 waitingForDoors := TRUE;
+                middleFloorStop := TRUE;
+                IF tempFourthFloor THEN fourthFloorButtonPressed := FALSE; elevatorFourthFloorButtonPressed := FALSE;
+                ELSIF tempThirdFloor THEN thirdFloorButtonPressed := FALSE; elevatorThirdFloorButtonPressed := FALSE;
+                ELSIF tempSecondFloor THEN secondFloorButtonPressed := FALSE; elevatorSecondFloorButtonPressed := FALSE;
+                END_IF;
               ELSE
-                HandleMovement();
                 switchCase := 0;
+                HandleMovement();
               END_IF;
             ELSE
               anyObstacleWasDetected := anyObstacleDetected;
@@ -67,6 +88,7 @@ PROGRAM prgMain
         waitingForDoors := FALSE;
         switchCase := 1;
         anyObstacleWasDetected := FALSE;
+        middleFloorStop := FALSE;
       END_IF;
   END_CASE;
   

@@ -50,6 +50,7 @@ VAR_GLOBAL
   targetFloor : INT := -1;
   floorDifference : INT := -10;
   inputLocked : BOOL := FALSE;
+  middleFloorStop : BOOL := FALSE;
   // text info
   textElevatorWeight : STRING := 'Simulovana vaha vytahu [kg]:';
   textMaxElevatorWeight : STRING := 'Maximalni vaha vytahu [kg]:';

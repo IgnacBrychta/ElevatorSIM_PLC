@@ -15,18 +15,18 @@
 <title>
 <xsl:value-of select="/PAGE/@TITLE" />
 Index</title>
-<script src="PAGE1.JS?U=1704985198" language="JavaScript" charset="utf-8" />
+<script src="PAGE1.JS?U=1705398110" language="JavaScript" charset="utf-8" />
 <style type="text/css">.mono {font-family: Verdana, Arial, FreeSans, sans-serif;}</style>
 </head>
 <body onload="GetXML('PAGE1.XML'); FunWatchDog();">
-<xsl:if test="1704985198 != ACCESS/@UCID">
+<xsl:if test="1705398110 != ACCESS/@UCID">
 <xsl:attribute name="onload">
 null;
 </xsl:attribute>
 <div id="cachewarning" style="text-align: left;"></div>
 <script src="REFCLR.JS" language="JavaScript" charset="utf-8"></script>
 </xsl:if>
-<xsl:if test="1704985198 = ACCESS/@UCID">
+<xsl:if test="1705398110 = ACCESS/@UCID">
 <table cellpadding="0" cellspacing="0">
 <tr style="height: 40px;">
 <!--logo-->
@@ -56,21 +56,21 @@ Index</span>
 <td id="page">
 <div style="background-color:#FFFFFF;position: relative; width: 800px; height: 683px;">
 <form action="javascript:PostGlobal();">
-<input class="mono" tabindex="1" type="text" id="INPUT22" style="position: absolute; top: 15px; left: 60px; width: 22px; z-index: 23; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="11" type="text" id="INPUT23" style="position: absolute; top: 150px; left: 60px; width: 22px; z-index: 24; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="12" type="text" id="INPUT24" style="position: absolute; top: 285px; left: 60px; width: 22px; z-index: 25; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="13" type="text" id="INPUT25" style="position: absolute; top: 420px; left: 60px; width: 22px; z-index: 26; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="14" type="text" id="INPUT26" style="position: absolute; top: 555px; left: 60px; width: 22px; z-index: 27; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="15" type="text" id="INPUT27" style="position: absolute; top: 165px; left: 545px; width: 22px; z-index: 28; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="2" type="text" id="INPUT30" style="position: absolute; top: 70px; left: 225px; width: 229px; z-index: 31; background-color: #FFFFFF;" value="{INPUT[15]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="3" type="text" id="INPUT31" style="position: absolute; top: 130px; left: 225px; width: 229px; z-index: 32; background-color: #FFFFFF;" value="{INPUT[16]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="10" type="text" id="INPUT32" style="position: absolute; top: 160px; left: 225px; width: 31px; z-index: 33; background-color: #FFFFFF;" value="{INPUT[17]/@VALUE}" readonly="readonly" />
-<input title="timeLPC" class="mono" tabindex="9" type="text" id="INPUT39" style="position: absolute; top: 285px; left: 185px; width: 40px; z-index: 41; background-color: #FFFFFF;" value="{INPUT[24]/@VALUE}" readonly="readonly" />
-<input title="timeDelayed" class="mono" tabindex="5" type="text" id="INPUT40" style="position: absolute; top: 310px; left: 185px; width: 40px; z-index: 42; background-color: #FFFFFF;" value="{INPUT[25]/@VALUE}" readonly="readonly" />
-<input title="elevator direction" class="mono" tabindex="4" type="text" id="INPUT41" style="position: absolute; top: 300px; left: 240px; width: 40px; z-index: 43; background-color: #FFFFFF;" value="{INPUT[26]/@VALUE}" readonly="readonly" />
-<input title="forceOpenDoors" class="mono" tabindex="8" type="text" id="INPUT42" style="position: absolute; top: 380px; left: 270px; width: 40px; z-index: 44; background-color: #FFFFFF;" value="{INPUT[27]/@VALUE}" readonly="readonly" />
-<input title="WAS detected" class="mono" tabindex="7" type="text" id="INPUT43" style="position: absolute; top: 415px; left: 270px; width: 40px; z-index: 45; background-color: #FFFFFF;" value="{INPUT[28]/@VALUE}" readonly="readonly" />
-<input title="waitingForDoors" class="mono" tabindex="6" type="text" id="INPUT44" style="position: absolute; top: 445px; left: 270px; width: 40px; z-index: 46; background-color: #FFFFFF;" value="{INPUT[29]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="1" type="text" id="INPUT22" style="position: absolute; top: 15px; left: 60px; width: 20px; z-index: 23; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="11" type="text" id="INPUT23" style="position: absolute; top: 150px; left: 60px; width: 20px; z-index: 24; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="12" type="text" id="INPUT24" style="position: absolute; top: 285px; left: 60px; width: 20px; z-index: 25; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="13" type="text" id="INPUT25" style="position: absolute; top: 420px; left: 60px; width: 20px; z-index: 26; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="14" type="text" id="INPUT26" style="position: absolute; top: 555px; left: 60px; width: 20px; z-index: 27; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="15" type="text" id="INPUT27" style="position: absolute; top: 165px; left: 545px; width: 20px; z-index: 28; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="2" type="text" id="INPUT30" style="position: absolute; top: 70px; left: 225px; width: 204px; z-index: 31; background-color: #FFFFFF;" value="{INPUT[15]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="3" type="text" id="INPUT31" style="position: absolute; top: 130px; left: 225px; width: 204px; z-index: 32; background-color: #FFFFFF;" value="{INPUT[16]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="10" type="text" id="INPUT32" style="position: absolute; top: 160px; left: 225px; width: 28px; z-index: 33; background-color: #FFFFFF;" value="{INPUT[17]/@VALUE}" readonly="readonly" />
+<input title="timeLPC" class="mono" tabindex="9" type="text" id="INPUT39" style="position: absolute; top: 285px; left: 295px; width: 36px; z-index: 41; background-color: #FFFFFF;" value="{INPUT[24]/@VALUE}" readonly="readonly" />
+<input title="timeDelayed" class="mono" tabindex="5" type="text" id="INPUT40" style="position: absolute; top: 310px; left: 295px; width: 36px; z-index: 42; background-color: #FFFFFF;" value="{INPUT[25]/@VALUE}" readonly="readonly" />
+<input title="elevator direction" class="mono" tabindex="4" type="text" id="INPUT41" style="position: absolute; top: 300px; left: 340px; width: 36px; z-index: 43; background-color: #FFFFFF;" value="{INPUT[26]/@VALUE}" readonly="readonly" />
+<input title="forceOpenDoors" class="mono" tabindex="8" type="text" id="INPUT42" style="position: absolute; top: 380px; left: 270px; width: 36px; z-index: 44; background-color: #FFFFFF;" value="{INPUT[27]/@VALUE}" readonly="readonly" />
+<input title="WAS detected" class="mono" tabindex="7" type="text" id="INPUT43" style="position: absolute; top: 415px; left: 270px; width: 36px; z-index: 45; background-color: #FFFFFF;" value="{INPUT[28]/@VALUE}" readonly="readonly" />
+<input title="waitingForDoors" class="mono" tabindex="6" type="text" id="INPUT44" style="position: absolute; top: 445px; left: 270px; width: 36px; z-index: 46; background-color: #FFFFFF;" value="{INPUT[29]/@VALUE}" readonly="readonly" />
 </form>
 <xsl:if test="INPUT[1]/@VALUE = 0">
 <div id="INPUT1" style="position: absolute; top: 150px; left: 20px; z-index: 1; background-image: url(IMAGES/VYTAHZ_2.PNG); line-height: 128px; height: 128px; width: 128px;"></div>
@@ -188,70 +188,100 @@ Index</span>
 <div id="INPUT28" style="position: absolute; top: 150px; left: 585px; z-index: 29; background-image: url(IMAGES/STOPSI_2.PNG); line-height: 70px; height: 70px; width: 70px;"></div>
 </xsl:if>
 <form action="javascript:PostXML29()" style="position: absolute; top: 100px; left: 225px; z-index: 30; font-size: 13px;">
-<input title="Enter the weight of all people and cargo" id="INPUT29" onfocus="document.getElementById('INPUT29x').style.visibility='visible';SetInputEdited(29, event);" onblur="InputFocused[28]=0" onkeydown="SetInputEdited(29, event);" class="mono" tabindex="16" type="text" style="width: 40px; background-color: #FFFFFF;" name="{INPUT[14]/@NAME}" value="{INPUT[14]/@VALUE}" />
+<input title="Enter the weight of all people and cargo" id="INPUT29" onfocus="document.getElementById('INPUT29x').style.visibility='visible';SetInputEdited(29, event);" onblur="InputFocused[28]=0" onkeydown="SetInputEdited(29, event);" class="mono" tabindex="16" type="text" style="width: 36px; background-color: #FFFFFF;" name="{INPUT[14]/@NAME}" value="{INPUT[14]/@VALUE}" />
 <input type="submit" id="INPUT29x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <div style="position: absolute; top: 10px; left: 715px; z-index: 34; background-image: url(IMAGES/STOPSI_2.PNG); line-height: 70px; height: 70px; width: 70px;"></div>
 <form style="position: absolute; top: 70px; left: 40px; z-index: 35;">
 <xsl:if test="INPUT[18]/@VALUE = 0">
 <input id="INPUT33h" type="hidden" name="{INPUT[18]/@NAME}" value="1" />
-<div title="Toggle obstacle" id="INPUT33" class="imgsub" onclick="PostXML33()" style="background-image: url(IMAGES/TRASH__1.PNG); line-height: 71px; height: 71px; width: 64px;"></div>
+<div title="Toggle obstacle" id="INPUT33" class="imgsub" onclick="PostXML33()" style="line-height: 64px; height: 64px; width: 64px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[18]/@VALUE != 0">
 <input id="INPUT33h" type="hidden" name="{INPUT[18]/@NAME}" value="0" />
-<div title="Toggle obstacle" id="INPUT33" class="imgsub" onclick="PostXML33()" style="background-image: url(IMAGES/TRASH__2.PNG); line-height: 71px; height: 71px; width: 64px;"></div>
+<div title="Toggle obstacle" id="INPUT33" class="imgsub" onclick="PostXML33()" style="background-image: url(IMAGES/PREKAZKA.PNG); line-height: 64px; height: 64px; width: 64px;"></div>
 </xsl:if>
 </form>
 <form style="position: absolute; top: 205px; left: 40px; z-index: 36;">
 <xsl:if test="INPUT[19]/@VALUE = 0">
 <input id="INPUT34h" type="hidden" name="{INPUT[19]/@NAME}" value="1" />
-<div title="Toggle obstacle" id="INPUT34" class="imgsub" onclick="PostXML34()" style="background-image: url(IMAGES/TRASH__1.PNG); line-height: 71px; height: 71px; width: 64px;"></div>
+<div title="Toggle obstacle" id="INPUT34" class="imgsub" onclick="PostXML34()" style="line-height: 64px; height: 64px; width: 64px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[19]/@VALUE != 0">
 <input id="INPUT34h" type="hidden" name="{INPUT[19]/@NAME}" value="0" />
-<div title="Toggle obstacle" id="INPUT34" class="imgsub" onclick="PostXML34()" style="background-image: url(IMAGES/TRASH__2.PNG); line-height: 71px; height: 71px; width: 64px;"></div>
+<div title="Toggle obstacle" id="INPUT34" class="imgsub" onclick="PostXML34()" style="background-image: url(IMAGES/PREKAZKA.PNG); line-height: 64px; height: 64px; width: 64px;"></div>
 </xsl:if>
 </form>
 <form style="position: absolute; top: 340px; left: 40px; z-index: 37;">
 <xsl:if test="INPUT[20]/@VALUE = 0">
 <input id="INPUT35h" type="hidden" name="{INPUT[20]/@NAME}" value="1" />
-<div title="Toggle obstacle" id="INPUT35" class="imgsub" onclick="PostXML35()" style="background-image: url(IMAGES/TRASH__1.PNG); line-height: 71px; height: 71px; width: 64px;"></div>
+<div title="Toggle obstacle" id="INPUT35" class="imgsub" onclick="PostXML35()" style="line-height: 64px; height: 64px; width: 64px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[20]/@VALUE != 0">
 <input id="INPUT35h" type="hidden" name="{INPUT[20]/@NAME}" value="0" />
-<div title="Toggle obstacle" id="INPUT35" class="imgsub" onclick="PostXML35()" style="background-image: url(IMAGES/TRASH__2.PNG); line-height: 71px; height: 71px; width: 64px;"></div>
+<div title="Toggle obstacle" id="INPUT35" class="imgsub" onclick="PostXML35()" style="background-image: url(IMAGES/PREKAZKA.PNG); line-height: 64px; height: 64px; width: 64px;"></div>
 </xsl:if>
 </form>
 <form style="position: absolute; top: 475px; left: 40px; z-index: 38;">
 <xsl:if test="INPUT[21]/@VALUE = 0">
 <input id="INPUT36h" type="hidden" name="{INPUT[21]/@NAME}" value="1" />
-<div title="Toggle obstacle" id="INPUT36" class="imgsub" onclick="PostXML36()" style="background-image: url(IMAGES/TRASH__1.PNG); line-height: 71px; height: 71px; width: 64px;"></div>
+<div title="Toggle obstacle" id="INPUT36" class="imgsub" onclick="PostXML36()" style="line-height: 64px; height: 64px; width: 64px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[21]/@VALUE != 0">
 <input id="INPUT36h" type="hidden" name="{INPUT[21]/@NAME}" value="0" />
-<div title="Toggle obstacle" id="INPUT36" class="imgsub" onclick="PostXML36()" style="background-image: url(IMAGES/TRASH__2.PNG); line-height: 71px; height: 71px; width: 64px;"></div>
+<div title="Toggle obstacle" id="INPUT36" class="imgsub" onclick="PostXML36()" style="background-image: url(IMAGES/PREKAZKA.PNG); line-height: 64px; height: 64px; width: 64px;"></div>
 </xsl:if>
 </form>
 <form style="position: absolute; top: 610px; left: 40px; z-index: 39;">
 <xsl:if test="INPUT[22]/@VALUE = 0">
 <input id="INPUT37h" type="hidden" name="{INPUT[22]/@NAME}" value="1" />
-<div title="Toggle obstacle" id="INPUT37" class="imgsub" onclick="PostXML37()" style="background-image: url(IMAGES/TRASH__1.PNG); line-height: 71px; height: 71px; width: 64px;"></div>
+<div title="Toggle obstacle" id="INPUT37" class="imgsub" onclick="PostXML37()" style="line-height: 64px; height: 64px; width: 64px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[22]/@VALUE != 0">
 <input id="INPUT37h" type="hidden" name="{INPUT[22]/@NAME}" value="0" />
-<div title="Toggle obstacle" id="INPUT37" class="imgsub" onclick="PostXML37()" style="background-image: url(IMAGES/TRASH__2.PNG); line-height: 71px; height: 71px; width: 64px;"></div>
+<div title="Toggle obstacle" id="INPUT37" class="imgsub" onclick="PostXML37()" style="background-image: url(IMAGES/PREKAZKA.PNG); line-height: 64px; height: 64px; width: 64px;"></div>
 </xsl:if>
 </form>
 <form style="position: absolute; top: 295px; left: 525px; z-index: 40;">
 <xsl:if test="INPUT[23]/@VALUE = 0">
 <input id="INPUT38h" type="hidden" name="{INPUT[23]/@NAME}" value="1" />
-<div title="Toggle obstacle" id="INPUT38" class="imgsub" onclick="PostXML38()" style="background-image: url(IMAGES/TRASH__1.PNG); line-height: 71px; height: 71px; width: 64px;"></div>
+<div title="Toggle obstacle" id="INPUT38" class="imgsub" onclick="PostXML38()" style="line-height: 64px; height: 64px; width: 64px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[23]/@VALUE != 0">
 <input id="INPUT38h" type="hidden" name="{INPUT[23]/@NAME}" value="0" />
-<div title="Toggle obstacle" id="INPUT38" class="imgsub" onclick="PostXML38()" style="background-image: url(IMAGES/TRASH__2.PNG); line-height: 71px; height: 71px; width: 64px;"></div>
+<div title="Toggle obstacle" id="INPUT38" class="imgsub" onclick="PostXML38()" style="background-image: url(IMAGES/PREKAZKA.PNG); line-height: 64px; height: 64px; width: 64px;"></div>
 </xsl:if>
 </form>
+<xsl:if test="INPUT[30]/@VALUE = 0">
+<div title="Is elevator set to get to this floor?" id="INPUT45" style="position: absolute; top: 65px; left: 110px; z-index: 47; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+</xsl:if>
+<xsl:if test="INPUT[30]/@VALUE != 0">
+<div title="Is elevator set to get to this floor?" id="INPUT45" style="position: absolute; top: 65px; left: 110px; z-index: 47; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+</xsl:if>
+<xsl:if test="INPUT[31]/@VALUE = 0">
+<div title="Is elevator set to get to this floor?" id="INPUT46" style="position: absolute; top: 200px; left: 110px; z-index: 48; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+</xsl:if>
+<xsl:if test="INPUT[31]/@VALUE != 0">
+<div title="Is elevator set to get to this floor?" id="INPUT46" style="position: absolute; top: 200px; left: 110px; z-index: 48; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+</xsl:if>
+<xsl:if test="INPUT[32]/@VALUE = 0">
+<div title="Is elevator set to get to this floor?" id="INPUT47" style="position: absolute; top: 335px; left: 110px; z-index: 49; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+</xsl:if>
+<xsl:if test="INPUT[32]/@VALUE != 0">
+<div title="Is elevator set to get to this floor?" id="INPUT47" style="position: absolute; top: 335px; left: 110px; z-index: 49; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+</xsl:if>
+<xsl:if test="INPUT[33]/@VALUE = 0">
+<div title="Is elevator set to get to this floor?" id="INPUT48" style="position: absolute; top: 470px; left: 110px; z-index: 50; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+</xsl:if>
+<xsl:if test="INPUT[33]/@VALUE != 0">
+<div title="Is elevator set to get to this floor?" id="INPUT48" style="position: absolute; top: 470px; left: 110px; z-index: 50; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+</xsl:if>
+<xsl:if test="INPUT[34]/@VALUE = 0">
+<div title="Is elevator set to get to this floor?" id="INPUT49" style="position: absolute; top: 605px; left: 110px; z-index: 51; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+</xsl:if>
+<xsl:if test="INPUT[34]/@VALUE != 0">
+<div title="Is elevator set to get to this floor?" id="INPUT49" style="position: absolute; top: 605px; left: 110px; z-index: 51; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+</xsl:if>
 </div>
 </td>
 </tr>

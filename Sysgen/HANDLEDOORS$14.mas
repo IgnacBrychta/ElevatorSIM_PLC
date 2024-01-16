@@ -16,10 +16,13 @@ HandleDoors_L0:
  LD   0
  WRX  __fc__HandleDoors
 ; End initialize - variables
-#srcline 11 ;  IF NOT forceOpenDoors THEN
+#srcline 11 ;  IF NOT forceOpenDoors OR middleFloorStop THEN
  LD   forceOpenDoors
 #debug bool forceOpenDoors
  NEG
+ LD   middleFloorStop
+#debug bool middleFloorStop
+ OR  
  JMC  HandleDoors_L1
 #srcline 12 ;    IF elevatorFloor = 5 THEN
  LD   elevatorFloor

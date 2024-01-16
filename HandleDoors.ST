@@ -8,7 +8,7 @@ FUNCTION HandleDoors : BOOL
   VAR_TEMP
   END_VAR
 
-  IF NOT forceOpenDoors THEN
+  IF NOT forceOpenDoors OR middleFloorStop THEN
     IF elevatorFloor = 5 THEN
       fifthFloorElevDoorsOpen := TRUE;
     ELSIF elevatorFloor = 4 THEN

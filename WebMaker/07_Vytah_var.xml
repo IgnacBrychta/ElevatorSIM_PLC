@@ -33,4 +33,9 @@
 	<Item Name="forceOpenDoors" Pos="03000059" Type="3" />
 	<Item Name="anyObstacleWasDetected" Pos="0300005C" Type="1" />
 	<Item Name="waitingForDoors" Pos="03000065" Type="0" />
+	<Item Name="anyFifthFloorButtonPressed" Pos="0300006A" Type="1" />
+	<Item Name="anyFourthFloorButtonPressed" Pos="0300006A" Type="2" />
+	<Item Name="anyThirdFloorButtonPressed" Pos="0300006A" Type="3" />
+	<Item Name="anySecondFloorButtonPressed" Pos="0300006A" Type="4" />
+	<Item Name="anyFirstFloorButtonPressed" Pos="0300006A" Type="5" />
 </Variables>

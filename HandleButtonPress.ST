@@ -8,7 +8,7 @@ FUNCTION HandleButtonPress : BOOL
   VAR_TEMP
   END_VAR
 
-  IF NOT inputLocked THEN 
+  //IF NOT inputLocked THEN 
     anyFirstFloorButtonPressed :=
       elevatorFirstFloorButtonPressed OR
       firstFloorButtonPressed;
@@ -30,6 +30,7 @@ FUNCTION HandleButtonPress : BOOL
       anyThirdFloorButtonPressed OR 
       anyFourthFloorButtonPressed OR
       anyFifthFloorButtonPressed;
+  IF NOT inputLocked THEN
     IF anyFifthFloorButtonPressed THEN
       targetFloor := 5;
     ELSIF anyFourthFloorButtonPressed THEN

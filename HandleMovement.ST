@@ -15,23 +15,42 @@ FUNCTION HandleMovement : BOOL
       elevatorFloor := elevatorFloor - 1;
       floorDifference := floorDifference - 1;
       //IF elevatorFloor = 1 OR floorDifference = 0 THEN 
+
+      (* IF elevatorFloor = 4 AND anyFourthFloorButtonPressed THEN
+        fourthFloorElevDoorsOpen := TRUE;
+        switchCase := 2;
+        waitingForDoors := TRUE;
+        timeDelayed := timePLC + elevatorFloorDoorsOpenTime;
+      ELSIF elevatorFloor = 3 AND anyThirdFloorButtonPressed THEN
+        thirdFloorElevDoorsOpen := TRUE;
+        switchCase := 2;
+        waitingForDoors := TRUE;     
+        timeDelayed := timePLC + elevatorFloorDoorsOpenTime;
+      ELSIF elevatorFloor = 2 AND anySecondFloorButtonPressed THEN
+        thirdFloorElevDoorsOpen := TRUE;
+        switchCase := 2;
+        waitingForDoors := TRUE;     
+        timeDelayed := timePLC + elevatorFloorDoorsOpenTime;
+      END_IF; *)
+      
+
       IF floorDifference = 0 THEN 
         elevatorDirection := 0;
         //ResetAllButtons();
-  ///----------------------------------------
-  fifthFloorButtonPressed          := FALSE;
-  fourthFloorButtonPressed         := FALSE;
-  thirdFloorButtonPressed          := FALSE;
-  secondFloorButtonPressed         := FALSE;
-  firstFloorButtonPressed          := FALSE;
-  elevatorFifthFloorButtonPressed  := FALSE;
-  elevatorFourthFloorButtonPressed := FALSE;
-  elevatorThirdFloorButtonPressed  := FALSE;
-  elevatorSecondFloorButtonPressed := FALSE;
-  elevatorFirstFloorButtonPressed  := FALSE;
-  inputLocked := FALSE;
-  targetFloor := targetFloorDefaultValue;
-  ///----------------------------------------
+        ///----------------------------------------
+        fifthFloorButtonPressed          := FALSE;
+        fourthFloorButtonPressed         := FALSE;
+        thirdFloorButtonPressed          := FALSE;
+        secondFloorButtonPressed         := FALSE;
+        firstFloorButtonPressed          := FALSE;
+        elevatorFifthFloorButtonPressed  := FALSE;
+        elevatorFourthFloorButtonPressed := FALSE;
+        elevatorThirdFloorButtonPressed  := FALSE;
+        elevatorSecondFloorButtonPressed := FALSE;
+        elevatorFirstFloorButtonPressed  := FALSE;
+        inputLocked := FALSE;
+        targetFloor := targetFloorDefaultValue;
+        ///----------------------------------------
       END_IF;
     ELSIF elevatorDirection = 1 THEN
       elevatorFloor := elevatorFloor + 1;
@@ -40,21 +59,20 @@ FUNCTION HandleMovement : BOOL
       IF floorDifference = 0 THEN 
         elevatorDirection := 0;
         //ResetAllButtons();
-///----------------------------------------
-  fifthFloorButtonPressed          := FALSE;
-  fourthFloorButtonPressed         := FALSE;
-  thirdFloorButtonPressed          := FALSE;
-  secondFloorButtonPressed         := FALSE;
-  firstFloorButtonPressed          := FALSE;
-  elevatorFifthFloorButtonPressed  := FALSE;
-  elevatorFourthFloorButtonPressed := FALSE;
-  elevatorThirdFloorButtonPressed  := FALSE;
-  elevatorSecondFloorButtonPressed := FALSE;
-  elevatorFirstFloorButtonPressed  := FALSE;
-  inputLocked := FALSE;   
-  targetFloor := targetFloorDefaultValue;
-
-  ///----------------------------------------
+        ///----------------------------------------
+          fifthFloorButtonPressed          := FALSE;
+          fourthFloorButtonPressed         := FALSE;
+          thirdFloorButtonPressed          := FALSE;
+          secondFloorButtonPressed         := FALSE;
+          firstFloorButtonPressed          := FALSE;
+          elevatorFifthFloorButtonPressed  := FALSE;
+          elevatorFourthFloorButtonPressed := FALSE;
+          elevatorThirdFloorButtonPressed  := FALSE;
+          elevatorSecondFloorButtonPressed := FALSE;
+          elevatorFirstFloorButtonPressed  := FALSE;
+          inputLocked := FALSE;   
+          targetFloor := targetFloorDefaultValue;
+          ///----------------------------------------
         END_IF;
     ELSIF floorDifference = 0 THEN
       elevatorDirection := 0;

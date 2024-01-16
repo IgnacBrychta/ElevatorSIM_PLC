@@ -45,7 +45,7 @@ if(xmlhttpGET.status != 200){
 alert('Problem retrieving XML data ' + xmlhttpGET.statusText + '(' + xmlhttpGET.status + ')');
 document.location.reload(true)
 return;}
-var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1704985198) {document.location.reload(true); return;}
+var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1705398110) {document.location.reload(true); return;}
 var pd = '';
 var x=xmlhttpGET.responseXML.documentElement.getElementsByTagName('INPUT');
 if(x[0]) {
@@ -187,18 +187,18 @@ if(Input33h) { vz = x[17].getAttribute('VALUE') == '0'; iz = Input33h.value == '
 if(vz == iz) {
 if(vz) {
 Input33h.value = '1';
-Input33.style.backgroundImage = 'url("IMAGES/TRASH__1.PNG")';
+Input33.style.backgroundImage = '';
 if(Input33.getAttribute('value') != null) {Input33.value = '';} else {}
 } else {
 Input33h.value = '0';
-Input33.style.backgroundImage = 'url("IMAGES/TRASH__2.PNG")';
+Input33.style.backgroundImage = 'url("IMAGES/PREKAZKA.PNG")';
 if(Input33.getAttribute('value') != null) {Input33.value = '';
 } else {}
 }}} else {
 if(x[17].getAttribute('VALUE') == '0') {
-SetBg('INPUT33', 'TRASH__1.PNG');
+SetBg('INPUT33', '');
 } else {
-SetBg('INPUT33', 'TRASH__2.PNG');
+SetBg('INPUT33', 'PREKAZKA.PNG');
 }}
 var Input34 = document.getElementById('INPUT34');
 var Input34h = document.getElementById('INPUT34h');
@@ -206,18 +206,18 @@ if(Input34h) { vz = x[18].getAttribute('VALUE') == '0'; iz = Input34h.value == '
 if(vz == iz) {
 if(vz) {
 Input34h.value = '1';
-Input34.style.backgroundImage = 'url("IMAGES/TRASH__1.PNG")';
+Input34.style.backgroundImage = '';
 if(Input34.getAttribute('value') != null) {Input34.value = '';} else {}
 } else {
 Input34h.value = '0';
-Input34.style.backgroundImage = 'url("IMAGES/TRASH__2.PNG")';
+Input34.style.backgroundImage = 'url("IMAGES/PREKAZKA.PNG")';
 if(Input34.getAttribute('value') != null) {Input34.value = '';
 } else {}
 }}} else {
 if(x[18].getAttribute('VALUE') == '0') {
-SetBg('INPUT34', 'TRASH__1.PNG');
+SetBg('INPUT34', '');
 } else {
-SetBg('INPUT34', 'TRASH__2.PNG');
+SetBg('INPUT34', 'PREKAZKA.PNG');
 }}
 var Input35 = document.getElementById('INPUT35');
 var Input35h = document.getElementById('INPUT35h');
@@ -225,18 +225,18 @@ if(Input35h) { vz = x[19].getAttribute('VALUE') == '0'; iz = Input35h.value == '
 if(vz == iz) {
 if(vz) {
 Input35h.value = '1';
-Input35.style.backgroundImage = 'url("IMAGES/TRASH__1.PNG")';
+Input35.style.backgroundImage = '';
 if(Input35.getAttribute('value') != null) {Input35.value = '';} else {}
 } else {
 Input35h.value = '0';
-Input35.style.backgroundImage = 'url("IMAGES/TRASH__2.PNG")';
+Input35.style.backgroundImage = 'url("IMAGES/PREKAZKA.PNG")';
 if(Input35.getAttribute('value') != null) {Input35.value = '';
 } else {}
 }}} else {
 if(x[19].getAttribute('VALUE') == '0') {
-SetBg('INPUT35', 'TRASH__1.PNG');
+SetBg('INPUT35', '');
 } else {
-SetBg('INPUT35', 'TRASH__2.PNG');
+SetBg('INPUT35', 'PREKAZKA.PNG');
 }}
 var Input36 = document.getElementById('INPUT36');
 var Input36h = document.getElementById('INPUT36h');
@@ -244,18 +244,18 @@ if(Input36h) { vz = x[20].getAttribute('VALUE') == '0'; iz = Input36h.value == '
 if(vz == iz) {
 if(vz) {
 Input36h.value = '1';
-Input36.style.backgroundImage = 'url("IMAGES/TRASH__1.PNG")';
+Input36.style.backgroundImage = '';
 if(Input36.getAttribute('value') != null) {Input36.value = '';} else {}
 } else {
 Input36h.value = '0';
-Input36.style.backgroundImage = 'url("IMAGES/TRASH__2.PNG")';
+Input36.style.backgroundImage = 'url("IMAGES/PREKAZKA.PNG")';
 if(Input36.getAttribute('value') != null) {Input36.value = '';
 } else {}
 }}} else {
 if(x[20].getAttribute('VALUE') == '0') {
-SetBg('INPUT36', 'TRASH__1.PNG');
+SetBg('INPUT36', '');
 } else {
-SetBg('INPUT36', 'TRASH__2.PNG');
+SetBg('INPUT36', 'PREKAZKA.PNG');
 }}
 var Input37 = document.getElementById('INPUT37');
 var Input37h = document.getElementById('INPUT37h');
@@ -263,18 +263,18 @@ if(Input37h) { vz = x[21].getAttribute('VALUE') == '0'; iz = Input37h.value == '
 if(vz == iz) {
 if(vz) {
 Input37h.value = '1';
-Input37.style.backgroundImage = 'url("IMAGES/TRASH__1.PNG")';
+Input37.style.backgroundImage = '';
 if(Input37.getAttribute('value') != null) {Input37.value = '';} else {}
 } else {
 Input37h.value = '0';
-Input37.style.backgroundImage = 'url("IMAGES/TRASH__2.PNG")';
+Input37.style.backgroundImage = 'url("IMAGES/PREKAZKA.PNG")';
 if(Input37.getAttribute('value') != null) {Input37.value = '';
 } else {}
 }}} else {
 if(x[21].getAttribute('VALUE') == '0') {
-SetBg('INPUT37', 'TRASH__1.PNG');
+SetBg('INPUT37', '');
 } else {
-SetBg('INPUT37', 'TRASH__2.PNG');
+SetBg('INPUT37', 'PREKAZKA.PNG');
 }}
 var Input38 = document.getElementById('INPUT38');
 var Input38h = document.getElementById('INPUT38h');
@@ -282,18 +282,18 @@ if(Input38h) { vz = x[22].getAttribute('VALUE') == '0'; iz = Input38h.value == '
 if(vz == iz) {
 if(vz) {
 Input38h.value = '1';
-Input38.style.backgroundImage = 'url("IMAGES/TRASH__1.PNG")';
+Input38.style.backgroundImage = '';
 if(Input38.getAttribute('value') != null) {Input38.value = '';} else {}
 } else {
 Input38h.value = '0';
-Input38.style.backgroundImage = 'url("IMAGES/TRASH__2.PNG")';
+Input38.style.backgroundImage = 'url("IMAGES/PREKAZKA.PNG")';
 if(Input38.getAttribute('value') != null) {Input38.value = '';
 } else {}
 }}} else {
 if(x[22].getAttribute('VALUE') == '0') {
-SetBg('INPUT38', 'TRASH__1.PNG');
+SetBg('INPUT38', '');
 } else {
-SetBg('INPUT38', 'TRASH__2.PNG');
+SetBg('INPUT38', 'PREKAZKA.PNG');
 }}
 var Input39 = document.getElementById('INPUT39');
 Input39.value = x[23].getAttribute('VALUE');
@@ -307,6 +307,36 @@ var Input43 = document.getElementById('INPUT43');
 Input43.value = x[27].getAttribute('VALUE');
 var Input44 = document.getElementById('INPUT44');
 Input44.value = x[28].getAttribute('VALUE');
+var Input45 = document.getElementById('INPUT45');
+if(x[29].getAttribute('VALUE') == '0') {
+SetBg('INPUT45', 'BU73FF_1.PNG');
+} else {
+SetBg('INPUT45', 'BU0EEE_1.PNG');
+}
+var Input46 = document.getElementById('INPUT46');
+if(x[30].getAttribute('VALUE') == '0') {
+SetBg('INPUT46', 'BU73FF_1.PNG');
+} else {
+SetBg('INPUT46', 'BU0EEE_1.PNG');
+}
+var Input47 = document.getElementById('INPUT47');
+if(x[31].getAttribute('VALUE') == '0') {
+SetBg('INPUT47', 'BU73FF_1.PNG');
+} else {
+SetBg('INPUT47', 'BU0EEE_1.PNG');
+}
+var Input48 = document.getElementById('INPUT48');
+if(x[32].getAttribute('VALUE') == '0') {
+SetBg('INPUT48', 'BU73FF_1.PNG');
+} else {
+SetBg('INPUT48', 'BU0EEE_1.PNG');
+}
+var Input49 = document.getElementById('INPUT49');
+if(x[33].getAttribute('VALUE') == '0') {
+SetBg('INPUT49', 'BU73FF_1.PNG');
+} else {
+SetBg('INPUT49', 'BU0EEE_1.PNG');
+}
 } else {document.location.reload(true); return;}
 } catch(err) {console.log(err.message)}
 if(pd!=''){setTimeout("GetXML('PAGE1.XML','"+pd+"')",1);}else{setTimeout("GetXML('PAGE1.XML')",1000);}}

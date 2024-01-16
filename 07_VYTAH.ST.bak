@@ -8,7 +8,7 @@ VAR_GLOBAL
   secondFloorElevDoorsOpen : BOOL := FALSE;
   firstFloorElevDoorsOpen : BOOL := TRUE;
   
-  elevatorFloor : INT := 3; // 1, 2, 3, 4
+  elevatorFloor : INT := 5; // 1, 2, 3, 4
   fifthFloorButtonPressed : BOOL := FALSE;
   fourthFloorButtonPressed : BOOL := FALSE;
   thirdFloorButtonPressed : BOOL := FALSE;
@@ -21,8 +21,10 @@ VAR_GLOBAL
   elevatorFirstFloorButtonPressed : BOOL := FALSE;
   elevatorButtonStopPressed : BOOL := FALSE;
   // -1: down | 0: idle | 1: up
+  forceOpenDoors : BOOL := FALSE;
   elevatorDirection : INT := 0;
   anyObstacleDetected : BOOL := FALSE;
+  anyObstacleWasDetected : BOOL := FALSE;
   obstacleElevator : BOOL := FALSE;
   obstacleElevatorFifthFloor : BOOL := FALSE;
   obstacleElevatorFourthFloor : BOOL := FALSE;
@@ -33,7 +35,8 @@ VAR_GLOBAL
   elevatorWeight : INT := 0;
   // constants
   elevatorFloorTravelTime : INT := 1;
-  elevatorFloorDoorsOpenTime : INT := 2;
+  elevatorFloorDoorsOpenTime : INT := 4;
+  waitingForDoors : BOOL := FALSE;
   highestFloor : INT := 5;
   targetFloorDefaultValue : INT := -1;
   // floors
@@ -48,8 +51,10 @@ VAR_GLOBAL
   floorDifference : INT := -10;
   inputLocked : BOOL := FALSE;
   // text info
-  textElevatorWeight : STRING := "Simulovana vaha vytahu:";
-  textMaxElevatorWeight : STRING := "Maximalni vaha vytahu:";
+  textElevatorWeight : STRING := 'Simulovana vaha vytahu [kg]:';
+  textMaxElevatorWeight : STRING := 'Maximalni vaha vytahu [kg]:';
+  //misc
+  stopSignActivated : BOOL := TRUE;
 END_VAR
 
 
