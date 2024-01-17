@@ -1,54 +1,6 @@
 #srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\HANDLEOBSTACLES.ST'
-
-#defpou HandleObstacles
-  bool __fc__HandleObstacles
-#reg HandleObstacles  __Instance__HandleObstacles
-
  
 #srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\HANDLEOBSTACLES.ST'
-#pou HandleObstacles
-#srcline 1 ;FUNCTION HandleObstacles : BOOL
-P     61
-HandleObstacles_L0:
- LINK 0
- NXT
-; Initialize - variables
- LD   0
- WRX  __fc__HandleObstacles
-; End initialize - variables
-#srcline 11 ;  anyObstacleDetected := obstacleElevator OR 
- LD   obstacleElevator
-#debug bool obstacleElevator
-#srcline 12 ;  obstacleElevatorFirstFloor OR
- LD   obstacleElevatorFirstFloor
-#debug bool obstacleElevatorFirstFloor
- OR  
-#srcline 13 ;  obstacleElevatorSecondFloor OR 
- LD   obstacleElevatorSecondFloor
-#debug bool obstacleElevatorSecondFloor
- OR  
-#srcline 14 ;  obstacleElevatorThirdFloor OR 
- LD   obstacleElevatorThirdFloor
-#debug bool obstacleElevatorThirdFloor
- OR  
-#srcline 15 ;  obstacleElevatorFourthFloor OR
- LD   obstacleElevatorFourthFloor
-#debug bool obstacleElevatorFourthFloor
- OR  
-#srcline 16 ;  obstacleElevatorFifthFloor;
- LD   obstacleElevatorFifthFloor
-#debug bool obstacleElevatorFifthFloor
- OR  
- WR   anyObstacleDetected
-#debug_left bool anyObstacleDetected
-#srcline 18 ;END_FUNCTION
- PRV  
- LDX  __fc__HandleObstacles
- ULNK
-RET
-E     61
-#endpou 
-
 
 
  

@@ -1,15 +1,3 @@
-FUNCTION ResetAllButtons : BOOL
-  fifthFloorButtonPressed          := FALSE;
-  fourthFloorButtonPressed         := FALSE;
-  thirdFloorButtonPressed          := FALSE;
-  secondFloorButtonPressed         := FALSE;
-  firstFloorButtonPressed          := FALSE;
-  elevatorFifthFloorButtonPressed  := FALSE;
-  elevatorFourthFloorButtonPressed := FALSE;
-  elevatorThirdFloorButtonPressed  := FALSE;
-  elevatorSecondFloorButtonPressed := FALSE;
-  elevatorFirstFloorButtonPressed  := FALSE;
-END_FUNCTION
 
 PROGRAM prgMain
   VAR_INPUT
@@ -17,80 +5,12 @@ PROGRAM prgMain
   VAR_OUTPUT
   END_VAR
   VAR
-    tempFourthFloor : BOOL := FALSE;
-    tempThirdFloor : BOOL := FALSE;
-    tempSecondFloor : BOOL := FALSE;
+
   END_VAR
   VAR_TEMP
   END_VAR
   
-  HandleObstacles();
-  HandleButtonPress();
-  HandleDoors();
-  stopSignActivated := elevatorButtonStopPressed OR
-    elevatorWeight > elevatorMaximumWeight OR
-    anyObstacleDetected;
-  
-  elevatorWeight := ABS(elevatorWeight);
-  
-  forceOpenDoors := 
-      NOT elevatorButtonStopPressed 
-    AND
-      elevatorWeight <= elevatorMaximumWeight 
-    AND 
-      NOT anyObstacleDetected;
 
-  CASE switchCase OF
-    0: // timer
-      timeDelayed := timePLC + elevatorFloorTravelTime;
-      switchCase := 1;
-    1: // elevator handler
-      IF timeDelayed = timePLC THEN
-         IF waitingForDoors THEN
-            timeDelayed := timePLC + elevatorFloorDoorsOpenTime;
-            switchCase := 2;
-          ELSE
-            IF forceOpenDoors THEN
-              tempFourthFloor := elevatorFloor = 4 AND anyFourthFloorButtonPressed AND elevatorDirection = -1;
-              tempThirdFloor := elevatorFloor = 3 AND anyThirdFloorButtonPressed AND elevatorDirection = -1;
-              tempSecondFloor := elevatorFloor = 2 AND anySecondFloorButtonPressed AND elevatorDirection = -1;
-              IF (
-                  anyObstacleWasDetected 
-                OR
-                  tempFourthFloor
-                OR
-                  tempThirdFloor
-                OR
-                  tempSecondFloor
-              ) THEN
-                switchCase := 2;
-                timeDelayed := timePLC + elevatorFloorDoorsOpenTime;
-                waitingForDoors := TRUE;
-                middleFloorStop := TRUE;
-                IF tempFourthFloor THEN fourthFloorButtonPressed := FALSE; elevatorFourthFloorButtonPressed := FALSE;
-                ELSIF tempThirdFloor THEN thirdFloorButtonPressed := FALSE; elevatorThirdFloorButtonPressed := FALSE;
-                ELSIF tempSecondFloor THEN secondFloorButtonPressed := FALSE; elevatorSecondFloorButtonPressed := FALSE;
-                END_IF;
-              ELSE
-                switchCase := 0;
-                HandleMovement();
-              END_IF;
-            ELSE
-              anyObstacleWasDetected := anyObstacleDetected;
-              switchCase := 0;
-            END_IF;
-          END_IF;
-        
-      END_IF;
- 
-    2:
-      IF timeDelayed = timePLC THEN
-        waitingForDoors := FALSE;
-        switchCase := 1;
-        anyObstacleWasDetected := FALSE;
-        middleFloorStop := FALSE;
-      END_IF;
-  END_CASE;
   
 END_PROGRAM
 
