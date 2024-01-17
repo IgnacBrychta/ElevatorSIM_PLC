@@ -1,16 +1,481 @@
 #srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\PRGMAIN.ST'
 
+#defpou VisualizeQueue
+  bool __fc__VisualizeQueue,
+  int index
+#reg VisualizeQueue  __Instance__VisualizeQueue
+
+
+#defpou HandleDoors
+  bool __fc__HandleDoors
+#reg HandleDoors  __Instance__HandleDoors
+
+
+#defpou EnqueueFloor
+  bool __fc__EnqueueFloor,
+  int floorToEnqueue,
+  int index
+#reg EnqueueFloor  __Instance__EnqueueFloor
+
+
+#defpou ShiftQueueLeft
+  bool __fc__ShiftQueueLeft,
+  int index,
+  int nextIndex,
+  int temp
+#reg ShiftQueueLeft  __Instance__ShiftQueueLeft
+
+
+#defpou DequeueFloor
+  int __fc__DequeueFloor,
+  int dequeuedFloor
+#reg DequeueFloor  __Instance__DequeueFloor
+
+
 #defpou prgMain
-  byte dummy
+  int index
 
  
 #srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\PRGMAIN.ST'
+#pou VisualizeQueue
+#srcline 1 ;FUNCTION VisualizeQueue : BOOL
+
+#struct VisualizeQueue__temp__
+  int P0__st__,
+  string[82] PS0__st__,
+  string[82] PSC__st__
+#data byte _str_VisualizeQueue_0 = 
+  '',0
+#data byte _str_VisualizeQueue_1 = 
+  ';',0
+P     61
+VisualizeQueue_L0:
+ LINK __SizeOf(VisualizeQueue__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__VisualizeQueue
+ WRX  index
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 5 ;  stringQueueRepresentation := '';
+ LD   0   ; null string
+ LEA  stringQueueRepresentation
+ WRI  
+ LEA  stringQueueRepresentation
+ LD   80
+ DST    ; Level 1
+ LEA  _str_VisualizeQueue_0
+ SCON 
+#debug_left string stringQueueRepresentation
+ PDST   ; Level 1
+#srcline 6 ;  FOR index := 0 TO queueSize - 1 DO
+ LD   int 0
+ WRX  index
+ LD   queueSize
+#debug int queueSize
+ EXTW 
+ LD   int 1
+ SUB
+ EXTW
+ WRY  P0__st__
+VisualizeQueue_L1:
+ LDX  index
+ EXTW 
+ LDY  P0__st__
+ EXTW 
+ GTS  
+ JMD  VisualizeQueue_L2
+ DBG  
+#srcline 7 ;    stringQueueRepresentation := stringQueueRepresentation + ';' + INT_TO_STRING(queue[index]);
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   80
+ DST    ; Level 1
+ LEA  stringQueueRepresentation
+#debug string stringQueueRepresentation
+ SCON 
+ LEA  _str_VisualizeQueue_1
+ SCON 
+ LD   0   ; null string
+ WRY  PSC__st__[0]
+ LEAY PSC__st__[0]
+ LD   80
+ DST    ; Level 2
+ LEA  queue
+ LDX  index
+#debug int index
+ EXTW 
+ RCHK 9   ; Range Check
+ MUL  2   ; SizeOf(...)
+ ADD     ; + offset 
+ LDIW 
+#debug int queue[index]
+ EXTW 
+ SCNV $0B30;  IEC_INT _TO_ IEC_STRING
+ PDST   ; Level 2
+ LEAY PSC__st__[0]
+
+ SCON 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEA  stringQueueRepresentation
+ WRI  
+ LEA  stringQueueRepresentation
+ LD   80
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string stringQueueRepresentation
+ PDST   ; Level 1
+#srcline 8 ;  END_FOR;
+ LDX  index
+ LD   1
+ ADD  
+ EXTW 
+ WRX  index
+ JMP  VisualizeQueue_L1
+VisualizeQueue_L2:
+ NOP  -1
+#srcline 9 ;END_FUNCTION
+ PRV  
+ LDX  __fc__VisualizeQueue
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou HandleDoors
+#srcline 11 ;FUNCTION HandleDoors : BOOL
+P     61
+HandleDoors_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__HandleDoors
+; End initialize - variables
+#srcline 13 ;END_FUNCTION
+ PRV  
+ LDX  __fc__HandleDoors
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou EnqueueFloor
+#srcline 15 ;FUNCTION EnqueueFloor : BOOL
+
+#struct EnqueueFloor__temp__
+  int P0__st__
+P     61
+EnqueueFloor_L0:
+ LINK __SizeOf(EnqueueFloor__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__EnqueueFloor
+ WRX  index
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 23 ;  FOR index := 0 TO queueSize - 1 DO
+ LD   int 0
+ WRX  index
+ LD   queueSize
+#debug int queueSize
+ EXTW 
+ LD   int 1
+ SUB
+ EXTW
+ WRY  P0__st__
+EnqueueFloor_L1:
+ LDX  index
+ EXTW 
+ LDY  P0__st__
+ EXTW 
+ GTS  
+ JMD  EnqueueFloor_L2
+ DBG  
+#srcline 24 ;    IF NOT queue[index] = queueDefaultValue THEN
+ LEA  queue
+ LDX  index
+#debug int index
+ EXTW 
+ RCHK 9   ; Range Check
+ MUL  2   ; SizeOf(...)
+ ADD     ; + offset 
+ LDIW 
+#debug int queue[index]
+ EXTW 
+ LD   queueDefaultValue
+#debug int queueDefaultValue
+ EXTW 
+ EQ
+ NEG
+ JMC  EnqueueFloor_L3
+#srcline 25 ;      queue[index] := floorToEnqueue;
+ LDX  floorToEnqueue
+#debug int floorToEnqueue
+ EXTW 
+ LEA  queue
+ LDX  index
+#debug int index
+ EXTW 
+ RCHK 9   ; Range Check
+ MUL  2   ; SizeOf(...)
+ ADD     ; + offset 
+ WRIW 
+#debug_left int queue[index]
+#srcline 26 ;      index := index + 100; // break
+ LDX  index
+#debug int index
+ EXTW 
+ LD   int 100
+ ADD
+ EXTW
+ WRX  index
+#debug_left int index
+#srcline 27 ;    END_IF;
+EnqueueFloor_L3:
+#srcline 28 ;  END_FOR;
+ LDX  index
+ LD   1
+ ADD  
+ EXTW 
+ WRX  index
+ JMP  EnqueueFloor_L1
+EnqueueFloor_L2:
+ NOP  -1
+#srcline 29 ;END_FUNCTION
+ PRV  
+ LDX  __fc__EnqueueFloor
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou ShiftQueueLeft
+#srcline 31 ;FUNCTION ShiftQueueLeft : BOOL
+
+#struct ShiftQueueLeft__temp__
+  int P0__st__
+P     61
+ShiftQueueLeft_L0:
+ LINK __SizeOf(ShiftQueueLeft__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__ShiftQueueLeft
+ WRX  index
+ WRX  nextIndex
+ WRX  temp
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 37 ;  FOR index := 0 TO queueSize - 2 DO // - 2 because not for last element
+ LD   int 0
+ WRX  index
+ LD   queueSize
+#debug int queueSize
+ EXTW 
+ LD   int 2
+ SUB
+ EXTW
+ WRY  P0__st__
+ShiftQueueLeft_L1:
+ LDX  index
+ EXTW 
+ LDY  P0__st__
+ EXTW 
+ GTS  
+ JMD  ShiftQueueLeft_L2
+ DBG  
+#srcline 38 ;    nextIndex := index + 1;
+ LDX  index
+#debug int index
+ EXTW 
+ LD   int 1
+ ADD
+ EXTW
+ WRX  nextIndex
+#debug_left int nextIndex
+#srcline 39 ;    temp := queue[index];
+ LEA  queue
+ LDX  index
+#debug int index
+ EXTW 
+ RCHK 9   ; Range Check
+ MUL  2   ; SizeOf(...)
+ ADD     ; + offset 
+ LDIW 
+#debug int queue[index]
+ EXTW 
+ WRX  temp
+#debug_left int temp
+#srcline 40 ;    queue[index] := queue[nextIndex];
+ LEA  queue
+ LDX  nextIndex
+#debug int nextIndex
+ EXTW 
+ RCHK 9   ; Range Check
+ MUL  2   ; SizeOf(...)
+ ADD     ; + offset 
+ LDIW 
+#debug int queue[nextIndex]
+ EXTW 
+ LEA  queue
+ LDX  index
+#debug int index
+ EXTW 
+ RCHK 9   ; Range Check
+ MUL  2   ; SizeOf(...)
+ ADD     ; + offset 
+ WRIW 
+#debug_left int queue[index]
+#srcline 41 ;    queue[nextIndex] := temp;
+ LDX  temp
+#debug int temp
+ EXTW 
+ LEA  queue
+ LDX  nextIndex
+#debug int nextIndex
+ EXTW 
+ RCHK 9   ; Range Check
+ MUL  2   ; SizeOf(...)
+ ADD     ; + offset 
+ WRIW 
+#debug_left int queue[nextIndex]
+#srcline 42 ;  END_FOR;
+ LDX  index
+ LD   1
+ ADD  
+ EXTW 
+ WRX  index
+ JMP  ShiftQueueLeft_L1
+ShiftQueueLeft_L2:
+ NOP  -1
+#srcline 43 ;  
+#srcline 44 ;  
+#srcline 45 ;END_FUNCTION
+ PRV  
+ LDX  __fc__ShiftQueueLeft
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou DequeueFloor
+#srcline 47 ;FUNCTION DequeueFloor : INT
+P     61
+DequeueFloor_L0:
+ LINK 0
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__DequeueFloor
+ WRX  dequeuedFloor
+; End initialize - variables
+#srcline 50 ;  END_VAR;
+#srcline 52 ;  dequeuedFloor := queue[0];
+ LD   queue[0]
+#debug int queue[0]
+ EXTW 
+ WRX  dequeuedFloor
+#debug_left int dequeuedFloor
+#srcline 53 ;  queue[0] := queueDefaultValue;
+ LD   queueDefaultValue
+#debug int queueDefaultValue
+ EXTW 
+ WR   queue[0]
+#debug_left int queue[0]
+#srcline 54 ;  ShiftQueueLeft();
+ LEA  __Instance__ShiftQueueLeft
+ CAL  ShiftQueueLeft_L0
+#srcline 55 ;  DequeueFloor := dequeuedFloor;
+ LDX  dequeuedFloor
+#debug int dequeuedFloor
+ EXTW 
+ WRX  __fc__DequeueFloor
+#debug_left int DequeueFloor
+#srcline 56 ;END_FUNCTION
+ PRV  
+ LDX  __fc__DequeueFloor
+ EXTW 
+ ULNK
+RET
+E     61
+#endpou 
+
 #pou prgMain
-#srcline 2 ;PROGRAM prgMain
+#srcline 58 ;PROGRAM prgMain
+
+#struct prgMain__temp__
+  int P0__st__
 P     61
 prgMain_L0:
- LINK 0
-#srcline 15 ;END_PROGRAM
+ LINK __SizeOf(prgMain__temp__)
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 69 ;  VisualizeQueue();
+ LEA  __Instance__VisualizeQueue
+ CAL  VisualizeQueue_L0
+#srcline 70 ;  IF NOT configured THEN
+ LD   configured
+#debug bool configured
+ NEG
+ JMC  prgMain_L1
+#srcline 71 ;    FOR index := 0 TO queueSize - 1 DO
+ LD   int 0
+ WRX  index
+ LD   queueSize
+#debug int queueSize
+ EXTW 
+ LD   int 1
+ SUB
+ EXTW
+ WRY  P0__st__
+prgMain_L3:
+ LDX  index
+ EXTW 
+ LDY  P0__st__
+ EXTW 
+ GTS  
+ JMD  prgMain_L4
+ DBG  
+#srcline 72 ;      queue[index] := queueDefaultValue;
+ LD   queueDefaultValue
+#debug int queueDefaultValue
+ EXTW 
+ LEA  queue
+ LDX  index
+#debug int index
+ EXTW 
+ RCHK 9   ; Range Check
+ MUL  2   ; SizeOf(...)
+ ADD     ; + offset 
+ WRIW 
+#debug_left int queue[index]
+#srcline 73 ;    END_FOR;
+ LDX  index
+ LD   1
+ ADD  
+ EXTW 
+ WRX  index
+ JMP  prgMain_L3
+prgMain_L4:
+ NOP  -1
+#srcline 75 ;    
+#srcline 76 ;    configured := TRUE;
+ LD   bool -1       ; true
+ WR   configured
+#debug_left bool configured
+#srcline 77 ;  END_IF;
+prgMain_L1:
+#srcline 78 ;  
+#srcline 79 ;END_PROGRAM
  ULNK
 RET
 E     61

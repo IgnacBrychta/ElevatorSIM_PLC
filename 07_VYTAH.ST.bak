@@ -35,7 +35,7 @@ VAR_GLOBAL
   elevatorWeight : INT := 0;
   // constants
   elevatorFloorTravelTime : INT := 1;
-  elevatorFloorDoorsOpenTime : INT := 4;
+  elevatorFloorDoorsOpenTime : INT := 2;
   waitingForDoors : BOOL := FALSE;
   highestFloor : INT := 5;
   targetFloorDefaultValue : INT := -1;
@@ -50,11 +50,16 @@ VAR_GLOBAL
   targetFloor : INT := -1;
   floorDifference : INT := -10;
   inputLocked : BOOL := FALSE;
+  middleFloorStop : BOOL := FALSE;
   // text info
   textElevatorWeight : STRING := 'Simulovana vaha vytahu [kg]:';
   textMaxElevatorWeight : STRING := 'Maximalni vaha vytahu [kg]:';
   //misc
   stopSignActivated : BOOL := TRUE;
+  configured : BOOL := FALSE;
+  queueDefaultValue : INT := -1;
+  // queue
+  queue : array[0..10] OF INT; // number of floors * 2
 END_VAR
 
 

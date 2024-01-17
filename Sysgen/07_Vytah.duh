@@ -1,4 +1,41 @@
 
 
+FUNCTION DequeueFloor : INT
+(**)
+  VAR
+    dequeuedFloor : INT;
+  END_VAR
+END_FUNCTION 
+
+FUNCTION EnqueueFloor : BOOL
+(**)
+  VAR_INPUT
+    floorToEnqueue : INT;
+  END_VAR
+  VAR
+    index : INT;
+  END_VAR
+END_FUNCTION 
+
+FUNCTION HandleDoors : BOOL
+(**)
+END_FUNCTION 
+
+FUNCTION ShiftQueueLeft : BOOL
+(**)
+  VAR
+    index : INT;
+    nextIndex : INT;
+    temp : INT;
+  END_VAR
+END_FUNCTION 
+
+FUNCTION VisualizeQueue : BOOL
+(**)
+  VAR
+    index : INT;
+  END_VAR
+END_FUNCTION 
+
 
 

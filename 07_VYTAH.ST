@@ -56,6 +56,12 @@ VAR_GLOBAL
   textMaxElevatorWeight : STRING := 'Maximalni vaha vytahu [kg]:';
   //misc
   stopSignActivated : BOOL := TRUE;
+  configured : BOOL := FALSE;
+  stringQueueRepresentation : STRING := '';
+  // queue
+  queue : array[0..9] OF INT; // number of floors * 2
+  queueDefaultValue : INT := -1;
+  queueSize : INT := 10;
 END_VAR
 
 

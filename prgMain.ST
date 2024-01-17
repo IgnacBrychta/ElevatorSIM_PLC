@@ -1,3 +1,68 @@
+(* Queue methods *)
+FUNCTION VisualizeQueue : BOOL
+  VAR
+    index : INT;
+  END_VAR
+  stringQueueRepresentation := '';
+  FOR index := 0 TO queueSize - 1 DO
+    stringQueueRepresentation := stringQueueRepresentation + ';' + INT_TO_STRING(queue[index]);
+  END_FOR;
+END_FUNCTION
+
+FUNCTION EnqueueFloor : BOOL
+  VAR_INPUT
+    floorToEnqueue : INT;
+  END_VAR
+  VAR
+    index : INT;
+  END_VAR
+
+  FOR index := 0 TO queueSize - 1 DO
+    IF NOT queue[index] = queueDefaultValue THEN
+      queue[index] := floorToEnqueue;
+      index := index + 100; // break
+    END_IF;
+  END_FOR;
+END_FUNCTION
+
+FUNCTION ShiftQueueLeft : BOOL
+  VAR 
+    index : INT;
+    nextIndex : INT;
+    temp : INT;
+  END_VAR
+  FOR index := 0 TO queueSize - 2 DO // - 2 because not for last element
+    nextIndex := index + 1;
+    temp := queue[index];
+    queue[index] := queue[nextIndex];
+    queue[nextIndex] := temp;
+  END_FOR;
+END_FUNCTION
+
+FUNCTION DequeueFloor : INT
+  VAR
+    dequeuedFloor : INT;
+  END_VAR;
+
+  dequeuedFloor := queue[0];
+  queue[0] := queueDefaultValue;
+  ShiftQueueLeft();
+  DequeueFloor := dequeuedFloor;
+END_FUNCTION
+
+(* End of queue code *)
+
+FUNCTION HandleDoors : BOOL
+  
+END_FUNCTION
+
+FUNCTION HandleButtons : BOOL
+
+END_FUNCTION;
+
+FUNCTION HandleMovement : BOOL
+  
+END_FUNCTION
 
 PROGRAM prgMain
   VAR_INPUT
@@ -5,12 +70,20 @@ PROGRAM prgMain
   VAR_OUTPUT
   END_VAR
   VAR
-
+    index : INT; 
   END_VAR
   VAR_TEMP
   END_VAR
   
+  VisualizeQueue();
+  IF NOT configured THEN
+    FOR index := 0 TO queueSize - 1 DO
+      queue[index] := queueDefaultValue;
+    END_FOR;
 
+    
+    configured := TRUE;
+  END_IF;
   
 END_PROGRAM
 

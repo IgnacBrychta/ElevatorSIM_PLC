@@ -51,12 +51,19 @@
 #reg  string textElevatorWeight[81]
 #reg  string textMaxElevatorWeight[81]
 #reg  bool stopSignActivated
+#reg  bool configured
+#reg  string stringQueueRepresentation[81]
+#reg  int queue[10]  ; number of floors * 2
+#reg  int queueDefaultValue
+#reg  int queueSize
 #table byte __Init____textElevatorWeight = 
     'S','i','m','u','l','o','v','a','n','a',' ','v','a','h','a',' ','v','y','t','a','h',
     'u',' ','[','k','g',']',':';
 #table byte __Init____textMaxElevatorWeight = 
     'M','a','x','i','m','a','l','n','i',' ','v','a','h','a',' ','v','y','t','a','h','u',
     ' ','[','k','g',']',':';
+#table byte __Init____stringQueueRepresentation = 
+    $00;
  
 #srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\07_VYTAH.ST'
 
@@ -168,6 +175,17 @@ P     58
  MOV  byte textMaxElevatorWeight
  LD   bool -1   ; true
  WR   stopSignActivated
+ LD   bool 0   ; false
+ WR   configured
+ LD   0
+ SRC  byte __Init____stringQueueRepresentation
+ LD   0
+ LD   81
+ MOV  byte stringQueueRepresentation
+ LD   int -1
+ WR   queueDefaultValue
+ LD   int 10
+ WR   queueSize
 E     58
 
 

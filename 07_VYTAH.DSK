@@ -5,7 +5,7 @@ Version="xPRO","4.3.00"
 [dockinfo]
 centralpc=53572396,1,0,0
 leftpane=53598796,0,1,1,167,1
-bottompane=53606032,1,55
+bottompane=53606032,1,255
 rightpane=53607316,0,167,1
 [/dockinfo]
 
@@ -35,6 +35,12 @@ maskhistory=""
 [/txtextsyneditor]
 
 [closedtextsyneditors]
+txsyned="ResetAllButtons.ST",1,1,1,1,1,1,865230101,31081571,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="ElevatorUp.ST",1,1,1,1,1,1,1923912721,31082804,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="HandleButtonPress.ST",1,1,1,1,1,1,1923977179,31082804,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="HandleObstacles.ST",1,1,1,1,1,1,1924047243,31082804,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="HandleMovement.ST",1,1,1,1,1,1,1924108004,31082804,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+txsyned="HandleDoors.ST",1,1,1,1,1,1,1924217690,31082804,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="..\..\..\DOCUMENTS\PLC\WINTER_PLC\Winter_PLC.hwn",12,1,1,1,1,1,1823693794,31074358,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="..\..\..\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\07_Vytah.mcf",4,49,1,1,1,1,723719887,31080160,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 txsyned="..\..\..\DOCUMENTS\PLC\WINTER_PLC\06_IOT_HOUSE\HandleSecurity.ST",33,5,1,1,1,1,1811139178,31075762,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -121,15 +127,15 @@ nodeplus="PlcDoc"
 [/prjmngr]
 
 [msgwin2]
-window=53606032,1,0,0,25,1101,39,651,25,850,0,0,1
+window=53606032,1,0,0,225,1101,39,651,225,850,0,0,1
 [/msgwin2]
 
 [msgwin1]
-window=53606032,1,0,0,25,1101,39,651,25,850,0,0,0
+window=53606032,1,0,0,225,1101,39,651,225,850,0,0,0
 [/msgwin1]
 
 [breakswin]
-window=53606032,1,0,0,25,1101,39,651,25,850,0,0,2
+window=53606032,1,0,0,225,1101,39,651,225,850,0,0,2
 hdrwidth0=200
 hdrwidth1=30
 hdrwidth2=80
@@ -167,7 +173,7 @@ font="Courier New",1,0,10,-13,-2147483640,0,0
 [/memwin2]
 
 [watch2win]
-window=53606032,1,0,0,25,1101,39,651,25,850,0,0,3
+window=53606032,1,0,0,225,1101,39,651,225,850,0,0,3
 hdrnamew=240,60,0
 font="Courier New",10
 hiresreadability=0
@@ -181,6 +187,7 @@ mem1w=192
 mem1visible=0
 mem2w=190
 mem2visible=0
+storednames="stringQueueRepresentation","queue"
 [/watch2win]
 
 [weblc]
@@ -188,7 +195,7 @@ lastfile="NONAME1.txt"
 listwidth=121
 findhistory=""
 replacehistory=""
-window=0,0,54,54,516,960,336,260,516,960,0,0,-1
+window=0,0,55,55,516,960,336,260,516,960,0,0,-1
 [/weblc]
 
 [evalmodifdlg]
@@ -222,7 +229,7 @@ window=53572396,0,0,0,646,1101,187,259,517,1109,0,0,0
 [/CFC_Editors]
 
 [PanelSIM_1]
-window=0,0,817,381,196,352,519,257,519,392,0,0,-1
+window=0,0,818,382,196,352,519,257,519,392,0,0,-1
 [/PanelSIM_1]
 
 [FormRegMngr1]
@@ -240,86 +247,26 @@ IOSetupColW="188,190,72,72,72,72,64,140,"
 [/SelectPLC]
 
 [FormDesign1]
-window=53572396,1,0,0,587,1101,676,1280,676,1109,0,0,1
+window=53572396,1,0,0,387,1101,676,1280,676,1109,0,0,1
 [/FormDesign1]
 
 [textsyneditor]
-editor="prgMain.ST",1,1,0,13,3,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53572396,1,0,0,587,1101,676,1280,676,1109,0,0,2
+editor="prgMain.ST",1,0,0,31,41,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=53572396,1,0,0,387,1101,676,1280,676,1109,0,0,2
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
-inspectorctx="Main"
+inspectorctx=""
 debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="07_VYTAH.ST",1,0,0,38,40,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53572396,1,0,0,587,1101,676,1280,676,1109,0,0,3
+editor="07_VYTAH.ST",1,1,0,54,42,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=53572396,1,0,0,387,1101,676,1280,676,1109,0,0,3
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
-inspectorctx="Main"
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="HandleDoors.ST",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53572396,1,0,0,587,1101,676,1280,617,1109,0,0,4
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Courier New",10
-relay=0,0,0,0,0,"",0,0
-inspectorctx="Main"
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="HandleMovement.ST",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53572396,1,0,0,587,1101,676,1280,776,1296,0,0,5
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Lucida Console",11
-relay=0,0,0,0,0,"",0,0
-inspectorctx="Main"
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="HandleObstacles.ST",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53572396,1,0,0,587,1101,676,1280,776,1296,0,0,6
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Lucida Console",11
-relay=0,0,0,0,0,"",0,0
-inspectorctx="Main"
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="HandleButtonPress.ST",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53572396,1,0,0,587,1101,676,1280,776,1296,0,0,7
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Lucida Console",11
-relay=0,0,0,0,0,"",0,0
-inspectorctx="Main"
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="ElevatorUp.ST",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53572396,1,0,0,587,1101,676,1280,776,1296,0,0,8
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Lucida Console",11
-relay=0,0,0,0,0,"",0,0
-inspectorctx="Main"
-debugparams=1,0,1
-[/textsyneditor]
-
-[textsyneditor]
-editor="ResetAllButtons.ST",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53572396,1,0,0,587,1101,676,1280,617,1109,0,0,9
-localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
-font="Courier New",10
-relay=0,0,0,0,0,"",0,0
-inspectorctx="Main"
+inspectorctx=""
 debugparams=1,0,1
 [/textsyneditor]
 
