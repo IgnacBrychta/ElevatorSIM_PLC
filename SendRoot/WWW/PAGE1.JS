@@ -304,9 +304,17 @@ Input41.value = x[25].getAttribute('VALUE');
 var Input42 = document.getElementById('INPUT42');
 Input42.value = x[26].getAttribute('VALUE');
 var Input43 = document.getElementById('INPUT43');
-Input43.value = x[27].getAttribute('VALUE');
+if(x[27].getAttribute('VALUE') == '0') {
+SetBg('INPUT43', 'BU73FF_1.PNG');
+} else {
+SetBg('INPUT43', 'BU0EEE_1.PNG');
+}
 var Input44 = document.getElementById('INPUT44');
-Input44.value = x[28].getAttribute('VALUE');
+if(x[28].getAttribute('VALUE') == '0') {
+SetBg('INPUT44', 'BU73FF_1.PNG');
+} else {
+SetBg('INPUT44', 'BU0EEE_1.PNG');
+}
 var Input45 = document.getElementById('INPUT45');
 if(x[29].getAttribute('VALUE') == '0') {
 SetBg('INPUT45', 'BU73FF_1.PNG');
@@ -324,18 +332,6 @@ if(x[31].getAttribute('VALUE') == '0') {
 SetBg('INPUT47', 'BU73FF_1.PNG');
 } else {
 SetBg('INPUT47', 'BU0EEE_1.PNG');
-}
-var Input48 = document.getElementById('INPUT48');
-if(x[32].getAttribute('VALUE') == '0') {
-SetBg('INPUT48', 'BU73FF_1.PNG');
-} else {
-SetBg('INPUT48', 'BU0EEE_1.PNG');
-}
-var Input49 = document.getElementById('INPUT49');
-if(x[33].getAttribute('VALUE') == '0') {
-SetBg('INPUT49', 'BU73FF_1.PNG');
-} else {
-SetBg('INPUT49', 'BU0EEE_1.PNG');
 }
 } else {document.location.reload(true); return;}
 } catch(err) {console.log(err.message)}

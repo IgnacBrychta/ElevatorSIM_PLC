@@ -21,7 +21,7 @@ VAR_GLOBAL
   elevatorFirstFloorButtonPressed : BOOL := FALSE;
   elevatorButtonStopPressed : BOOL := FALSE;
   // -1: down | 0: idle | 1: up
-  forceOpenDoors : BOOL := FALSE;
+  forceOpenCurrentElevatorFloorDoor : BOOL := FALSE;
   elevatorDirection : INT := 0;
   anyObstacleDetected : BOOL := FALSE;
   anyObstacleWasDetected : BOOL := FALSE;
@@ -36,7 +36,6 @@ VAR_GLOBAL
   // constants
   elevatorFloorTravelTime : INT := 1;
   elevatorFloorDoorsOpenTime : INT := 2;
-  waitingForDoors : BOOL := FALSE;
   highestFloor : INT := 5;
   targetFloorDefaultValue : INT := -1;
   // floors
@@ -49,8 +48,6 @@ VAR_GLOBAL
   // movement handlers
   targetFloor : INT := -1;
   floorDifference : INT := -10;
-  inputLocked : BOOL := FALSE;
-  middleFloorStop : BOOL := FALSE;
   // text info
   textElevatorWeight : STRING := 'Simulovana vaha vytahu [kg]:';
   textMaxElevatorWeight : STRING := 'Maximalni vaha vytahu [kg]:';

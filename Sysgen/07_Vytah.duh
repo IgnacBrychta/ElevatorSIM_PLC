@@ -17,7 +17,27 @@ FUNCTION EnqueueFloor : BOOL
   END_VAR
 END_FUNCTION 
 
+FUNCTION HandleButtons : BOOL
+(**)
+END_FUNCTION 
+
 FUNCTION HandleDoors : BOOL
+(**)
+END_FUNCTION 
+
+FUNCTION HandleFloorSelection : BOOL
+(**)
+END_FUNCTION 
+
+FUNCTION HandleMovement : BOOL
+(**)
+END_FUNCTION 
+
+FUNCTION HandleObstacles : BOOL
+(**)
+END_FUNCTION 
+
+FUNCTION ResetAllButtons : BOOL
 (**)
 END_FUNCTION 
 

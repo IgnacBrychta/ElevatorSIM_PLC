@@ -68,9 +68,9 @@ Index</span>
 <input title="timeLPC" class="mono" tabindex="9" type="text" id="INPUT39" style="position: absolute; top: 285px; left: 295px; width: 40px; z-index: 41; background-color: #FFFFFF;" value="{INPUT[24]/@VALUE}" readonly="readonly" />
 <input title="timeDelayed" class="mono" tabindex="5" type="text" id="INPUT40" style="position: absolute; top: 310px; left: 295px; width: 40px; z-index: 42; background-color: #FFFFFF;" value="{INPUT[25]/@VALUE}" readonly="readonly" />
 <input title="elevator direction" class="mono" tabindex="4" type="text" id="INPUT41" style="position: absolute; top: 300px; left: 340px; width: 40px; z-index: 43; background-color: #FFFFFF;" value="{INPUT[26]/@VALUE}" readonly="readonly" />
-<input title="forceOpenDoors" class="mono" tabindex="8" type="text" id="INPUT42" style="position: absolute; top: 380px; left: 270px; width: 40px; z-index: 44; background-color: #FFFFFF;" value="{INPUT[27]/@VALUE}" readonly="readonly" />
-<input title="WAS detected" class="mono" tabindex="7" type="text" id="INPUT43" style="position: absolute; top: 415px; left: 270px; width: 40px; z-index: 45; background-color: #FFFFFF;" value="{INPUT[28]/@VALUE}" readonly="readonly" />
-<input title="waitingForDoors" class="mono" tabindex="6" type="text" id="INPUT44" style="position: absolute; top: 445px; left: 270px; width: 40px; z-index: 46; background-color: #FFFFFF;" value="{INPUT[29]/@VALUE}" readonly="readonly" />
+<input title="forceOpenDoors" class="mono" tabindex="8" type="text" size="4" style="position: absolute; top: 380px; left: 270px; z-index: 44; border: solid red 2px;" value="? ? ?" readonly="readonly" />
+<input title="WAS detected" class="mono" tabindex="7" type="text" id="INPUT42" style="position: absolute; top: 415px; left: 270px; width: 40px; z-index: 45; background-color: #FFFFFF;" value="{INPUT[27]/@VALUE}" readonly="readonly" />
+<input title="waitingForDoors" class="mono" tabindex="6" type="text" size="4" style="position: absolute; top: 445px; left: 270px; z-index: 46; border: solid red 2px;" value="? ? ?" readonly="readonly" />
 </form>
 <xsl:if test="INPUT[1]/@VALUE = 0">
 <div id="INPUT1" style="position: absolute; top: 150px; left: 20px; z-index: 1; background-image: url(IMAGES/VYTAHZ_2.PNG); line-height: 128px; height: 128px; width: 128px;"></div>
@@ -252,35 +252,35 @@ Index</span>
 <div title="Toggle obstacle" id="INPUT38" class="imgsub" onclick="PostXML38()" style="background-image: url(IMAGES/PREKAZKA.PNG); line-height: 64px; height: 64px; width: 64px;"></div>
 </xsl:if>
 </form>
+<xsl:if test="INPUT[28]/@VALUE = 0">
+<div title="Is elevator set to get to this floor?" id="INPUT43" style="position: absolute; top: 65px; left: 110px; z-index: 47; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+</xsl:if>
+<xsl:if test="INPUT[28]/@VALUE != 0">
+<div title="Is elevator set to get to this floor?" id="INPUT43" style="position: absolute; top: 65px; left: 110px; z-index: 47; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+</xsl:if>
+<xsl:if test="INPUT[29]/@VALUE = 0">
+<div title="Is elevator set to get to this floor?" id="INPUT44" style="position: absolute; top: 200px; left: 110px; z-index: 48; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+</xsl:if>
+<xsl:if test="INPUT[29]/@VALUE != 0">
+<div title="Is elevator set to get to this floor?" id="INPUT44" style="position: absolute; top: 200px; left: 110px; z-index: 48; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+</xsl:if>
 <xsl:if test="INPUT[30]/@VALUE = 0">
-<div title="Is elevator set to get to this floor?" id="INPUT45" style="position: absolute; top: 65px; left: 110px; z-index: 47; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+<div title="Is elevator set to get to this floor?" id="INPUT45" style="position: absolute; top: 335px; left: 110px; z-index: 49; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[30]/@VALUE != 0">
-<div title="Is elevator set to get to this floor?" id="INPUT45" style="position: absolute; top: 65px; left: 110px; z-index: 47; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+<div title="Is elevator set to get to this floor?" id="INPUT45" style="position: absolute; top: 335px; left: 110px; z-index: 49; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[31]/@VALUE = 0">
-<div title="Is elevator set to get to this floor?" id="INPUT46" style="position: absolute; top: 200px; left: 110px; z-index: 48; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+<div title="Is elevator set to get to this floor?" id="INPUT46" style="position: absolute; top: 470px; left: 110px; z-index: 50; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[31]/@VALUE != 0">
-<div title="Is elevator set to get to this floor?" id="INPUT46" style="position: absolute; top: 200px; left: 110px; z-index: 48; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+<div title="Is elevator set to get to this floor?" id="INPUT46" style="position: absolute; top: 470px; left: 110px; z-index: 50; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[32]/@VALUE = 0">
-<div title="Is elevator set to get to this floor?" id="INPUT47" style="position: absolute; top: 335px; left: 110px; z-index: 49; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+<div title="Is elevator set to get to this floor?" id="INPUT47" style="position: absolute; top: 605px; left: 110px; z-index: 51; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[32]/@VALUE != 0">
-<div title="Is elevator set to get to this floor?" id="INPUT47" style="position: absolute; top: 335px; left: 110px; z-index: 49; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
-</xsl:if>
-<xsl:if test="INPUT[33]/@VALUE = 0">
-<div title="Is elevator set to get to this floor?" id="INPUT48" style="position: absolute; top: 470px; left: 110px; z-index: 50; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
-</xsl:if>
-<xsl:if test="INPUT[33]/@VALUE != 0">
-<div title="Is elevator set to get to this floor?" id="INPUT48" style="position: absolute; top: 470px; left: 110px; z-index: 50; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
-</xsl:if>
-<xsl:if test="INPUT[34]/@VALUE = 0">
-<div title="Is elevator set to get to this floor?" id="INPUT49" style="position: absolute; top: 605px; left: 110px; z-index: 51; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
-</xsl:if>
-<xsl:if test="INPUT[34]/@VALUE != 0">
-<div title="Is elevator set to get to this floor?" id="INPUT49" style="position: absolute; top: 605px; left: 110px; z-index: 51; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+<div title="Is elevator set to get to this floor?" id="INPUT47" style="position: absolute; top: 605px; left: 110px; z-index: 51; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
 </xsl:if>
 </div>
 </td>

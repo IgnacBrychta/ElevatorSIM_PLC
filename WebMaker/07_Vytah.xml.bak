@@ -135,13 +135,13 @@
 				<edit variable="elevatorDirection" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="46" height="22" tabindex="4" />
 			</object>
 			<object caption="" X="34" Y="48" xoff="6" yoff="4" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15769" hint="forceOpenDoors">
-				<edit variable="forceOpenDoors" type="BOOL" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="46" height="22" tabindex="8" />
+				<edit variable="forceOpenDoors" type="" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="46" height="22" tabindex="8" />
 			</object>
 			<object caption="" X="34" Y="52" xoff="6" yoff="7" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15771" hint="WAS detected">
 				<edit variable="anyObstacleWasDetected" type="BOOL" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="46" height="22" tabindex="7" />
 			</object>
 			<object caption="" X="34" Y="56" xoff="6" yoff="5" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15772" hint="waitingForDoors">
-				<edit variable="waitingForDoors" type="BOOL" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="46" height="22" tabindex="6" />
+				<edit variable="waitingForDoors" type="" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="46" height="22" tabindex="6" />
 			</object>
 			<object caption="" X="14" Y="9" xoff="6" yoff="1" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15773" hint="Is elevator set to get to this floor?">
 				<image optcap="" variable="anyFifthFloorButtonPressed" type="BOOL" on="BU0EEE_1.PNG" off="BU73FF_1.PNG" />

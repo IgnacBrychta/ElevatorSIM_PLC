@@ -21,7 +21,7 @@
 #reg  bool elevatorSecondFloorButtonPressed
 #reg  bool elevatorFirstFloorButtonPressed
 #reg  bool elevatorButtonStopPressed
-#reg  bool forceOpenDoors
+#reg  bool forceOpenCurrentElevatorFloorDoor
 #reg  int elevatorDirection
 #reg  bool anyObstacleDetected
 #reg  bool anyObstacleWasDetected
@@ -35,7 +35,6 @@
 #reg  int elevatorWeight
 #reg  int elevatorFloorTravelTime
 #reg  int elevatorFloorDoorsOpenTime
-#reg  bool waitingForDoors
 #reg  int highestFloor
 #reg  int targetFloorDefaultValue
 #reg  bool anyFloorButtonPressed
@@ -46,8 +45,6 @@
 #reg  bool anyFirstFloorButtonPressed
 #reg  int targetFloor
 #reg  int floorDifference
-#reg  bool inputLocked
-#reg  bool middleFloorStop
 #reg  string textElevatorWeight[81]
 #reg  string textMaxElevatorWeight[81]
 #reg  bool stopSignActivated
@@ -110,7 +107,7 @@ P     58
  LD   bool 0   ; false
  WR   elevatorButtonStopPressed
  LD   bool 0   ; false
- WR   forceOpenDoors
+ WR   forceOpenCurrentElevatorFloorDoor
  LD   int 0
  WR   elevatorDirection
  LD   bool 0   ; false
@@ -137,8 +134,6 @@ P     58
  WR   elevatorFloorTravelTime
  LD   int 2
  WR   elevatorFloorDoorsOpenTime
- LD   bool 0   ; false
- WR   waitingForDoors
  LD   int 5
  WR   highestFloor
  LD   int -1
@@ -159,10 +154,6 @@ P     58
  WR   targetFloor
  LD   int -10
  WR   floorDifference
- LD   bool 0   ; false
- WR   inputLocked
- LD   bool 0   ; false
- WR   middleFloorStop
  LD   0
  SRC  byte __Init____textElevatorWeight
  LD   0
