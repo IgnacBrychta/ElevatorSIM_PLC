@@ -4,33 +4,16 @@
 #def  timePLC int %S16
 #reg  int timeDelayed
 #reg  int switchCase
-#reg  bool fifthFloorElevDoorsOpen
-#reg  bool fourthFloorElevDoorsOpen
-#reg  bool thirdFloorElevDoorsOpen
-#reg  bool secondFloorElevDoorsOpen
-#reg  bool firstFloorElevDoorsOpen
+#reg  aligned bool elevatorDoorsOpened[8]
 #reg  int elevatorFloor  ; 1, 2, 3, 4
-#reg  bool fifthFloorButtonPressed
-#reg  bool fourthFloorButtonPressed
-#reg  bool thirdFloorButtonPressed
-#reg  bool secondFloorButtonPressed
-#reg  bool firstFloorButtonPressed
-#reg  bool elevatorFifthFloorButtonPressed
-#reg  bool elevatorFourthFloorButtonPressed
-#reg  bool elevatorThirdFloorButtonPressed
-#reg  bool elevatorSecondFloorButtonPressed
-#reg  bool elevatorFirstFloorButtonPressed
-#reg  bool elevatorButtonStopPressed
+#reg  aligned bool elevatorButtonsPressed[8]
+#reg  aligned bool elevatorButtonStopPressed
 #reg  bool forceOpenCurrentElevatorFloorDoor
 #reg  int elevatorDirection
 #reg  bool anyObstacleDetected
 #reg  bool anyObstacleWasDetected
 #reg  bool obstacleElevator
-#reg  bool obstacleElevatorFifthFloor
-#reg  bool obstacleElevatorFourthFloor
-#reg  bool obstacleElevatorThirdFloor
-#reg  bool obstacleElevatorSecondFloor
-#reg  bool obstacleElevatorFirstFloor
+#reg  aligned bool obstaclesBlockingDoors[8]
 #reg  int elevatorMaximumWeight
 #reg  int elevatorWeight
 #reg  int elevatorFloorTravelTime
@@ -38,11 +21,7 @@
 #reg  int highestFloor
 #reg  int targetFloorDefaultValue
 #reg  bool anyFloorButtonPressed
-#reg  bool anyFifthFloorButtonPressed
-#reg  bool anyFourthFloorButtonPressed
-#reg  bool anyThirdFloorButtonPressed
-#reg  bool anySecondFloorButtonPressed
-#reg  bool anyFirstFloorButtonPressed
+#reg  aligned bool floorSetAsElevStop[8]
 #reg  int targetFloor
 #reg  int floorDifference
 #reg  string textElevatorWeight[81]
@@ -50,7 +29,8 @@
 #reg  bool stopSignActivated
 #reg  bool configured
 #reg  string stringQueueRepresentation[81]
-#reg  int queue[10]  ; number of floors * 2
+#reg  int elevatorDirectionIndicator
+#reg  int queue[5]  ; number of floors - 1
 #reg  int queueDefaultValue
 #reg  int queueSize
 #table byte __Init____textElevatorWeight = 
@@ -72,38 +52,8 @@ P     58
  WR   timeDelayed
  LD   int 0
  WR   switchCase
- LD   bool 0   ; false
- WR   fifthFloorElevDoorsOpen
- LD   bool 0   ; false
- WR   fourthFloorElevDoorsOpen
- LD   bool 0   ; false
- WR   thirdFloorElevDoorsOpen
- LD   bool 0   ; false
- WR   secondFloorElevDoorsOpen
- LD   bool -1   ; true
- WR   firstFloorElevDoorsOpen
- LD   int 5
+ LD   int 0
  WR   elevatorFloor
- LD   bool 0   ; false
- WR   fifthFloorButtonPressed
- LD   bool 0   ; false
- WR   fourthFloorButtonPressed
- LD   bool 0   ; false
- WR   thirdFloorButtonPressed
- LD   bool 0   ; false
- WR   secondFloorButtonPressed
- LD   bool 0   ; false
- WR   firstFloorButtonPressed
- LD   bool 0   ; false
- WR   elevatorFifthFloorButtonPressed
- LD   bool 0   ; false
- WR   elevatorFourthFloorButtonPressed
- LD   bool 0   ; false
- WR   elevatorThirdFloorButtonPressed
- LD   bool 0   ; false
- WR   elevatorSecondFloorButtonPressed
- LD   bool 0   ; false
- WR   elevatorFirstFloorButtonPressed
  LD   bool 0   ; false
  WR   elevatorButtonStopPressed
  LD   bool 0   ; false
@@ -116,16 +66,6 @@ P     58
  WR   anyObstacleWasDetected
  LD   bool 0   ; false
  WR   obstacleElevator
- LD   bool 0   ; false
- WR   obstacleElevatorFifthFloor
- LD   bool 0   ; false
- WR   obstacleElevatorFourthFloor
- LD   bool 0   ; false
- WR   obstacleElevatorThirdFloor
- LD   bool 0   ; false
- WR   obstacleElevatorSecondFloor
- LD   bool 0   ; false
- WR   obstacleElevatorFirstFloor
  LD   int 300
  WR   elevatorMaximumWeight
  LD   int 0
@@ -140,16 +80,6 @@ P     58
  WR   targetFloorDefaultValue
  LD   bool 0   ; false
  WR   anyFloorButtonPressed
- LD   bool 0   ; false
- WR   anyFifthFloorButtonPressed
- LD   bool 0   ; false
- WR   anyFourthFloorButtonPressed
- LD   bool 0   ; false
- WR   anyThirdFloorButtonPressed
- LD   bool 0   ; false
- WR   anySecondFloorButtonPressed
- LD   bool 0   ; false
- WR   anyFirstFloorButtonPressed
  LD   int -1
  WR   targetFloor
  LD   int -10
@@ -173,9 +103,11 @@ P     58
  LD   0
  LD   81
  MOV  byte stringQueueRepresentation
+ LD   int 1
+ WR   elevatorDirectionIndicator
  LD   int -1
  WR   queueDefaultValue
- LD   int 10
+ LD   int 5
  WR   queueSize
 E     58
 

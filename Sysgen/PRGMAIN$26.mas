@@ -27,13 +27,27 @@
 #reg DequeueFloor  __Instance__DequeueFloor
 
 
+#defpou IsFloorAlreadyEnqueued
+  bool __fc__IsFloorAlreadyEnqueued,
+  int index,
+  int floor
+#reg IsFloorAlreadyEnqueued  __Instance__IsFloorAlreadyEnqueued
+
+
+#defpou CloseAllDoors
+  bool __fc__CloseAllDoors,
+  int index
+#reg CloseAllDoors  __Instance__CloseAllDoors
+
+
 #defpou HandleDoors
   bool __fc__HandleDoors
 #reg HandleDoors  __Instance__HandleDoors
 
 
 #defpou ResetAllButtons
-  bool __fc__ResetAllButtons
+  bool __fc__ResetAllButtons,
+  int index
 #reg ResetAllButtons  __Instance__ResetAllButtons
 
 
@@ -42,8 +56,15 @@
 #reg HandleFloorSelection  __Instance__HandleFloorSelection
 
 
+#defpou IsAnyButtonPressed
+  bool __fc__IsAnyButtonPressed,
+  int index
+#reg IsAnyButtonPressed  __Instance__IsAnyButtonPressed
+
+
 #defpou HandleButtons
-  bool __fc__HandleButtons
+  bool __fc__HandleButtons,
+  int index
 #reg HandleButtons  __Instance__HandleButtons
 
 
@@ -52,9 +73,15 @@
 #reg HandleMovement  __Instance__HandleMovement
 
 
-#defpou HandleObstacles
-  bool __fc__HandleObstacles
-#reg HandleObstacles  __Instance__HandleObstacles
+#defpou IsAnyObstaclePresent
+  bool __fc__IsAnyObstaclePresent,
+  int index
+#reg IsAnyObstaclePresent  __Instance__IsAnyObstaclePresent
+
+
+#defpou HandleStopConditions
+  bool __fc__HandleStopConditions
+#reg HandleStopConditions  __Instance__HandleStopConditions
 
 
 #defpou prgMain
@@ -133,7 +160,7 @@ VisualizeQueue_L1:
  LDX  index
 #debug int index
  EXTW 
- RCHK 9   ; Range Check
+ RCHK 4   ; Range Check
  MUL  2   ; SizeOf(...)
  ADD     ; + offset 
  LDIW 
@@ -206,12 +233,12 @@ EnqueueFloor_L1:
  GTS  
  JMD  EnqueueFloor_L2
  DBG  
-#srcline 21 ;    IF NOT queue[index] = queueDefaultValue THEN
+#srcline 21 ;    IF queue[index] = queueDefaultValue THEN
  LEA  queue
  LDX  index
 #debug int index
  EXTW 
- RCHK 9   ; Range Check
+ RCHK 4   ; Range Check
  MUL  2   ; SizeOf(...)
  ADD     ; + offset 
  LDIW 
@@ -221,7 +248,6 @@ EnqueueFloor_L1:
 #debug int queueDefaultValue
  EXTW 
  EQ
- NEG
  JMC  EnqueueFloor_L3
 #srcline 22 ;      queue[index] := floorToEnqueue;
  LDX  floorToEnqueue
@@ -231,7 +257,7 @@ EnqueueFloor_L1:
  LDX  index
 #debug int index
  EXTW 
- RCHK 9   ; Range Check
+ RCHK 4   ; Range Check
  MUL  2   ; SizeOf(...)
  ADD     ; + offset 
  WRIW 
@@ -314,7 +340,7 @@ ShiftQueueLeft_L1:
  LDX  index
 #debug int index
  EXTW 
- RCHK 9   ; Range Check
+ RCHK 4   ; Range Check
  MUL  2   ; SizeOf(...)
  ADD     ; + offset 
  LDIW 
@@ -327,7 +353,7 @@ ShiftQueueLeft_L1:
  LDX  nextIndex
 #debug int nextIndex
  EXTW 
- RCHK 9   ; Range Check
+ RCHK 4   ; Range Check
  MUL  2   ; SizeOf(...)
  ADD     ; + offset 
  LDIW 
@@ -337,7 +363,7 @@ ShiftQueueLeft_L1:
  LDX  index
 #debug int index
  EXTW 
- RCHK 9   ; Range Check
+ RCHK 4   ; Range Check
  MUL  2   ; SizeOf(...)
  ADD     ; + offset 
  WRIW 
@@ -350,7 +376,7 @@ ShiftQueueLeft_L1:
  LDX  nextIndex
 #debug int nextIndex
  EXTW 
- RCHK 9   ; Range Check
+ RCHK 4   ; Range Check
  MUL  2   ; SizeOf(...)
  ADD     ; + offset 
  WRIW 
@@ -414,8 +440,147 @@ RET
 E     61
 #endpou 
 
+#pou IsFloorAlreadyEnqueued
+#srcline 53 ;FUNCTION IsFloorAlreadyEnqueued : BOOL
+
+#struct IsFloorAlreadyEnqueued__temp__
+  int P0__st__
+P     61
+IsFloorAlreadyEnqueued_L0:
+ LINK __SizeOf(IsFloorAlreadyEnqueued__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__IsFloorAlreadyEnqueued
+ WRX  index
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 61 ;  FOR index := 0 TO queueSize - 1 DO
+ LD   int 0
+ WRX  index
+ LD   queueSize
+#debug int queueSize
+ EXTW 
+ LD   int 1
+ SUB
+ EXTW
+ WRY  P0__st__
+IsFloorAlreadyEnqueued_L1:
+ LDX  index
+ EXTW 
+ LDY  P0__st__
+ EXTW 
+ GTS  
+ JMD  IsFloorAlreadyEnqueued_L2
+ DBG  
+#srcline 62 ;    IF queue[index] = floor THEN
+ LEA  queue
+ LDX  index
+#debug int index
+ EXTW 
+ RCHK 4   ; Range Check
+ MUL  2   ; SizeOf(...)
+ ADD     ; + offset 
+ LDIW 
+#debug int queue[index]
+ EXTW 
+ LDX  floor
+#debug int floor
+ EXTW 
+ EQ
+ JMC  IsFloorAlreadyEnqueued_L3
+#srcline 63 ;      IsFloorAlreadyEnqueued := TRUE;
+ LD   bool -1       ; true
+ WRX  __fc__IsFloorAlreadyEnqueued
+#debug_left bool IsFloorAlreadyEnqueued
+#srcline 64 ;      index := 1000;
+ LD   int 1000
+ WRX  index
+#debug_left int index
+#srcline 65 ;    END_IF;
+IsFloorAlreadyEnqueued_L3:
+#srcline 66 ;  END_FOR;
+ LDX  index
+ LD   1
+ ADD  
+ EXTW 
+ WRX  index
+ JMP  IsFloorAlreadyEnqueued_L1
+IsFloorAlreadyEnqueued_L2:
+ NOP  -1
+#srcline 67 ;  
+#srcline 68 ;END_FUNCTION
+ PRV  
+ LDX  __fc__IsFloorAlreadyEnqueued
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou CloseAllDoors
+#srcline 72 ;FUNCTION CloseAllDoors : BOOL
+
+#struct CloseAllDoors__temp__
+  int P0__st__
+P     61
+CloseAllDoors_L0:
+ LINK __SizeOf(CloseAllDoors__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__CloseAllDoors
+ WRX  index
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 76 ;  FOR index := 0 TO highestFloor - 1 DO
+ LD   int 0
+ WRX  index
+ LD   highestFloor
+#debug int highestFloor
+ EXTW 
+ LD   int 1
+ SUB
+ EXTW
+ WRY  P0__st__
+CloseAllDoors_L1:
+ LDX  index
+ EXTW 
+ LDY  P0__st__
+ EXTW 
+ GTS  
+ JMD  CloseAllDoors_L2
+ DBG  
+#srcline 77 ;    elevatorDoorsOpened[index] := FALSE;
+ LD   bool 0       ; false
+ LEA  elevatorDoorsOpened
+ LDX  index
+#debug int index
+ EXTW 
+ RCHK 4   ; Range Check
+ ADD     ; + offset 
+ WRIB 
+#debug_left bool elevatorDoorsOpened[index]
+#srcline 78 ;  END_FOR;
+ LDX  index
+ LD   1
+ ADD  
+ EXTW 
+ WRX  index
+ JMP  CloseAllDoors_L1
+CloseAllDoors_L2:
+ NOP  -1
+#srcline 79 ;END_FUNCTION
+ PRV  
+ LDX  __fc__CloseAllDoors
+ ULNK
+RET
+E     61
+#endpou 
+
 #pou HandleDoors
-#srcline 55 ;FUNCTION HandleDoors : BOOL
+#srcline 81 ;FUNCTION HandleDoors : BOOL
 P     61
 HandleDoors_L0:
  LINK 0
@@ -424,78 +589,24 @@ HandleDoors_L0:
  LD   0
  WRX  __fc__HandleDoors
 ; End initialize - variables
-#srcline 56 ;  IF forceOpenCurrentElevatorFloorDoor THEN
+#srcline 82 ;  IF forceOpenCurrentElevatorFloorDoor THEN
  LD   forceOpenCurrentElevatorFloorDoor
 #debug bool forceOpenCurrentElevatorFloorDoor
  JMC  HandleDoors_L1
-#srcline 57 ;    IF elevatorFloor = 5 THEN
- LD   elevatorFloor
-#debug int elevatorFloor
- EXTW 
- LD   int 5
- EQ
- JMC  HandleDoors_L3
-#srcline 58 ;      fifthFloorElevDoorsOpen := TRUE;
+#srcline 83 ;    elevatorDoorsOpened[elevatorFloor - 1] := TRUE;
  LD   bool -1       ; true
- WR   fifthFloorElevDoorsOpen
-#debug_left bool fifthFloorElevDoorsOpen
-#srcline 59 ;    ELSIF elevatorFloor = 4 THEN
- JMP  HandleDoors_L4
-HandleDoors_L3:
- LD   elevatorFloor
-#debug int elevatorFloor
- EXTW 
- LD   int 4
- EQ
- JMC  HandleDoors_L5
-#srcline 60 ;      fourthFloorElevDoorsOpen := TRUE;
- LD   bool -1       ; true
- WR   fourthFloorElevDoorsOpen
-#debug_left bool fourthFloorElevDoorsOpen
-#srcline 61 ;    ELSIF elevatorFloor = 3 THEN
- JMP  HandleDoors_L4
-HandleDoors_L5:
- LD   elevatorFloor
-#debug int elevatorFloor
- EXTW 
- LD   int 3
- EQ
- JMC  HandleDoors_L6
-#srcline 62 ;      thirdFloorElevDoorsOpen := TRUE;
- LD   bool -1       ; true
- WR   thirdFloorElevDoorsOpen
-#debug_left bool thirdFloorElevDoorsOpen
-#srcline 63 ;    ELSIF elevatorFloor = 2 THEN
- JMP  HandleDoors_L4
-HandleDoors_L6:
- LD   elevatorFloor
-#debug int elevatorFloor
- EXTW 
- LD   int 2
- EQ
- JMC  HandleDoors_L7
-#srcline 64 ;      secondFloorElevDoorsOpen := TRUE;
- LD   bool -1       ; true
- WR   secondFloorElevDoorsOpen
-#debug_left bool secondFloorElevDoorsOpen
-#srcline 65 ;    ELSIF elevatorFloor = 1 THEN
- JMP  HandleDoors_L4
-HandleDoors_L7:
+ LEA  elevatorDoorsOpened
  LD   elevatorFloor
 #debug int elevatorFloor
  EXTW 
  LD   int 1
- EQ
- JMC  HandleDoors_L8
-#srcline 66 ;      firstFloorElevDoorsOpen := TRUE;
- LD   bool -1       ; true
- WR   firstFloorElevDoorsOpen
-#debug_left bool firstFloorElevDoorsOpen
-#srcline 67 ;    END_IF;
- JMP  HandleDoors_L4
-HandleDoors_L8:
-HandleDoors_L4:
-#srcline 68 ;  ELSIF elevatorDirection = 0 THEN
+ SUB
+ EXTW
+ RCHK 4   ; Range Check
+ ADD     ; + offset 
+ WRIB 
+#debug_left bool elevatorDoorsOpened[elevatorFloor-1]
+#srcline 84 ;  ELSIF elevatorDirection = 0 THEN
  JMP  HandleDoors_L2
 HandleDoors_L1:
  LD   elevatorDirection
@@ -503,151 +614,26 @@ HandleDoors_L1:
  EXTW 
  LD   int 0
  EQ
- JMC  HandleDoors_L9
-#srcline 69 ;    IF elevatorFloor = 1 THEN
+ JMC  HandleDoors_L3
+#srcline 85 ;    // open doors of the floor the elevator is at
+#srcline 86 ;    CloseAllDoors();
+ LEA  __Instance__CloseAllDoors
+ CAL  CloseAllDoors_L0
+#srcline 87 ;    elevatorDoorsOpened[elevatorFloor] := TRUE;
+ LD   bool -1       ; true
+ LEA  elevatorDoorsOpened
  LD   elevatorFloor
 #debug int elevatorFloor
  EXTW 
- LD   int 1
- EQ
- JMC  HandleDoors_L10
-#srcline 70 ;      firstFloorElevDoorsOpen := TRUE;
- LD   bool -1       ; true
- WR   firstFloorElevDoorsOpen
-#debug_left bool firstFloorElevDoorsOpen
-#srcline 71 ;      secondFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   secondFloorElevDoorsOpen
-#debug_left bool secondFloorElevDoorsOpen
-#srcline 72 ;      thirdFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   thirdFloorElevDoorsOpen
-#debug_left bool thirdFloorElevDoorsOpen
-#srcline 73 ;      fourthFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   fourthFloorElevDoorsOpen
-#debug_left bool fourthFloorElevDoorsOpen
-#srcline 74 ;      fifthFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   fifthFloorElevDoorsOpen
-#debug_left bool fifthFloorElevDoorsOpen
-#srcline 75 ;    ELSIF elevatorFloor = 2 THEN
- JMP  HandleDoors_L11
-HandleDoors_L10:
- LD   elevatorFloor
-#debug int elevatorFloor
- EXTW 
- LD   int 2
- EQ
- JMC  HandleDoors_L12
-#srcline 76 ;      firstFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   firstFloorElevDoorsOpen
-#debug_left bool firstFloorElevDoorsOpen
-#srcline 77 ;      secondFloorElevDoorsOpen := TRUE;
- LD   bool -1       ; true
- WR   secondFloorElevDoorsOpen
-#debug_left bool secondFloorElevDoorsOpen
-#srcline 78 ;      thirdFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   thirdFloorElevDoorsOpen
-#debug_left bool thirdFloorElevDoorsOpen
-#srcline 79 ;      fourthFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   fourthFloorElevDoorsOpen
-#debug_left bool fourthFloorElevDoorsOpen
-#srcline 80 ;      fifthFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   fifthFloorElevDoorsOpen
-#debug_left bool fifthFloorElevDoorsOpen
-#srcline 81 ;    ELSIF elevatorFloor = 3 THEN
- JMP  HandleDoors_L11
-HandleDoors_L12:
- LD   elevatorFloor
-#debug int elevatorFloor
- EXTW 
- LD   int 3
- EQ
- JMC  HandleDoors_L13
-#srcline 82 ;      firstFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   firstFloorElevDoorsOpen
-#debug_left bool firstFloorElevDoorsOpen
-#srcline 83 ;      secondFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   secondFloorElevDoorsOpen
-#debug_left bool secondFloorElevDoorsOpen
-#srcline 84 ;      thirdFloorElevDoorsOpen := TRUE;
- LD   bool -1       ; true
- WR   thirdFloorElevDoorsOpen
-#debug_left bool thirdFloorElevDoorsOpen
-#srcline 85 ;      fourthFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   fourthFloorElevDoorsOpen
-#debug_left bool fourthFloorElevDoorsOpen
-#srcline 86 ;      fifthFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   fifthFloorElevDoorsOpen
-#debug_left bool fifthFloorElevDoorsOpen
-#srcline 87 ;    ELSIF elevatorFloor = 4 THEN
- JMP  HandleDoors_L11
-HandleDoors_L13:
- LD   elevatorFloor
-#debug int elevatorFloor
- EXTW 
- LD   int 4
- EQ
- JMC  HandleDoors_L14
-#srcline 88 ;      firstFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   firstFloorElevDoorsOpen
-#debug_left bool firstFloorElevDoorsOpen
-#srcline 89 ;      secondFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   secondFloorElevDoorsOpen
-#debug_left bool secondFloorElevDoorsOpen
-#srcline 90 ;      thirdFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   thirdFloorElevDoorsOpen
-#debug_left bool thirdFloorElevDoorsOpen
-#srcline 91 ;      fourthFloorElevDoorsOpen := TRUE;
- LD   bool -1       ; true
- WR   fourthFloorElevDoorsOpen
-#debug_left bool fourthFloorElevDoorsOpen
-#srcline 92 ;      fifthFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   fifthFloorElevDoorsOpen
-#debug_left bool fifthFloorElevDoorsOpen
-#srcline 93 ;    ELSE
- JMP  HandleDoors_L11
-HandleDoors_L14:
-#srcline 94 ;      firstFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   firstFloorElevDoorsOpen
-#debug_left bool firstFloorElevDoorsOpen
-#srcline 95 ;      secondFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   secondFloorElevDoorsOpen
-#debug_left bool secondFloorElevDoorsOpen
-#srcline 96 ;      thirdFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   thirdFloorElevDoorsOpen
-#debug_left bool thirdFloorElevDoorsOpen
-#srcline 97 ;      fourthFloorElevDoorsOpen := FALSE;
- LD   bool 0       ; false
- WR   fourthFloorElevDoorsOpen
-#debug_left bool fourthFloorElevDoorsOpen
-#srcline 98 ;      fifthFloorElevDoorsOpen := TRUE;
- LD   bool -1       ; true
- WR   fifthFloorElevDoorsOpen
-#debug_left bool fifthFloorElevDoorsOpen
-#srcline 99 ;    END_IF;
-HandleDoors_L11:
-#srcline 100 ;  END_IF;
+ RCHK 4   ; Range Check
+ ADD     ; + offset 
+ WRIB 
+#debug_left bool elevatorDoorsOpened[elevatorFloor]
+#srcline 88 ;  END_IF;
  JMP  HandleDoors_L2
-HandleDoors_L9:
+HandleDoors_L3:
 HandleDoors_L2:
-#srcline 101 ;END_FUNCTION
+#srcline 89 ;END_FUNCTION
  PRV  
  LDX  __fc__HandleDoors
  ULNK
@@ -656,56 +642,59 @@ E     61
 #endpou 
 
 #pou ResetAllButtons
-#srcline 103 ;FUNCTION ResetAllButtons : BOOL
+#srcline 92 ;FUNCTION ResetAllButtons : BOOL
+
+#struct ResetAllButtons__temp__
+  int P0__st__
 P     61
 ResetAllButtons_L0:
- LINK 0
+ LINK __SizeOf(ResetAllButtons__temp__)
  NXT
 ; Initialize - variables
  LD   0
  WRX  __fc__ResetAllButtons
+ WRX  index
 ; End initialize - variables
-#srcline 104 ;  fifthFloorButtonPressed          := FALSE;
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 96 ;  FOR index := 0 TO highestFloor - 1 DO
+ LD   int 0
+ WRX  index
+ LD   highestFloor
+#debug int highestFloor
+ EXTW 
+ LD   int 1
+ SUB
+ EXTW
+ WRY  P0__st__
+ResetAllButtons_L1:
+ LDX  index
+ EXTW 
+ LDY  P0__st__
+ EXTW 
+ GTS  
+ JMD  ResetAllButtons_L2
+ DBG  
+#srcline 97 ;    elevatorButtonsPressed[index] := FALSE;
  LD   bool 0       ; false
- WR   fifthFloorButtonPressed
-#debug_left bool fifthFloorButtonPressed
-#srcline 105 ;  fourthFloorButtonPressed         := FALSE;
- LD   bool 0       ; false
- WR   fourthFloorButtonPressed
-#debug_left bool fourthFloorButtonPressed
-#srcline 106 ;  thirdFloorButtonPressed          := FALSE;
- LD   bool 0       ; false
- WR   thirdFloorButtonPressed
-#debug_left bool thirdFloorButtonPressed
-#srcline 107 ;  secondFloorButtonPressed         := FALSE;
- LD   bool 0       ; false
- WR   secondFloorButtonPressed
-#debug_left bool secondFloorButtonPressed
-#srcline 108 ;  firstFloorButtonPressed          := FALSE;
- LD   bool 0       ; false
- WR   firstFloorButtonPressed
-#debug_left bool firstFloorButtonPressed
-#srcline 109 ;  elevatorFifthFloorButtonPressed  := FALSE;
- LD   bool 0       ; false
- WR   elevatorFifthFloorButtonPressed
-#debug_left bool elevatorFifthFloorButtonPressed
-#srcline 110 ;  elevatorFourthFloorButtonPressed := FALSE;
- LD   bool 0       ; false
- WR   elevatorFourthFloorButtonPressed
-#debug_left bool elevatorFourthFloorButtonPressed
-#srcline 111 ;  elevatorThirdFloorButtonPressed  := FALSE;
- LD   bool 0       ; false
- WR   elevatorThirdFloorButtonPressed
-#debug_left bool elevatorThirdFloorButtonPressed
-#srcline 112 ;  elevatorSecondFloorButtonPressed := FALSE;
- LD   bool 0       ; false
- WR   elevatorSecondFloorButtonPressed
-#debug_left bool elevatorSecondFloorButtonPressed
-#srcline 113 ;  elevatorFirstFloorButtonPressed  := FALSE;
- LD   bool 0       ; false
- WR   elevatorFirstFloorButtonPressed
-#debug_left bool elevatorFirstFloorButtonPressed
-#srcline 114 ;END_FUNCTION
+ LEA  elevatorButtonsPressed
+ LDX  index
+#debug int index
+ EXTW 
+ RCHK 4   ; Range Check
+ ADD     ; + offset 
+ WRIB 
+#debug_left bool elevatorButtonsPressed[index]
+#srcline 98 ;  END_FOR;
+ LDX  index
+ LD   1
+ ADD  
+ EXTW 
+ WRX  index
+ JMP  ResetAllButtons_L1
+ResetAllButtons_L2:
+ NOP  -1
+#srcline 99 ;END_FUNCTION
  PRV  
  LDX  __fc__ResetAllButtons
  ULNK
@@ -714,7 +703,7 @@ E     61
 #endpou 
 
 #pou HandleFloorSelection
-#srcline 116 ;FUNCTION HandleFloorSelection : BOOL
+#srcline 101 ;FUNCTION HandleFloorSelection : BOOL
 P     61
 HandleFloorSelection_L0:
  LINK 0
@@ -723,7 +712,28 @@ HandleFloorSelection_L0:
  LD   0
  WRX  __fc__HandleFloorSelection
 ; End initialize - variables
-#srcline 117 ;  floorDifference := elevatorFloor - targetFloor;
+#srcline 102 ;  IF NOT elevatorFloor = targetFloor AND NOT IsFloorAlreadyEnqueued(targetFloor) THEN
+ LD   elevatorFloor
+#debug int elevatorFloor
+ EXTW 
+ LD   targetFloor
+#debug int targetFloor
+ EXTW 
+ EQ
+ NEG
+ NXT
+ LD   targetFloor
+#debug int targetFloor
+ EXTW 
+ WR   __Instance__IsFloorAlreadyEnqueued~floor
+#debug_left int __Instance__IsFloorAlreadyEnqueued~floor
+ PRV
+ LEA  __Instance__IsFloorAlreadyEnqueued
+ CAL  IsFloorAlreadyEnqueued_L0
+ NEG
+ AND
+ JMC  HandleFloorSelection_L1
+#srcline 103 ;    floorDifference := elevatorFloor - targetFloor;
  LD   elevatorFloor
 #debug int elevatorFloor
  EXTW 
@@ -734,56 +744,96 @@ HandleFloorSelection_L0:
  EXTW
  WR   floorDifference
 #debug_left int floorDifference
-#srcline 118 ;  IF floorDifference = 0 THEN
- LD   floorDifference
-#debug int floorDifference
- EXTW 
- LD   int 0
- EQ
- JMC  HandleFloorSelection_L1
-#srcline 119 ;    // if the user pressed an elevator button on the
-#srcline 120 ;    // same floor the elevator is at
-#srcline 121 ;  ELSIF floorDifference > 0 THEN
- JMP  HandleFloorSelection_L2
-HandleFloorSelection_L1:
+#srcline 104 ;    IF floorDifference > 0 THEN
  LD   floorDifference
 #debug int floorDifference
  EXTW 
  LD   int 0
  GTS
  JMC  HandleFloorSelection_L3
-#srcline 122 ;    elevatorDirection := -1;
+#srcline 105 ;      elevatorDirection := -1;
  LD   int -1
  WR   elevatorDirection
 #debug_left int elevatorDirection
-#srcline 123 ;  ELSIF floorDifference < 0 THEN
- JMP  HandleFloorSelection_L2
+#srcline 106 ;      EnqueueFloor(targetFloor);
+ NXT
+ LD   targetFloor
+#debug int targetFloor
+ EXTW 
+ WR   __Instance__EnqueueFloor~floorToEnqueue
+#debug_left int __Instance__EnqueueFloor~floorToEnqueue
+ PRV
+ LEA  __Instance__EnqueueFloor
+ CAL  EnqueueFloor_L0
+#srcline 107 ;      floorSetAsElevStop[targetFloor] := TRUE;
+ LD   bool -1       ; true
+ LEA  floorSetAsElevStop
+ LD   targetFloor
+#debug int targetFloor
+ EXTW 
+ RCHK 4   ; Range Check
+ ADD     ; + offset 
+ WRIB 
+#debug_left bool floorSetAsElevStop[targetFloor]
+#srcline 108 ;    ELSIF floorDifference < 0 THEN
+ JMP  HandleFloorSelection_L4
 HandleFloorSelection_L3:
  LD   floorDifference
 #debug int floorDifference
  EXTW 
  LD   int 0
  LTS
- JMC  HandleFloorSelection_L4
-#srcline 124 ;    elevatorDirection := 1;
+ JMC  HandleFloorSelection_L5
+#srcline 109 ;      elevatorDirection := 1;
  LD   int 1
  WR   elevatorDirection
 #debug_left int elevatorDirection
-#srcline 125 ;  END_IF;
- JMP  HandleFloorSelection_L2
+#srcline 110 ;      EnqueueFloor(targetFloor);
+ NXT
+ LD   targetFloor
+#debug int targetFloor
+ EXTW 
+ WR   __Instance__EnqueueFloor~floorToEnqueue
+#debug_left int __Instance__EnqueueFloor~floorToEnqueue
+ PRV
+ LEA  __Instance__EnqueueFloor
+ CAL  EnqueueFloor_L0
+#srcline 111 ;      floorSetAsElevStop[targetFloor] := TRUE;
+ LD   bool -1       ; true
+ LEA  floorSetAsElevStop
+ LD   targetFloor
+#debug int targetFloor
+ EXTW 
+ RCHK 4   ; Range Check
+ ADD     ; + offset 
+ WRIB 
+#debug_left bool floorSetAsElevStop[targetFloor]
+#srcline 112 ;    END_IF;
+ JMP  HandleFloorSelection_L4
+HandleFloorSelection_L5:
 HandleFloorSelection_L4:
+#srcline 113 ;    
+#srcline 114 ;  ELSE
+ JMP  HandleFloorSelection_L2
+HandleFloorSelection_L1:
+#srcline 115 ;    elevatorDirectionIndicator := 1;
+ LD   int 1
+ WR   elevatorDirectionIndicator
+#debug_left int elevatorDirectionIndicator
+#srcline 116 ;  END_IF;
 HandleFloorSelection_L2:
-#srcline 126 ;  floorDifference := ABS(floorDifference);
+#srcline 117 ;  
+#srcline 118 ;  floorDifference := ABS(floorDifference);
  LD   floorDifference
 #debug int floorDifference
  EXTW 
  ABSL
  WR   floorDifference
 #debug_left int floorDifference
-#srcline 127 ;  ResetAllButtons();
+#srcline 119 ;  ResetAllButtons();
  LEA  __Instance__ResetAllButtons
  CAL  ResetAllButtons_L0
-#srcline 128 ;END_FUNCTION
+#srcline 120 ;END_FUNCTION
  PRV  
  LDX  __fc__HandleFloorSelection
  ULNK
@@ -791,156 +841,147 @@ RET
 E     61
 #endpou 
 
+#pou IsAnyButtonPressed
+#srcline 122 ;FUNCTION IsAnyButtonPressed : BOOL
+
+#struct IsAnyButtonPressed__temp__
+  int P0__st__
+P     61
+IsAnyButtonPressed_L0:
+ LINK __SizeOf(IsAnyButtonPressed__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__IsAnyButtonPressed
+ WRX  index
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 125 ;  END_VAR;
+#srcline 126 ;  FOR index := 0 TO highestFloor - 1 DO
+ LD   int 0
+ WRX  index
+ LD   highestFloor
+#debug int highestFloor
+ EXTW 
+ LD   int 1
+ SUB
+ EXTW
+ WRY  P0__st__
+IsAnyButtonPressed_L1:
+ LDX  index
+ EXTW 
+ LDY  P0__st__
+ EXTW 
+ GTS  
+ JMD  IsAnyButtonPressed_L2
+ DBG  
+#srcline 127 ;    IF elevatorButtonsPressed[index] THEN
+ LEA  elevatorButtonsPressed
+ LDX  index
+#debug int index
+ EXTW 
+ RCHK 4   ; Range Check
+ ADD     ; + offset 
+ LDIB 
+#debug bool elevatorButtonsPressed[index]
+ JMC  IsAnyButtonPressed_L3
+#srcline 128 ;      anyFloorButtonPressed := TRUE;
+ LD   bool -1       ; true
+ WR   anyFloorButtonPressed
+#debug_left bool anyFloorButtonPressed
+#srcline 129 ;      IsAnyButtonPressed := TRUE;
+ LD   bool -1       ; true
+ WRX  __fc__IsAnyButtonPressed
+#debug_left bool IsAnyButtonPressed
+#srcline 130 ;    END_IF;
+IsAnyButtonPressed_L3:
+#srcline 131 ;  END_FOR;
+ LDX  index
+ LD   1
+ ADD  
+ EXTW 
+ WRX  index
+ JMP  IsAnyButtonPressed_L1
+IsAnyButtonPressed_L2:
+ NOP  -1
+#srcline 132 ;  
+#srcline 133 ;END_FUNCTION
+ PRV  
+ LDX  __fc__IsAnyButtonPressed
+ ULNK
+RET
+E     61
+#endpou 
+
 #pou HandleButtons
-#srcline 130 ;FUNCTION HandleButtons : BOOL
+#srcline 135 ;FUNCTION HandleButtons : BOOL
+
+#struct HandleButtons__temp__
+  int P0__st__
 P     61
 HandleButtons_L0:
- LINK 0
+ LINK __SizeOf(HandleButtons__temp__)
  NXT
 ; Initialize - variables
  LD   0
  WRX  __fc__HandleButtons
+ WRX  index
 ; End initialize - variables
-#srcline 131 ;  anyFirstFloorButtonPressed :=
-#srcline 132 ;    elevatorFirstFloorButtonPressed OR
- LD   elevatorFirstFloorButtonPressed
-#debug bool elevatorFirstFloorButtonPressed
-#srcline 133 ;    firstFloorButtonPressed;
- LD   firstFloorButtonPressed
-#debug bool firstFloorButtonPressed
- OR  
- WR   anyFirstFloorButtonPressed
-#debug_left bool anyFirstFloorButtonPressed
-#srcline 134 ;  anySecondFloorButtonPressed :=
-#srcline 135 ;    elevatorSecondFloorButtonPressed OR
- LD   elevatorSecondFloorButtonPressed
-#debug bool elevatorSecondFloorButtonPressed
-#srcline 136 ;    secondFloorButtonPressed;
- LD   secondFloorButtonPressed
-#debug bool secondFloorButtonPressed
- OR  
- WR   anySecondFloorButtonPressed
-#debug_left bool anySecondFloorButtonPressed
-#srcline 137 ;  anyThirdFloorButtonPressed :=
-#srcline 138 ;    elevatorThirdFloorButtonPressed OR
- LD   elevatorThirdFloorButtonPressed
-#debug bool elevatorThirdFloorButtonPressed
-#srcline 139 ;    thirdFloorButtonPressed;
- LD   thirdFloorButtonPressed
-#debug bool thirdFloorButtonPressed
- OR  
- WR   anyThirdFloorButtonPressed
-#debug_left bool anyThirdFloorButtonPressed
-#srcline 140 ;  anyFourthFloorButtonPressed := 
-#srcline 141 ;    elevatorFourthFloorButtonPressed OR
- LD   elevatorFourthFloorButtonPressed
-#debug bool elevatorFourthFloorButtonPressed
-#srcline 142 ;    fourthFloorButtonPressed;
- LD   fourthFloorButtonPressed
-#debug bool fourthFloorButtonPressed
- OR  
- WR   anyFourthFloorButtonPressed
-#debug_left bool anyFourthFloorButtonPressed
-#srcline 143 ;  anyFifthFloorButtonPressed := 
-#srcline 144 ;    elevatorFifthFloorButtonPressed OR
- LD   elevatorFifthFloorButtonPressed
-#debug bool elevatorFifthFloorButtonPressed
-#srcline 145 ;    fifthFloorButtonPressed;
- LD   fifthFloorButtonPressed
-#debug bool fifthFloorButtonPressed
- OR  
- WR   anyFifthFloorButtonPressed
-#debug_left bool anyFifthFloorButtonPressed
-#srcline 147 ;  anyFloorButtonPressed := 
-#srcline 148 ;    anyFirstFloorButtonPressed OR
- LD   anyFirstFloorButtonPressed
-#debug bool anyFirstFloorButtonPressed
-#srcline 149 ;    anySecondFloorButtonPressed OR 
- LD   anySecondFloorButtonPressed
-#debug bool anySecondFloorButtonPressed
- OR  
-#srcline 150 ;    anyThirdFloorButtonPressed OR 
- LD   anyThirdFloorButtonPressed
-#debug bool anyThirdFloorButtonPressed
- OR  
-#srcline 151 ;    anyFourthFloorButtonPressed OR
- LD   anyFourthFloorButtonPressed
-#debug bool anyFourthFloorButtonPressed
- OR  
-#srcline 152 ;    anyFifthFloorButtonPressed;
- LD   anyFifthFloorButtonPressed
-#debug bool anyFifthFloorButtonPressed
- OR  
- WR   anyFloorButtonPressed
-#debug_left bool anyFloorButtonPressed
-#srcline 155 ;  IF anyFifthFloorButtonPressed THEN
- LD   anyFifthFloorButtonPressed
-#debug bool anyFifthFloorButtonPressed
- JMC  HandleButtons_L1
-#srcline 156 ;    targetFloor := 5;
- LD   int 5
- WR   targetFloor
-#debug_left int targetFloor
-#srcline 157 ;    HandleFloorSelection();
- LEA  __Instance__HandleFloorSelection
- CAL  HandleFloorSelection_L0
-#srcline 158 ;  ELSIF anyFourthFloorButtonPressed THEN
- JMP  HandleButtons_L2
-HandleButtons_L1:
- LD   anyFourthFloorButtonPressed
-#debug bool anyFourthFloorButtonPressed
- JMC  HandleButtons_L3
-#srcline 159 ;    targetFloor := 4;
- LD   int 4
- WR   targetFloor
-#debug_left int targetFloor
-#srcline 160 ;    HandleFloorSelection();
- LEA  __Instance__HandleFloorSelection
- CAL  HandleFloorSelection_L0
-#srcline 161 ;  ELSIF anyThirdFloorButtonPressed THEN
- JMP  HandleButtons_L2
-HandleButtons_L3:
- LD   anyThirdFloorButtonPressed
-#debug bool anyThirdFloorButtonPressed
- JMC  HandleButtons_L4
-#srcline 162 ;    targetFloor := 3;
- LD   int 3
- WR   targetFloor
-#debug_left int targetFloor
-#srcline 163 ;    HandleFloorSelection();
- LEA  __Instance__HandleFloorSelection
- CAL  HandleFloorSelection_L0
-#srcline 164 ;  ELSIF anySecondFloorButtonPressed THEN
- JMP  HandleButtons_L2
-HandleButtons_L4:
- LD   anySecondFloorButtonPressed
-#debug bool anySecondFloorButtonPressed
- JMC  HandleButtons_L5
-#srcline 165 ;    targetFloor := 2;
- LD   int 2
- WR   targetFloor
-#debug_left int targetFloor
-#srcline 166 ;    HandleFloorSelection();
- LEA  __Instance__HandleFloorSelection
- CAL  HandleFloorSelection_L0
-#srcline 167 ;  ELSIF anyFirstFloorButtonPressed THEN
- JMP  HandleButtons_L2
-HandleButtons_L5:
- LD   anyFirstFloorButtonPressed
-#debug bool anyFirstFloorButtonPressed
- JMC  HandleButtons_L6
-#srcline 168 ;    targetFloor := 1;
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 140 ;  IsAnyButtonPressed();
+ LEA  __Instance__IsAnyButtonPressed
+ CAL  IsAnyButtonPressed_L0
+#srcline 142 ;  FOR index := 0 TO highestFloor - 1 DO
+ LD   int 0
+ WRX  index
+ LD   highestFloor
+#debug int highestFloor
+ EXTW 
  LD   int 1
+ SUB
+ EXTW
+ WRY  P0__st__
+HandleButtons_L1:
+ LDX  index
+ EXTW 
+ LDY  P0__st__
+ EXTW 
+ GTS  
+ JMD  HandleButtons_L2
+ DBG  
+#srcline 143 ;    IF elevatorButtonsPressed[index] THEN
+ LEA  elevatorButtonsPressed
+ LDX  index
+#debug int index
+ EXTW 
+ RCHK 4   ; Range Check
+ ADD     ; + offset 
+ LDIB 
+#debug bool elevatorButtonsPressed[index]
+ JMC  HandleButtons_L3
+#srcline 144 ;      targetFloor := index;
+ LDX  index
+#debug int index
+ EXTW 
  WR   targetFloor
 #debug_left int targetFloor
-#srcline 169 ;    HandleFloorSelection();
+#srcline 145 ;      HandleFloorSelection();
  LEA  __Instance__HandleFloorSelection
  CAL  HandleFloorSelection_L0
-#srcline 170 ;  END_IF;
- JMP  HandleButtons_L2
-HandleButtons_L6:
+#srcline 146 ;    END_IF;
+HandleButtons_L3:
+#srcline 147 ;  END_FOR;
+ LDX  index
+ LD   1
+ ADD  
+ EXTW 
+ WRX  index
+ JMP  HandleButtons_L1
 HandleButtons_L2:
-#srcline 171 ;END_FUNCTION
+ NOP  -1
+#srcline 148 ;END_FUNCTION
  PRV  
  LDX  __fc__HandleButtons
  ULNK
@@ -949,7 +990,7 @@ E     61
 #endpou 
 
 #pou HandleMovement
-#srcline 174 ;FUNCTION HandleMovement : BOOL
+#srcline 151 ;FUNCTION HandleMovement : BOOL
 P     61
 HandleMovement_L0:
  LINK 0
@@ -958,7 +999,7 @@ HandleMovement_L0:
  LD   0
  WRX  __fc__HandleMovement
 ; End initialize - variables
-#srcline 176 ;END_FUNCTION
+#srcline 152 ;END_FUNCTION
  PRV  
  LDX  __fc__HandleMovement
  ULNK
@@ -966,51 +1007,108 @@ RET
 E     61
 #endpou 
 
-#pou HandleObstacles
-#srcline 178 ;FUNCTION HandleObstacles : BOOL
+#pou IsAnyObstaclePresent
+#srcline 154 ;FUNCTION IsAnyObstaclePresent : BOOL
+
+#struct IsAnyObstaclePresent__temp__
+  int P0__st__
 P     61
-HandleObstacles_L0:
+IsAnyObstaclePresent_L0:
+ LINK __SizeOf(IsAnyObstaclePresent__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__IsAnyObstaclePresent
+ WRX  index
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 159 ;  anyObstacleDetected := FALSE;
+ LD   bool 0       ; false
+ WR   anyObstacleDetected
+#debug_left bool anyObstacleDetected
+#srcline 160 ;  FOR index := 0 TO highestFloor - 1 DO
+ LD   int 0
+ WRX  index
+ LD   highestFloor
+#debug int highestFloor
+ EXTW 
+ LD   int 1
+ SUB
+ EXTW
+ WRY  P0__st__
+IsAnyObstaclePresent_L1:
+ LDX  index
+ EXTW 
+ LDY  P0__st__
+ EXTW 
+ GTS  
+ JMD  IsAnyObstaclePresent_L2
+ DBG  
+#srcline 161 ;    IF obstaclesBlockingDoors[index] OR obstacleElevator THEN
+ LEA  obstaclesBlockingDoors
+ LDX  index
+#debug int index
+ EXTW 
+ RCHK 4   ; Range Check
+ ADD     ; + offset 
+ LDIB 
+#debug bool obstaclesBlockingDoors[index]
+ LD   obstacleElevator
+#debug bool obstacleElevator
+ OR  
+ JMC  IsAnyObstaclePresent_L3
+#srcline 162 ;      anyObstacleDetected := TRUE;
+ LD   bool -1       ; true
+ WR   anyObstacleDetected
+#debug_left bool anyObstacleDetected
+#srcline 163 ;    END_IF;
+IsAnyObstaclePresent_L3:
+#srcline 164 ;  END_FOR;
+ LDX  index
+ LD   1
+ ADD  
+ EXTW 
+ WRX  index
+ JMP  IsAnyObstaclePresent_L1
+IsAnyObstaclePresent_L2:
+ NOP  -1
+#srcline 165 ;END_FUNCTION
+ PRV  
+ LDX  __fc__IsAnyObstaclePresent
+ ULNK
+RET
+E     61
+#endpou 
+
+#pou HandleStopConditions
+#srcline 167 ;FUNCTION HandleStopConditions : BOOL
+P     61
+HandleStopConditions_L0:
  LINK 0
  NXT
 ; Initialize - variables
  LD   0
- WRX  __fc__HandleObstacles
+ WRX  __fc__HandleStopConditions
 ; End initialize - variables
-#srcline 179 ;  anyObstacleDetected := obstacleElevator OR 
- LD   obstacleElevator
-#debug bool obstacleElevator
-#srcline 180 ;    obstacleElevatorFirstFloor OR
- LD   obstacleElevatorFirstFloor
-#debug bool obstacleElevatorFirstFloor
+#srcline 168 ;  stopSignActivated := anyObstacleDetected OR elevatorButtonStopPressed;
+ LD   anyObstacleDetected
+#debug bool anyObstacleDetected
+ LD   elevatorButtonStopPressed
+#debug bool elevatorButtonStopPressed
  OR  
-#srcline 181 ;    obstacleElevatorSecondFloor OR 
- LD   obstacleElevatorSecondFloor
-#debug bool obstacleElevatorSecondFloor
- OR  
-#srcline 182 ;    obstacleElevatorThirdFloor OR 
- LD   obstacleElevatorThirdFloor
-#debug bool obstacleElevatorThirdFloor
- OR  
-#srcline 183 ;    obstacleElevatorFourthFloor OR
- LD   obstacleElevatorFourthFloor
-#debug bool obstacleElevatorFourthFloor
- OR  
-#srcline 184 ;    obstacleElevatorFifthFloor;
- LD   obstacleElevatorFifthFloor
-#debug bool obstacleElevatorFifthFloor
- OR  
- WR   anyObstacleDetected
-#debug_left bool anyObstacleDetected
-#srcline 185 ;END_FUNCTION
+ WR   stopSignActivated
+#debug_left bool stopSignActivated
+#srcline 169 ;END_FUNCTION
  PRV  
- LDX  __fc__HandleObstacles
+ LDX  __fc__HandleStopConditions
  ULNK
 RET
 E     61
 #endpou 
 
 #pou prgMain
-#srcline 187 ;PROGRAM prgMain
+#srcline 171 ;PROGRAM prgMain
 
 #struct prgMain__temp__
   int P0__st__
@@ -1019,19 +1117,32 @@ prgMain_L0:
  LINK __SizeOf(prgMain__temp__)
 ; Initialize - dynamic variables
 ; End initialize - dynamic variables
-#srcline 198 ;  HandleButtons();
+#srcline 182 ;  IsAnyObstaclePresent();
+ LEA  __Instance__IsAnyObstaclePresent
+ CAL  IsAnyObstaclePresent_L0
+#srcline 183 ;  HandleStopConditions();
+ LEA  __Instance__HandleStopConditions
+ CAL  HandleStopConditions_L0
+#srcline 184 ;  HandleButtons();
  LEA  __Instance__HandleButtons
  CAL  HandleButtons_L0
-#srcline 199 ;  VisualizeQueue();
- LEA  __Instance__VisualizeQueue
- CAL  VisualizeQueue_L0
-#srcline 200 ;  (* configuration *)
-#srcline 201 ;  IF NOT configured THEN
+#srcline 185 ;  elevatorDirectionIndicator := elevatorDirection + 1;
+ LD   elevatorDirection
+#debug int elevatorDirection
+ EXTW 
+ LD   int 1
+ ADD
+ EXTW
+ WR   elevatorDirectionIndicator
+#debug_left int elevatorDirectionIndicator
+#srcline 186 ;  //VisualizeQueue();
+#srcline 187 ;  (* configuration *)
+#srcline 188 ;  IF NOT configured THEN
  LD   configured
 #debug bool configured
  NEG
  JMC  prgMain_L1
-#srcline 202 ;    FOR index := 0 TO queueSize - 1 DO
+#srcline 189 ;    FOR index := 0 TO queueSize - 1 DO
  LD   int 0
  WRX  index
  LD   queueSize
@@ -1049,7 +1160,7 @@ prgMain_L3:
  GTS  
  JMD  prgMain_L4
  DBG  
-#srcline 203 ;      queue[index] := queueDefaultValue;
+#srcline 190 ;      queue[index] := queueDefaultValue;
  LD   queueDefaultValue
 #debug int queueDefaultValue
  EXTW 
@@ -1057,12 +1168,12 @@ prgMain_L3:
  LDX  index
 #debug int index
  EXTW 
- RCHK 9   ; Range Check
+ RCHK 4   ; Range Check
  MUL  2   ; SizeOf(...)
  ADD     ; + offset 
  WRIW 
 #debug_left int queue[index]
-#srcline 204 ;    END_FOR;
+#srcline 191 ;    END_FOR;
  LDX  index
  LD   1
  ADD  
@@ -1071,15 +1182,19 @@ prgMain_L3:
  JMP  prgMain_L3
 prgMain_L4:
  NOP  -1
-#srcline 206 ;    
-#srcline 207 ;    configured := TRUE;
+#srcline 192 ;    elevatorDoorsOpened[0] := TRUE;
+ LD   bool -1       ; true
+ WR   elevatorDoorsOpened[0]
+#debug_left bool elevatorDoorsOpened[0]
+#srcline 193 ;    
+#srcline 194 ;    configured := TRUE;
  LD   bool -1       ; true
  WR   configured
 #debug_left bool configured
-#srcline 208 ;  END_IF;
+#srcline 195 ;  END_IF;
 prgMain_L1:
-#srcline 209 ;  
-#srcline 211 ;END_PROGRAM
+#srcline 196 ;  
+#srcline 198 ;END_PROGRAM
  ULNK
 RET
 E     61

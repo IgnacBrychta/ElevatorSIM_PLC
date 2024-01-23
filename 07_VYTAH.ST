@@ -2,23 +2,10 @@ VAR_GLOBAL
   timePLC AT %s16 : INT := 0;
   timeDelayed : INT := 0;
   switchCase : INT := 0;
-  fifthFloorElevDoorsOpen : BOOL := FALSE;
-  fourthFloorElevDoorsOpen : BOOL := FALSE;
-  thirdFloorElevDoorsOpen : BOOL := FALSE;
-  secondFloorElevDoorsOpen : BOOL := FALSE;
-  firstFloorElevDoorsOpen : BOOL := TRUE;
+  elevatorDoorsOpened : array[0..4] OF BOOL;
   
-  elevatorFloor : INT := 5; // 1, 2, 3, 4
-  fifthFloorButtonPressed : BOOL := FALSE;
-  fourthFloorButtonPressed : BOOL := FALSE;
-  thirdFloorButtonPressed : BOOL := FALSE;
-  secondFloorButtonPressed : BOOL := FALSE;
-  firstFloorButtonPressed : BOOL := FALSE;
-  elevatorFifthFloorButtonPressed : BOOL := FALSE;
-  elevatorFourthFloorButtonPressed : BOOL := FALSE;
-  elevatorThirdFloorButtonPressed : BOOL := FALSE;
-  elevatorSecondFloorButtonPressed : BOOL := FALSE;
-  elevatorFirstFloorButtonPressed : BOOL := FALSE;
+  elevatorFloor : INT := 0; // 1, 2, 3, 4
+  elevatorButtonsPressed : array[0..4] OF BOOL;
   elevatorButtonStopPressed : BOOL := FALSE;
   // -1: down | 0: idle | 1: up
   forceOpenCurrentElevatorFloorDoor : BOOL := FALSE;
@@ -26,11 +13,7 @@ VAR_GLOBAL
   anyObstacleDetected : BOOL := FALSE;
   anyObstacleWasDetected : BOOL := FALSE;
   obstacleElevator : BOOL := FALSE;
-  obstacleElevatorFifthFloor : BOOL := FALSE;
-  obstacleElevatorFourthFloor : BOOL := FALSE;
-  obstacleElevatorThirdFloor : BOOL := FALSE;
-  obstacleElevatorSecondFloor : BOOL := FALSE;
-  obstacleElevatorFirstFloor : BOOL := FALSE;
+  obstaclesBlockingDoors : array[0..4] OF BOOL;
   elevatorMaximumWeight : INT := 300;
   elevatorWeight : INT := 0;
   // constants
@@ -40,11 +23,7 @@ VAR_GLOBAL
   targetFloorDefaultValue : INT := -1;
   // floors
   anyFloorButtonPressed : BOOL := FALSE;
-  anyFifthFloorButtonPressed : BOOL := FALSE;
-  anyFourthFloorButtonPressed : BOOL := FALSE;
-  anyThirdFloorButtonPressed : BOOL := FALSE;
-  anySecondFloorButtonPressed : BOOL := FALSE;
-  anyFirstFloorButtonPressed : BOOL := FALSE;
+  floorSetAsElevStop : array[0..4] OF BOOL;
   // movement handlers
   targetFloor : INT := -1;
   floorDifference : INT := -10;
@@ -55,10 +34,11 @@ VAR_GLOBAL
   stopSignActivated : BOOL := TRUE;
   configured : BOOL := FALSE;
   stringQueueRepresentation : STRING := '';
+  elevatorDirectionIndicator : INT := 1;
   // queue
-  queue : array[0..9] OF INT; // number of floors * 2
+  queue : array[0..4] OF INT; // number of floors - 1
   queueDefaultValue : INT := -1;
-  queueSize : INT := 10;
+  queueSize : INT := 5;
 END_VAR
 
 

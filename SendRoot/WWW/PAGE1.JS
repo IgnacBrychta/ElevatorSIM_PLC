@@ -45,7 +45,7 @@ if(xmlhttpGET.status != 200){
 alert('Problem retrieving XML data ' + xmlhttpGET.statusText + '(' + xmlhttpGET.status + ')');
 document.location.reload(true)
 return;}
-var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1705398110) {document.location.reload(true); return;}
+var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1706004698) {document.location.reload(true); return;}
 var pd = '';
 var x=xmlhttpGET.responseXML.documentElement.getElementsByTagName('INPUT');
 if(x[0]) {
@@ -304,35 +304,77 @@ Input41.value = x[25].getAttribute('VALUE');
 var Input42 = document.getElementById('INPUT42');
 Input42.value = x[26].getAttribute('VALUE');
 var Input43 = document.getElementById('INPUT43');
-if(x[27].getAttribute('VALUE') == '0') {
+if(x[10].getAttribute('VALUE') == '0') {
 SetBg('INPUT43', 'BU73FF_1.PNG');
 } else {
 SetBg('INPUT43', 'BU0EEE_1.PNG');
 }
 var Input44 = document.getElementById('INPUT44');
-if(x[28].getAttribute('VALUE') == '0') {
+if(x[5].getAttribute('VALUE') == '0') {
 SetBg('INPUT44', 'BU73FF_1.PNG');
 } else {
 SetBg('INPUT44', 'BU0EEE_1.PNG');
 }
 var Input45 = document.getElementById('INPUT45');
-if(x[29].getAttribute('VALUE') == '0') {
+if(x[6].getAttribute('VALUE') == '0') {
 SetBg('INPUT45', 'BU73FF_1.PNG');
 } else {
 SetBg('INPUT45', 'BU0EEE_1.PNG');
 }
 var Input46 = document.getElementById('INPUT46');
-if(x[30].getAttribute('VALUE') == '0') {
+if(x[7].getAttribute('VALUE') == '0') {
 SetBg('INPUT46', 'BU73FF_1.PNG');
 } else {
 SetBg('INPUT46', 'BU0EEE_1.PNG');
 }
 var Input47 = document.getElementById('INPUT47');
-if(x[31].getAttribute('VALUE') == '0') {
+if(x[8].getAttribute('VALUE') == '0') {
 SetBg('INPUT47', 'BU73FF_1.PNG');
 } else {
 SetBg('INPUT47', 'BU0EEE_1.PNG');
 }
+var Input48 = document.getElementById('INPUT48');
+switch(parseInt(x[27].getAttribute('VALUE'))) {
+case 0 : gTemp = 'url("IMAGES/ELAAEA_1.PNG")'; break;
+case 1 : gTemp = 'url("IMAGES/ELE644_1.PNG")'; break;
+case 2 : gTemp = 'url("IMAGES/ELEVAT_4.PNG")'; break;
+default: gTemp = ''; }
+if(Input48.style.backgroundImage != gTemp) Input48.style.backgroundImage = gTemp;
+var Input49 = document.getElementById('INPUT49');
+switch(parseInt(x[27].getAttribute('VALUE'))) {
+case 0 : gTemp = 'url("IMAGES/ELAAEA_1.PNG")'; break;
+case 1 : gTemp = 'url("IMAGES/ELE644_1.PNG")'; break;
+case 2 : gTemp = 'url("IMAGES/ELEVAT_4.PNG")'; break;
+default: gTemp = ''; }
+if(Input49.style.backgroundImage != gTemp) Input49.style.backgroundImage = gTemp;
+var Input50 = document.getElementById('INPUT50');
+switch(parseInt(x[27].getAttribute('VALUE'))) {
+case 0 : gTemp = 'url("IMAGES/ELAAEA_1.PNG")'; break;
+case 1 : gTemp = 'url("IMAGES/ELE644_1.PNG")'; break;
+case 2 : gTemp = 'url("IMAGES/ELEVAT_4.PNG")'; break;
+default: gTemp = ''; }
+if(Input50.style.backgroundImage != gTemp) Input50.style.backgroundImage = gTemp;
+var Input51 = document.getElementById('INPUT51');
+switch(parseInt(x[27].getAttribute('VALUE'))) {
+case 0 : gTemp = 'url("IMAGES/ELAAEA_1.PNG")'; break;
+case 1 : gTemp = 'url("IMAGES/ELE644_1.PNG")'; break;
+case 2 : gTemp = 'url("IMAGES/ELEVAT_4.PNG")'; break;
+default: gTemp = ''; }
+if(Input51.style.backgroundImage != gTemp) Input51.style.backgroundImage = gTemp;
+var Input52 = document.getElementById('INPUT52');
+switch(parseInt(x[27].getAttribute('VALUE'))) {
+case 0 : gTemp = 'url("IMAGES/ELAAEA_1.PNG")'; break;
+case 1 : gTemp = 'url("IMAGES/ELE644_1.PNG")'; break;
+case 2 : gTemp = 'url("IMAGES/ELEVAT_4.PNG")'; break;
+default: gTemp = ''; }
+if(Input52.style.backgroundImage != gTemp) Input52.style.backgroundImage = gTemp;
+var Input53 = document.getElementById('INPUT53');
+switch(parseInt(x[27].getAttribute('VALUE'))) {
+case 0 : gTemp = 'url("IMAGES/ELAAEA_1.PNG")'; break;
+case 1 : gTemp = 'url("IMAGES/ELE644_1.PNG")'; break;
+case 2 : gTemp = 'url("IMAGES/ELEVAT_4.PNG")'; break;
+default: gTemp = ''; }
+if(Input53.style.backgroundImage != gTemp) Input53.style.backgroundImage = gTemp;
 } else {document.location.reload(true); return;}
 } catch(err) {console.log(err.message)}
 if(pd!=''){setTimeout("GetXML('PAGE1.XML','"+pd+"')",1);}else{setTimeout("GetXML('PAGE1.XML')",1000);}}
@@ -346,7 +388,7 @@ setTimeout("FunWatchDog()", 20000);
 }
 
 function PostXML5() {
-PostXML('PAGE1.XML', encodeURIComponent('__R88.1_BOOL_i=1')); 
+PostXML('PAGE1.XML', encodeURIComponent('__R88.3_BOOL_i=1')); 
 SetBg('INPUT5', 'BU98A7_1.PNG');
 setTimeout("SetBg('INPUT5', 'BUF2B2_1.PNG');",500);
 }
@@ -356,12 +398,12 @@ SetBg('INPUT6', 'BU98A7_1.PNG');
 setTimeout("SetBg('INPUT6', 'BUF2B2_1.PNG');",500);
 }
 function PostXML7() {
-PostXML('PAGE1.XML', encodeURIComponent('__R88.3_BOOL_i=1')); 
+PostXML('PAGE1.XML', encodeURIComponent('__R88.1_BOOL_i=1')); 
 SetBg('INPUT7', 'BU98A7_1.PNG');
 setTimeout("SetBg('INPUT7', 'BUF2B2_1.PNG');",500);
 }
 function PostXML8() {
-PostXML('PAGE1.XML', encodeURIComponent('__R88.4_BOOL_i=1')); 
+PostXML('PAGE1.XML', encodeURIComponent('__R88.0_BOOL_i=1')); 
 SetBg('INPUT8', 'BU98A7_1.PNG');
 setTimeout("SetBg('INPUT8', 'BUF2B2_1.PNG');",500);
 }
@@ -370,22 +412,22 @@ var Input9h = document.getElementById('INPUT9h');
 PostXML('PAGE1.XML', encodeURIComponent(Input9h.name+'='+Input9h.value));
 }
 function PostXML11() {
-PostXML('PAGE1.XML', encodeURIComponent('__R88.6_BOOL_i=1')); 
+PostXML('PAGE1.XML', encodeURIComponent('__R88.3_BOOL_i=1')); 
 SetBg('INPUT11', 'BU98A7_1.PNG');
 setTimeout("SetBg('INPUT11', 'BUF2B2_1.PNG');",500);
 }
 function PostXML12() {
-PostXML('PAGE1.XML', encodeURIComponent('__R88.7_BOOL_i=1')); 
+PostXML('PAGE1.XML', encodeURIComponent('__R88.2_BOOL_i=1')); 
 SetBg('INPUT12', 'BU98A7_1.PNG');
 setTimeout("SetBg('INPUT12', 'BUF2B2_1.PNG');",500);
 }
 function PostXML13() {
-PostXML('PAGE1.XML', encodeURIComponent('__R89.0_BOOL_i=1')); 
+PostXML('PAGE1.XML', encodeURIComponent('__R88.1_BOOL_i=1')); 
 SetBg('INPUT13', 'BU98A7_1.PNG');
 setTimeout("SetBg('INPUT13', 'BUF2B2_1.PNG');",500);
 }
 function PostXML14() {
-PostXML('PAGE1.XML', encodeURIComponent('__R89.1_BOOL_i=1')); 
+PostXML('PAGE1.XML', encodeURIComponent('__R88.0_BOOL_i=1')); 
 SetBg('INPUT14', 'BU98A7_1.PNG');
 setTimeout("SetBg('INPUT14', 'BUF2B2_1.PNG');",500);
 }
@@ -398,12 +440,12 @@ var Input17h = document.getElementById('INPUT17h');
 PostXML('PAGE1.XML', encodeURIComponent(Input17h.name+'='+Input17h.value));
 }
 function PostXML19() {
-PostXML('PAGE1.XML', encodeURIComponent('__R88.0_BOOL_i=1')); 
+PostXML('PAGE1.XML', encodeURIComponent('__R88.4_BOOL_i=1')); 
 SetBg('INPUT19', 'BU98A7_1.PNG');
 setTimeout("SetBg('INPUT19', 'BUF2B2_1.PNG');",500);
 }
 function PostXML21() {
-PostXML('PAGE1.XML', encodeURIComponent('__R88.5_BOOL_i=1')); 
+PostXML('PAGE1.XML', encodeURIComponent('__R88.4_BOOL_i=1')); 
 SetBg('INPUT21', 'BU98A7_1.PNG');
 setTimeout("SetBg('INPUT21', 'BUF2B2_1.PNG');",500);
 }

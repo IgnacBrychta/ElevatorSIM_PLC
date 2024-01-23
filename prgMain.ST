@@ -18,9 +18,9 @@ FUNCTION EnqueueFloor : BOOL
   END_VAR
 
   FOR index := 0 TO queueSize - 1 DO
-    IF NOT queue[index] = queueDefaultValue THEN
+    IF queue[index] = queueDefaultValue THEN
       queue[index] := floorToEnqueue;
-      index := index + 100; // break
+      index := 1000; // break
     END_IF;
   END_FOR;
 END_FUNCTION
@@ -50,137 +50,122 @@ FUNCTION DequeueFloor : INT
   DequeueFloor := dequeuedFloor;
 END_FUNCTION
 
+FUNCTION IsFloorAlreadyEnqueued : BOOL
+  VAR
+    index : INT;
+  END_VAR
+  VAR_INPUT
+    floor : INT;
+  END_VAR
+
+  FOR index := 0 TO queueSize - 1 DO
+    IF queue[index] = floor THEN
+      IsFloorAlreadyEnqueued := TRUE;
+      index := 1000;
+    END_IF;
+  END_FOR;
+  
+END_FUNCTION
+
 (* End of queue code *)
+
+FUNCTION CloseAllDoors : BOOL
+  VAR
+    index : INT;
+  END_VAR
+  FOR index := 0 TO highestFloor - 1 DO
+    elevatorDoorsOpened[index] := FALSE;
+  END_FOR;
+END_FUNCTION
 
 FUNCTION HandleDoors : BOOL
   IF forceOpenCurrentElevatorFloorDoor THEN
-    IF elevatorFloor = 5 THEN
-      fifthFloorElevDoorsOpen := TRUE;
-    ELSIF elevatorFloor = 4 THEN
-      fourthFloorElevDoorsOpen := TRUE;
-    ELSIF elevatorFloor = 3 THEN
-      thirdFloorElevDoorsOpen := TRUE;
-    ELSIF elevatorFloor = 2 THEN
-      secondFloorElevDoorsOpen := TRUE;
-    ELSIF elevatorFloor = 1 THEN
-      firstFloorElevDoorsOpen := TRUE;
-    END_IF;
+    elevatorDoorsOpened[elevatorFloor - 1] := TRUE;
   ELSIF elevatorDirection = 0 THEN
-    IF elevatorFloor = 1 THEN
-      firstFloorElevDoorsOpen := TRUE;
-      secondFloorElevDoorsOpen := FALSE;
-      thirdFloorElevDoorsOpen := FALSE;
-      fourthFloorElevDoorsOpen := FALSE;
-      fifthFloorElevDoorsOpen := FALSE;
-    ELSIF elevatorFloor = 2 THEN
-      firstFloorElevDoorsOpen := FALSE;
-      secondFloorElevDoorsOpen := TRUE;
-      thirdFloorElevDoorsOpen := FALSE;
-      fourthFloorElevDoorsOpen := FALSE;
-      fifthFloorElevDoorsOpen := FALSE;
-    ELSIF elevatorFloor = 3 THEN
-      firstFloorElevDoorsOpen := FALSE;
-      secondFloorElevDoorsOpen := FALSE;
-      thirdFloorElevDoorsOpen := TRUE;
-      fourthFloorElevDoorsOpen := FALSE;
-      fifthFloorElevDoorsOpen := FALSE;
-    ELSIF elevatorFloor = 4 THEN
-      firstFloorElevDoorsOpen := FALSE;
-      secondFloorElevDoorsOpen := FALSE;
-      thirdFloorElevDoorsOpen := FALSE;
-      fourthFloorElevDoorsOpen := TRUE;
-      fifthFloorElevDoorsOpen := FALSE;
-    ELSE
-      firstFloorElevDoorsOpen := FALSE;
-      secondFloorElevDoorsOpen := FALSE;
-      thirdFloorElevDoorsOpen := FALSE;
-      fourthFloorElevDoorsOpen := FALSE;
-      fifthFloorElevDoorsOpen := TRUE;
-    END_IF;
+    // open doors of the floor the elevator is at
+    CloseAllDoors();
+    elevatorDoorsOpened[elevatorFloor] := TRUE;
   END_IF;
 END_FUNCTION
 
+
 FUNCTION ResetAllButtons : BOOL
-  fifthFloorButtonPressed          := FALSE;
-  fourthFloorButtonPressed         := FALSE;
-  thirdFloorButtonPressed          := FALSE;
-  secondFloorButtonPressed         := FALSE;
-  firstFloorButtonPressed          := FALSE;
-  elevatorFifthFloorButtonPressed  := FALSE;
-  elevatorFourthFloorButtonPressed := FALSE;
-  elevatorThirdFloorButtonPressed  := FALSE;
-  elevatorSecondFloorButtonPressed := FALSE;
-  elevatorFirstFloorButtonPressed  := FALSE;
+  VAR
+    index : INT;
+  END_VAR
+  FOR index := 0 TO highestFloor - 1 DO
+    elevatorButtonsPressed[index] := FALSE;
+  END_FOR;
 END_FUNCTION
 
 FUNCTION HandleFloorSelection : BOOL
-  floorDifference := elevatorFloor - targetFloor;
-  IF floorDifference = 0 THEN
-    // if the user pressed an elevator button on the
-    // same floor the elevator is at
-  ELSIF floorDifference > 0 THEN
-    elevatorDirection := -1;
-  ELSIF floorDifference < 0 THEN
-    elevatorDirection := 1;
+  IF NOT elevatorFloor = targetFloor AND NOT IsFloorAlreadyEnqueued(targetFloor) THEN
+    floorDifference := elevatorFloor - targetFloor;
+    IF floorDifference > 0 THEN
+      elevatorDirection := -1;
+      EnqueueFloor(targetFloor);
+      floorSetAsElevStop[targetFloor] := TRUE;
+    ELSIF floorDifference < 0 THEN
+      elevatorDirection := 1;
+      EnqueueFloor(targetFloor);
+      floorSetAsElevStop[targetFloor] := TRUE;
+    END_IF;
+    
+  ELSE
+    elevatorDirectionIndicator := 1;
   END_IF;
+  
   floorDifference := ABS(floorDifference);
   ResetAllButtons();
 END_FUNCTION
 
+FUNCTION IsAnyButtonPressed : BOOL
+  VAR
+    index : INT;
+  END_VAR;
+  FOR index := 0 TO highestFloor - 1 DO
+    IF elevatorButtonsPressed[index] THEN
+      anyFloorButtonPressed := TRUE;
+      IsAnyButtonPressed := TRUE;
+    END_IF;
+  END_FOR;
+  
+END_FUNCTION
+
 FUNCTION HandleButtons : BOOL
-  anyFirstFloorButtonPressed :=
-    elevatorFirstFloorButtonPressed OR
-    firstFloorButtonPressed;
-  anySecondFloorButtonPressed :=
-    elevatorSecondFloorButtonPressed OR
-    secondFloorButtonPressed;
-  anyThirdFloorButtonPressed :=
-    elevatorThirdFloorButtonPressed OR
-    thirdFloorButtonPressed;
-  anyFourthFloorButtonPressed := 
-    elevatorFourthFloorButtonPressed OR
-    fourthFloorButtonPressed;
-  anyFifthFloorButtonPressed := 
-    elevatorFifthFloorButtonPressed OR
-    fifthFloorButtonPressed;
+  VAR
+    index : INT;
+  END_VAR
 
-  anyFloorButtonPressed := 
-    anyFirstFloorButtonPressed OR
-    anySecondFloorButtonPressed OR 
-    anyThirdFloorButtonPressed OR 
-    anyFourthFloorButtonPressed OR
-    anyFifthFloorButtonPressed;
+  IsAnyButtonPressed();
 
-
-  IF anyFifthFloorButtonPressed THEN
-    targetFloor := 5;
-    HandleFloorSelection();
-  ELSIF anyFourthFloorButtonPressed THEN
-    targetFloor := 4;
-    HandleFloorSelection();
-  ELSIF anyThirdFloorButtonPressed THEN
-    targetFloor := 3;
-    HandleFloorSelection();
-  ELSIF anySecondFloorButtonPressed THEN
-    targetFloor := 2;
-    HandleFloorSelection();
-  ELSIF anyFirstFloorButtonPressed THEN
-    targetFloor := 1;
-    HandleFloorSelection();
-  END_IF;
+  FOR index := 0 TO highestFloor - 1 DO
+    IF elevatorButtonsPressed[index] THEN
+      targetFloor := index;
+      HandleFloorSelection();
+    END_IF;
+  END_FOR;
 END_FUNCTION
 
 
 FUNCTION HandleMovement : BOOL
 END_FUNCTION
 
-FUNCTION HandleObstacles : BOOL
-  anyObstacleDetected := obstacleElevator OR 
-    obstacleElevatorFirstFloor OR
-    obstacleElevatorSecondFloor OR 
-    obstacleElevatorThirdFloor OR 
-    obstacleElevatorFourthFloor OR
-    obstacleElevatorFifthFloor;
+FUNCTION IsAnyObstaclePresent : BOOL
+  VAR
+    index : INT;
+  END_VAR
+
+  anyObstacleDetected := FALSE;
+  FOR index := 0 TO highestFloor - 1 DO
+    IF obstaclesBlockingDoors[index] OR obstacleElevator THEN
+      anyObstacleDetected := TRUE;
+    END_IF;
+  END_FOR;
+END_FUNCTION
+
+FUNCTION HandleStopConditions : BOOL
+  stopSignActivated := anyObstacleDetected OR elevatorButtonStopPressed;
 END_FUNCTION
 
 PROGRAM prgMain
@@ -194,14 +179,17 @@ PROGRAM prgMain
   VAR_TEMP
   END_VAR
   
+  IsAnyObstaclePresent();
+  HandleStopConditions();
   HandleButtons();
-  VisualizeQueue();
+  elevatorDirectionIndicator := elevatorDirection + 1;
+  //VisualizeQueue();
   (* configuration *)
   IF NOT configured THEN
     FOR index := 0 TO queueSize - 1 DO
       queue[index] := queueDefaultValue;
     END_FOR;
-
+    elevatorDoorsOpened[0] := TRUE;
     
     configured := TRUE;
   END_IF;

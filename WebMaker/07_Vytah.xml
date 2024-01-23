@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="windows-1250" ?>
-<web version="8.1" propfont="true" foot="© 2007 - 2020 Teco a.s." dwMode="1" MaxUid="15778">
+<web version="8.1" propfont="true" foot="© 2007 - 2020 Teco a.s." dwMode="1" MaxUid="15786">
 	<panels></panels>
 	<Grid Enable="1" X="5" Y="5" />
 	<globalset newdim="1" />
 	<group caption="" Uid="15721">
-		<page caption="Index" name="PAGE1.XML" ajax="true" pause="1000" default="true" Uid="15720" ucid="1705398110" width="785" height="683">
+		<page caption="Index" name="PAGE1.XML" ajax="true" pause="1000" default="true" Uid="15720" ucid="1706004698" width="785" height="683">
 			<object caption="" X="3" Y="19" xoff="4" yoff="6" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15722">
-				<image optcap="" variable="fourthFloorElevDoorsOpen" type="BOOL" on="VYTAHO_4.PNG" off="VYTAHZ_2.PNG" />
+				<image optcap="" variable="elevatorDoorsOpened[3]" type="BOOL" on="VYTAHO_4.PNG" off="VYTAHZ_2.PNG" />
 			</object>
 			<object caption="" X="3" Y="36" xoff="4" yoff="5" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15723">
-				<image optcap="" variable="thirdFloorElevDoorsOpen" type="BOOL" on="VYTAHO_4.PNG" off="VYTAHZ_2.PNG" />
+				<image optcap="" variable="elevatorDoorsOpened[2]" type="BOOL" on="VYTAHO_4.PNG" off="VYTAHZ_2.PNG" />
 			</object>
 			<object caption="" X="3" Y="53" xoff="4" yoff="4" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15724">
-				<image optcap="" variable="secondFloorElevDoorsOpen" type="BOOL" on="VYTAHO_4.PNG" off="VYTAHZ_2.PNG" />
+				<image optcap="" variable="elevatorDoorsOpened[1]" type="BOOL" on="VYTAHO_4.PNG" off="VYTAHZ_2.PNG" />
 			</object>
 			<object caption="" X="3" Y="70" xoff="4" yoff="3" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15725">
-				<image optcap="" variable="firstFloorElevDoorsOpen" type="BOOL" on="VYTAHO_4.PNG" off="VYTAHZ_2.PNG" />
+				<image optcap="" variable="elevatorDoorsOpened[0]" type="BOOL" on="VYTAHO_4.PNG" off="VYTAHZ_2.PNG" />
 			</object>
 			<object caption="" X="14" Y="26" xoff="6" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15726">
-				<imagebtn variable="fourthFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+				<imagebtn variable="elevatorButtonsPressed[3]" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
 			</object>
 			<object caption="" X="14" Y="43" xoff="6" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15727">
-				<imagebtn variable="thirdFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+				<imagebtn variable="elevatorButtonsPressed[2]" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
 			</object>
 			<object caption="" X="14" Y="60" xoff="6" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15728">
-				<imagebtn variable="secondFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+				<imagebtn variable="elevatorButtonsPressed[1]" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
 			</object>
 			<object caption="" X="14" Y="77" xoff="6" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15729">
-				<imagebtn variable="firstFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+				<imagebtn variable="elevatorButtonsPressed[0]" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
 			</object>
 			<object caption="" X="58" Y="14" xoff="4" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15730">
 				<picture href="" img="ELEVAT_3.PNG" />
@@ -36,40 +36,40 @@
 				<image optcap="" variable="elevatorButtonStopPressed" type="BOOL" on="SPINAC1.PNG" off="SPINAC0.PNG" />
 			</object>
 			<object caption="" X="91" Y="18" xoff="0" yoff="4" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15732">
-				<image optcap="" variable="elevatorFourthFloorButtonPressed" type="BOOL" on="ZAROVKA1.PNG" off="ZAROVKA0.PNG" />
+				<image optcap="" variable="floorSetAsElevStop[3]" type="BOOL" on="ZAROVKA1.PNG" off="ZAROVKA0.PNG" />
 			</object>
 			<object caption="" X="86" Y="20" xoff="0" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15733">
-				<imagebtn variable="elevatorFourthFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+				<imagebtn variable="elevatorButtonsPressed[3]" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
 			</object>
 			<object caption="" X="86" Y="27" xoff="0" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15734">
-				<imagebtn variable="elevatorThirdFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+				<imagebtn variable="elevatorButtonsPressed[2]" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
 			</object>
 			<object caption="" X="85" Y="35" xoff="6" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15735">
-				<imagebtn variable="elevatorSecondFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+				<imagebtn variable="elevatorButtonsPressed[1]" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
 			</object>
 			<object caption="" X="86" Y="42" xoff="0" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15736">
-				<imagebtn variable="elevatorFirstFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+				<imagebtn variable="elevatorButtonsPressed[0]" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
 			</object>
 			<object caption="" X="91" Y="26" xoff="0" yoff="0" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15737">
-				<image optcap="" variable="elevatorThirdFloorButtonPressed" type="BOOL" on="ZAROVKA1.PNG" off="ZAROVKA0.PNG" />
+				<image optcap="" variable="floorSetAsElevStop[2]" type="BOOL" on="ZAROVKA1.PNG" off="ZAROVKA0.PNG" />
 			</object>
 			<object caption="" X="91" Y="33" xoff="0" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15738">
-				<image optcap="" variable="elevatorSecondFloorButtonPressed" type="BOOL" on="ZAROVKA1.PNG" off="ZAROVKA0.PNG" />
+				<image optcap="" variable="floorSetAsElevStop[1]" type="BOOL" on="ZAROVKA1.PNG" off="ZAROVKA0.PNG" />
 			</object>
 			<object caption="" X="91" Y="41" xoff="0" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15739">
-				<image optcap="" variable="elevatorFirstFloorButtonPressed" type="BOOL" on="ZAROVKA1.PNG" off="ZAROVKA0.PNG" />
+				<image optcap="" variable="floorSetAsElevStop[0]" type="BOOL" on="ZAROVKA1.PNG" off="ZAROVKA0.PNG" />
 			</object>
 			<object caption="" X="3" Y="2" xoff="4" yoff="7" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15741">
-				<image optcap="" variable="fifthFloorElevDoorsOpen" type="BOOL" on="VYTAHO_4.PNG" off="VYTAHZ_2.PNG" />
+				<image optcap="" variable="elevatorDoorsOpened[4]" type="BOOL" on="VYTAHO_4.PNG" off="VYTAHZ_2.PNG" />
 			</object>
 			<object caption="" X="14" Y="9" xoff="6" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15742">
-				<imagebtn variable="fifthFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+				<imagebtn variable="elevatorButtonsPressed[4]" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
 			</object>
 			<object caption="" X="91" Y="11" xoff="0" yoff="0" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15743">
-				<image optcap="" variable="elevatorFifthFloorButtonPressed" type="BOOL" on="ZAROVKA1.PNG" off="ZAROVKA0.PNG" />
+				<image optcap="" variable="floorSetAsElevStop[4]" type="BOOL" on="ZAROVKA1.PNG" off="ZAROVKA0.PNG" />
 			</object>
 			<object caption="" X="86" Y="12" xoff="0" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15744">
-				<imagebtn variable="elevatorFifthFloorButtonPressed" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+				<imagebtn variable="elevatorButtonsPressed[4]" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
 			</object>
 			<object caption="" X="8" Y="2" xoff="4" yoff="7" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15745">
 				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="28" height="22" tabindex="1" />
@@ -108,19 +108,19 @@
 				<picture href="" img="STOPSI_2.PNG" />
 			</object>
 			<object caption="" X="6" Y="9" xoff="0" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15760" hint="Toggle obstacle">
-				<image optcap="" variable="obstacleElevatorFifthFloor" type="BOOL" on="PREKAZKA.PNG" off="" />
+				<image optcap="" variable="obstaclesBlockingDoors[4]" type="BOOL" on="PREKAZKA.PNG" off="" />
 			</object>
 			<object caption="" X="6" Y="26" xoff="0" yoff="5" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15761" hint="Toggle obstacle">
-				<image optcap="" variable="obstacleElevatorFourthFloor" type="BOOL" on="PREKAZKA.PNG" off="" />
+				<image optcap="" variable="obstaclesBlockingDoors[3]" type="BOOL" on="PREKAZKA.PNG" off="" />
 			</object>
 			<object caption="" X="6" Y="43" xoff="0" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15762" hint="Toggle obstacle">
-				<image optcap="" variable="obstacleElevatorThirdFloor" type="BOOL" on="PREKAZKA.PNG" off="" />
+				<image optcap="" variable="obstaclesBlockingDoors[2]" type="BOOL" on="PREKAZKA.PNG" off="" />
 			</object>
 			<object caption="" X="6" Y="60" xoff="0" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15763" hint="Toggle obstacle">
-				<image optcap="" variable="obstacleElevatorSecondFloor" type="BOOL" on="PREKAZKA.PNG" off="" />
+				<image optcap="" variable="obstaclesBlockingDoors[1]" type="BOOL" on="PREKAZKA.PNG" off="" />
 			</object>
 			<object caption="" X="6" Y="77" xoff="0" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15764" hint="Toggle obstacle">
-				<image optcap="" variable="obstacleElevatorFirstFloor" type="BOOL" on="PREKAZKA.PNG" off="" />
+				<image optcap="" variable="obstaclesBlockingDoors[0]" type="BOOL" on="PREKAZKA.PNG" off="" />
 			</object>
 			<object caption="" X="66" Y="37" xoff="5" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15765" hint="Toggle obstacle">
 				<image optcap="" variable="obstacleElevator" type="BOOL" on="PREKAZKA.PNG" off="" />
@@ -144,19 +144,61 @@
 				<edit variable="waitingForDoors" type="" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="46" height="22" tabindex="6" />
 			</object>
 			<object caption="" X="14" Y="9" xoff="6" yoff="1" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15773" hint="Is elevator set to get to this floor?">
-				<image optcap="" variable="anyFifthFloorButtonPressed" type="BOOL" on="BU0EEE_1.PNG" off="BU73FF_1.PNG" />
+				<image optcap="" variable="floorSetAsElevStop[4]" type="BOOL" on="BU0EEE_1.PNG" off="BU73FF_1.PNG" />
 			</object>
 			<object caption="" X="14" Y="26" xoff="6" yoff="0" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15774" hint="Is elevator set to get to this floor?">
-				<image optcap="" variable="anyFourthFloorButtonPressed" type="BOOL" on="BU0EEE_1.PNG" off="BU73FF_1.PNG" />
+				<image optcap="" variable="floorSetAsElevStop[3]" type="BOOL" on="BU0EEE_1.PNG" off="BU73FF_1.PNG" />
 			</object>
 			<object caption="" X="14" Y="42" xoff="6" yoff="7" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15775" hint="Is elevator set to get to this floor?">
-				<image optcap="" variable="anyThirdFloorButtonPressed" type="BOOL" on="BU0EEE_1.PNG" off="BU73FF_1.PNG" />
+				<image optcap="" variable="floorSetAsElevStop[2]" type="BOOL" on="BU0EEE_1.PNG" off="BU73FF_1.PNG" />
 			</object>
 			<object caption="" X="14" Y="59" xoff="6" yoff="6" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15776" hint="Is elevator set to get to this floor?">
-				<image optcap="" variable="anySecondFloorButtonPressed" type="BOOL" on="BU0EEE_1.PNG" off="BU73FF_1.PNG" />
+				<image optcap="" variable="floorSetAsElevStop[1]" type="BOOL" on="BU0EEE_1.PNG" off="BU73FF_1.PNG" />
 			</object>
 			<object caption="" X="14" Y="76" xoff="6" yoff="5" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15777" hint="Is elevator set to get to this floor?">
-				<image optcap="" variable="anyFirstFloorButtonPressed" type="BOOL" on="BU0EEE_1.PNG" off="BU73FF_1.PNG" />
+				<image optcap="" variable="floorSetAsElevStop[0]" type="BOOL" on="BU0EEE_1.PNG" off="BU73FF_1.PNG" />
+			</object>
+			<object caption="" X="16" Y="22" xoff="0" yoff="7" level="0" readonly="false" front="0" back="15790320" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15778">
+				<mulimg variable="elevatorDirectionIndicator" type="INT" count="3">
+					<img name="ELAAEA_1.PNG" />
+					<img name="ELE644_1.PNG" />
+					<img name="ELEVAT_4.PNG" />
+				</mulimg>
+			</object>
+			<object caption="" X="16" Y="6" xoff="0" yoff="0" level="0" readonly="false" front="0" back="15790320" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15779">
+				<mulimg variable="elevatorDirectionIndicator" type="INT" count="3">
+					<img name="ELAAEA_1.PNG" />
+					<img name="ELE644_1.PNG" />
+					<img name="ELEVAT_4.PNG" />
+				</mulimg>
+			</object>
+			<object caption="" X="16" Y="39" xoff="0" yoff="6" level="0" readonly="false" front="0" back="15790320" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15780">
+				<mulimg variable="elevatorDirectionIndicator" type="INT" count="3">
+					<img name="ELAAEA_1.PNG" />
+					<img name="ELE644_1.PNG" />
+					<img name="ELEVAT_4.PNG" />
+				</mulimg>
+			</object>
+			<object caption="" X="16" Y="56" xoff="0" yoff="5" level="0" readonly="false" front="0" back="15790320" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15781">
+				<mulimg variable="elevatorDirectionIndicator" type="INT" count="3">
+					<img name="ELAAEA_1.PNG" />
+					<img name="ELE644_1.PNG" />
+					<img name="ELEVAT_4.PNG" />
+				</mulimg>
+			</object>
+			<object caption="" X="16" Y="73" xoff="0" yoff="4" level="0" readonly="false" front="0" back="15790320" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15782">
+				<mulimg variable="elevatorDirectionIndicator" type="INT" count="3">
+					<img name="ELAAEA_1.PNG" />
+					<img name="ELE644_1.PNG" />
+					<img name="ELEVAT_4.PNG" />
+				</mulimg>
+			</object>
+			<object caption="" X="74" Y="29" xoff="6" yoff="1" level="0" readonly="false" front="0" back="15790320" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15783">
+				<mulimg variable="elevatorDirectionIndicator" type="INT" count="3">
+					<img name="ELAAEA_1.PNG" />
+					<img name="ELE644_1.PNG" />
+					<img name="ELEVAT_4.PNG" />
+				</mulimg>
 			</object>
 		</page>
 	</group>
@@ -186,6 +228,9 @@
 		<img name="PREKAZKA.PNG" type="PNG" height="64" width="64" longname="prekazka" />
 		<img name="BU73FF_1.PNG" type="PNG" height="10" width="35" longname="buttonIndicatorOFF" />
 		<img name="BU0EEE_1.PNG" type="PNG" height="10" width="35" longname="buttonIndicatorON" />
+		<img name="ELAAEA_1.PNG" type="PNG" height="20" width="20" longname="elevator_dir_down" />
+		<img name="ELE644_1.PNG" type="PNG" height="20" width="20" longname="elevator_dir_none" />
+		<img name="ELEVAT_4.PNG" type="PNG" height="20" width="20" longname="elevator_dir_up" />
 	</images>
 	<Languages>
 		<Language Code="5" Editor="1" />

@@ -1,5 +1,12 @@
 
 
+FUNCTION CloseAllDoors : BOOL
+(**)
+  VAR
+    index : INT;
+  END_VAR
+END_FUNCTION 
+
 FUNCTION DequeueFloor : INT
 (**)
   VAR
@@ -19,6 +26,9 @@ END_FUNCTION
 
 FUNCTION HandleButtons : BOOL
 (**)
+  VAR
+    index : INT;
+  END_VAR
 END_FUNCTION 
 
 FUNCTION HandleDoors : BOOL
@@ -33,12 +43,39 @@ FUNCTION HandleMovement : BOOL
 (**)
 END_FUNCTION 
 
-FUNCTION HandleObstacles : BOOL
+FUNCTION HandleStopConditions : BOOL
 (**)
+END_FUNCTION 
+
+FUNCTION IsAnyButtonPressed : BOOL
+(**)
+  VAR
+    index : INT;
+  END_VAR
+END_FUNCTION 
+
+FUNCTION IsAnyObstaclePresent : BOOL
+(**)
+  VAR
+    index : INT;
+  END_VAR
+END_FUNCTION 
+
+FUNCTION IsFloorAlreadyEnqueued : BOOL
+(**)
+  VAR
+    index : INT;
+  END_VAR
+  VAR_INPUT
+    floor : INT;
+  END_VAR
 END_FUNCTION 
 
 FUNCTION ResetAllButtons : BOOL
 (**)
+  VAR
+    index : INT;
+  END_VAR
 END_FUNCTION 
 
 FUNCTION ShiftQueueLeft : BOOL
