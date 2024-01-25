@@ -5,7 +5,7 @@ Version="xPRO","4.3.00"
 [dockinfo]
 centralpc=53572396,1,0,0
 leftpane=53598796,0,1,1,167,1
-bottompane=53606032,1,279
+bottompane=53606032,1,157
 rightpane=53607316,0,167,1
 [/dockinfo]
 
@@ -83,17 +83,17 @@ fif2ndmsg=0
 iecmatchcase=0
 iecwholeword=0
 iecigorespaces=0
-iecpous=0
-iecprograms=0
-iecfuncblocks=0
-iecfunctions=0
-iecglobalvars=0
-iectypes=0
-iecaliases=0
-ieclibraries=0
-iecconfiguration=0
-iectasks=0
-iecothers=0
+iecpous=1
+iecprograms=1
+iecfuncblocks=1
+iecfunctions=1
+iecglobalvars=1
+iectypes=1
+iecaliases=1
+ieclibraries=1
+iecconfiguration=1
+iectasks=1
+iecothers=1
 [/finddialog]
 
 [replacedialog]
@@ -127,15 +127,15 @@ nodeplus="PlcDoc"
 [/prjmngr]
 
 [msgwin2]
-window=53606032,1,0,0,249,1101,39,651,249,850,0,0,1
+window=53606032,1,0,0,127,1101,39,651,127,850,0,0,1
 [/msgwin2]
 
 [msgwin1]
-window=53606032,1,0,0,249,1101,39,651,249,850,0,0,0
+window=53606032,1,0,0,127,1101,39,651,127,850,0,0,0
 [/msgwin1]
 
 [breakswin]
-window=53606032,1,0,0,249,1101,39,651,249,850,0,0,2
+window=53606032,1,0,0,127,1101,39,651,127,850,0,0,2
 hdrwidth0=200
 hdrwidth1=30
 hdrwidth2=80
@@ -173,7 +173,7 @@ font="Courier New",1,0,10,-13,-2147483640,0,0
 [/memwin2]
 
 [watch2win]
-window=53606032,1,0,0,249,1101,39,651,249,850,0,0,3
+window=53606032,1,0,0,127,1101,39,651,127,850,0,0,3
 hdrnamew=240,60,0
 font="Courier New",10
 hiresreadability=0
@@ -187,7 +187,7 @@ mem1w=192
 mem1visible=0
 mem2w=190
 mem2visible=0
-storednames="targetFloor","switchCase","floorDifference","elevatorDirection","elevatorFloor","stringQueueRepresentation","queue"
+storednames="queueLowerFloors","queueUpperFloors","forceOpenCurrentElevatorFloorDoor","targetFloor","switchCase","floorDifference","elevatorDirection","elevatorFloor","stringQueueRepresentation","queue"
 [/watch2win]
 
 [weblc]
@@ -195,14 +195,14 @@ lastfile="NONAME1.txt"
 listwidth=121
 findhistory=""
 replacehistory=""
-window=0,0,58,57,516,960,336,260,516,960,0,0,-1
+window=0,0,59,58,516,960,336,260,516,960,0,0,-1
 [/weblc]
 
 [evalmodifdlg]
 [/evalmodifdlg]
 
 [paneltexted]
-editor="XClip-Panel",1,0,1,1,1,1,5095806,1700704,199603932,1701096,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+editor="XClip-Panel",1,0,1,1,1,1,5095806,1701416,199603932,1701808,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 window=0,0,0,94,313,483,313,463,313,483,0,0,-1
 font="Lucida Console",11
 [/paneltexted]
@@ -229,7 +229,7 @@ window=53572396,0,0,0,646,1101,187,259,517,1109,0,0,0
 [/CFC_Editors]
 
 [PanelSIM_1]
-window=0,0,821,385,196,352,519,257,519,392,0,0,-1
+window=0,0,822,386,196,352,519,257,519,392,0,0,-1
 [/PanelSIM_1]
 
 [FormRegMngr1]
@@ -247,12 +247,12 @@ IOSetupColW="188,190,72,72,72,72,64,140,"
 [/SelectPLC]
 
 [FormDesign1]
-window=53572396,1,0,0,363,1101,676,1280,676,1109,0,0,1
+window=53572396,1,0,0,485,1101,676,1280,676,1109,0,0,1
 [/FormDesign1]
 
 [textsyneditor]
-editor="prgMain.ST",1,0,0,85,56,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53572396,1,0,0,363,1101,676,1280,676,1109,0,0,2
+editor="prgMain.ST",1,0,0,286,14,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=53572396,1,0,0,485,1101,676,1280,676,1109,0,0,2
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
@@ -261,8 +261,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="07_VYTAH.ST",1,0,0,42,47,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53572396,1,0,0,363,1101,676,1280,676,1109,0,0,3
+editor="07_VYTAH.ST",1,0,0,36,108,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=53572396,1,0,0,485,1101,676,1280,676,1109,0,0,3
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0

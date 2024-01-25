@@ -16,10 +16,10 @@
 	<Item Name="elevatorDoorsOpened[4]" Pos="03000055" Type="4" />
 	<Item Name="floorSetAsElevStop[4]" Pos="0300006B" Type="4" />
 	<Item Name="elevatorFloor" Pos="03000056" Type="11" />
-	<Item Name="stopSignActivated" Pos="03000112" Type="0" />
+	<Item Name="stopSignActivated" Pos="03000165" Type="0" />
 	<Item Name="elevatorWeight" Pos="03000060" Type="11" />
-	<Item Name="textElevatorWeight" Pos="03000070" Type="48" />
-	<Item Name="textMaxElevatorWeight" Pos="030000C1" Type="48" />
+	<Item Name="textElevatorWeight" Pos="03000072" Type="48" />
+	<Item Name="textMaxElevatorWeight" Pos="030000C3" Type="48" />
 	<Item Name="elevatorMaximumWeight" Pos="0300005E" Type="11" />
 	<Item Name="obstaclesBlockingDoors[4]" Pos="0300005D" Type="4" />
 	<Item Name="obstaclesBlockingDoors[3]" Pos="0300005D" Type="3" />
@@ -30,6 +30,9 @@
 	<Item Name="timePLC" Pos="02000010" Type="11" />
 	<Item Name="timeDelayed" Pos="03000051" Type="11" />
 	<Item Name="elevatorDirection" Pos="0300005A" Type="11" />
-	<Item Name="anyObstacleWasDetected" Pos="0300005C" Type="1" />
-	<Item Name="elevatorDirectionIndicator" Pos="03000164" Type="11" />
+	<Item Name="elevatorDirectionIndicator" Pos="030001B7" Type="11" />
+	<Item Name="selectedSortOption" Pos="030001B9" Type="11" />
+	<Item Name="textOperatingMode" Pos="03000114" Type="48" />
+	<Item Name="sortUpperFloors" Pos="030001DF" Type="0" />
+	<Item Name="sortLowerFloors" Pos="030001DF" Type="1" />
 </Variables>

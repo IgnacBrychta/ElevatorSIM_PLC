@@ -15,18 +15,18 @@
 <title>
 <xsl:value-of select="/PAGE/@TITLE" />
 Index</title>
-<script src="PAGE1.JS?U=1706004698" language="JavaScript" charset="utf-8" />
+<script src="PAGE1.JS?U=1706185047" language="JavaScript" charset="utf-8" />
 <style type="text/css">.mono {font-family: Verdana, Arial, FreeSans, sans-serif;}</style>
 </head>
 <body onload="GetXML('PAGE1.XML'); FunWatchDog();">
-<xsl:if test="1706004698 != ACCESS/@UCID">
+<xsl:if test="1706185047 != ACCESS/@UCID">
 <xsl:attribute name="onload">
 null;
 </xsl:attribute>
 <div id="cachewarning" style="text-align: left;"></div>
 <script src="REFCLR.JS" language="JavaScript" charset="utf-8"></script>
 </xsl:if>
-<xsl:if test="1706004698 = ACCESS/@UCID">
+<xsl:if test="1706185047 = ACCESS/@UCID">
 <table cellpadding="0" cellspacing="0">
 <tr style="height: 40px;">
 <!--logo-->
@@ -57,20 +57,18 @@ Index</span>
 <div style="background-color:#FFFFFF;position: relative; width: 800px; height: 683px;">
 <form action="javascript:PostGlobal();">
 <input class="mono" tabindex="1" type="text" id="INPUT22" style="position: absolute; top: 15px; left: 60px; width: 22px; z-index: 23; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="11" type="text" id="INPUT23" style="position: absolute; top: 150px; left: 60px; width: 22px; z-index: 24; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="12" type="text" id="INPUT24" style="position: absolute; top: 285px; left: 60px; width: 22px; z-index: 25; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="13" type="text" id="INPUT25" style="position: absolute; top: 420px; left: 60px; width: 22px; z-index: 26; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="14" type="text" id="INPUT26" style="position: absolute; top: 555px; left: 60px; width: 22px; z-index: 27; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="15" type="text" id="INPUT27" style="position: absolute; top: 165px; left: 545px; width: 22px; z-index: 28; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="2" type="text" id="INPUT30" style="position: absolute; top: 70px; left: 225px; width: 229px; z-index: 31; background-color: #FFFFFF;" value="{INPUT[15]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="3" type="text" id="INPUT31" style="position: absolute; top: 130px; left: 225px; width: 229px; z-index: 32; background-color: #FFFFFF;" value="{INPUT[16]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="10" type="text" id="INPUT32" style="position: absolute; top: 160px; left: 225px; width: 31px; z-index: 33; background-color: #FFFFFF;" value="{INPUT[17]/@VALUE}" readonly="readonly" />
-<input title="timeLPC" class="mono" tabindex="9" type="text" id="INPUT39" style="position: absolute; top: 285px; left: 295px; width: 40px; z-index: 41; background-color: #FFFFFF;" value="{INPUT[24]/@VALUE}" readonly="readonly" />
-<input title="timeDelayed" class="mono" tabindex="5" type="text" id="INPUT40" style="position: absolute; top: 310px; left: 295px; width: 40px; z-index: 42; background-color: #FFFFFF;" value="{INPUT[25]/@VALUE}" readonly="readonly" />
-<input title="elevator direction" class="mono" tabindex="4" type="text" id="INPUT41" style="position: absolute; top: 300px; left: 340px; width: 40px; z-index: 43; background-color: #FFFFFF;" value="{INPUT[26]/@VALUE}" readonly="readonly" />
-<input title="forceOpenDoors" class="mono" tabindex="8" type="text" size="4" style="position: absolute; top: 380px; left: 270px; z-index: 44; border: solid red 2px;" value="? ? ?" readonly="readonly" />
-<input title="WAS detected" class="mono" tabindex="7" type="text" id="INPUT42" style="position: absolute; top: 415px; left: 270px; width: 40px; z-index: 45; background-color: #FFFFFF;" value="{INPUT[27]/@VALUE}" readonly="readonly" />
-<input title="waitingForDoors" class="mono" tabindex="6" type="text" size="4" style="position: absolute; top: 445px; left: 270px; z-index: 46; border: solid red 2px;" value="? ? ?" readonly="readonly" />
+<input class="mono" tabindex="8" type="text" id="INPUT23" style="position: absolute; top: 150px; left: 60px; width: 22px; z-index: 24; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="9" type="text" id="INPUT24" style="position: absolute; top: 285px; left: 60px; width: 22px; z-index: 25; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="10" type="text" id="INPUT25" style="position: absolute; top: 420px; left: 60px; width: 22px; z-index: 26; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="11" type="text" id="INPUT26" style="position: absolute; top: 555px; left: 60px; width: 22px; z-index: 27; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="12" type="text" id="INPUT27" style="position: absolute; top: 165px; left: 545px; width: 22px; z-index: 28; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="2" type="text" id="INPUT30" style="position: absolute; top: 20px; left: 195px; width: 229px; z-index: 31; background-color: #FFFFFF;" value="{INPUT[15]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="3" type="text" id="INPUT31" style="position: absolute; top: 80px; left: 195px; width: 229px; z-index: 32; background-color: #FFFFFF;" value="{INPUT[16]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="7" type="text" id="INPUT32" style="position: absolute; top: 110px; left: 195px; width: 31px; z-index: 33; background-color: #FFFFFF;" value="{INPUT[17]/@VALUE}" readonly="readonly" />
+<input title="timeLPC" class="mono" tabindex="6" type="text" id="INPUT39" style="position: absolute; top: 395px; left: 610px; width: 40px; z-index: 41; background-color: #FFFFFF;" value="{INPUT[24]/@VALUE}" readonly="readonly" />
+<input title="timeDelayed" class="mono" tabindex="5" type="text" id="INPUT40" style="position: absolute; top: 420px; left: 610px; width: 40px; z-index: 42; background-color: #FFFFFF;" value="{INPUT[25]/@VALUE}" readonly="readonly" />
+<input title="elevator direction" class="mono" tabindex="4" type="text" id="INPUT41" style="position: absolute; top: 405px; left: 650px; width: 40px; z-index: 43; background-color: #FFFFFF;" value="{INPUT[26]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="15" type="text" id="INPUT54" style="position: absolute; top: 180px; left: 195px; width: 139px; z-index: 56; background-color: #FFFFFF;" value="{INPUT[29]/@VALUE}" readonly="readonly" />
 </form>
 <xsl:if test="INPUT[1]/@VALUE = 0">
 <div id="INPUT1" style="position: absolute; top: 150px; left: 20px; z-index: 1; background-image: url(IMAGES/VYTAHZ_2.PNG); line-height: 128px; height: 128px; width: 128px;"></div>
@@ -187,8 +185,8 @@ Index</span>
 <xsl:if test="INPUT[13]/@VALUE != 0">
 <div id="INPUT28" style="position: absolute; top: 150px; left: 585px; z-index: 29; background-image: url(IMAGES/STOPSI_2.PNG); line-height: 70px; height: 70px; width: 70px;"></div>
 </xsl:if>
-<form action="javascript:PostXML29()" style="position: absolute; top: 100px; left: 225px; z-index: 30; font-size: 13px;">
-<input title="Enter the weight of all people and cargo" id="INPUT29" onfocus="document.getElementById('INPUT29x').style.visibility='visible';SetInputEdited(29, event);" onblur="InputFocused[28]=0" onkeydown="SetInputEdited(29, event);" class="mono" tabindex="16" type="text" style="width: 40px; background-color: #FFFFFF;" name="{INPUT[14]/@NAME}" value="{INPUT[14]/@VALUE}" />
+<form action="javascript:PostXML29()" style="position: absolute; top: 50px; left: 195px; z-index: 30; font-size: 13px;">
+<input title="Enter the weight of all people and cargo" id="INPUT29" onfocus="document.getElementById('INPUT29x').style.visibility='visible';SetInputEdited(29, event);" onblur="InputFocused[28]=0" onkeydown="SetInputEdited(29, event);" class="mono" tabindex="13" type="text" style="width: 40px; background-color: #FFFFFF;" name="{INPUT[14]/@NAME}" value="{INPUT[14]/@VALUE}" />
 <input type="submit" id="INPUT29x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <div style="position: absolute; top: 10px; left: 715px; z-index: 34; background-image: url(IMAGES/STOPSI_2.PNG); line-height: 70px; height: 70px; width: 70px;"></div>
@@ -253,119 +251,143 @@ Index</span>
 </xsl:if>
 </form>
 <xsl:if test="INPUT[11]/@VALUE = 0">
-<div title="Is elevator set to get to this floor?" id="INPUT43" style="position: absolute; top: 65px; left: 110px; z-index: 47; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+<div title="Is elevator set to get to this floor?" id="INPUT42" style="position: absolute; top: 65px; left: 110px; z-index: 44; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[11]/@VALUE != 0">
-<div title="Is elevator set to get to this floor?" id="INPUT43" style="position: absolute; top: 65px; left: 110px; z-index: 47; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+<div title="Is elevator set to get to this floor?" id="INPUT42" style="position: absolute; top: 65px; left: 110px; z-index: 44; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[6]/@VALUE = 0">
-<div title="Is elevator set to get to this floor?" id="INPUT44" style="position: absolute; top: 200px; left: 110px; z-index: 48; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+<div title="Is elevator set to get to this floor?" id="INPUT43" style="position: absolute; top: 200px; left: 110px; z-index: 45; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[6]/@VALUE != 0">
-<div title="Is elevator set to get to this floor?" id="INPUT44" style="position: absolute; top: 200px; left: 110px; z-index: 48; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+<div title="Is elevator set to get to this floor?" id="INPUT43" style="position: absolute; top: 200px; left: 110px; z-index: 45; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[7]/@VALUE = 0">
-<div title="Is elevator set to get to this floor?" id="INPUT45" style="position: absolute; top: 335px; left: 110px; z-index: 49; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+<div title="Is elevator set to get to this floor?" id="INPUT44" style="position: absolute; top: 335px; left: 110px; z-index: 46; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[7]/@VALUE != 0">
-<div title="Is elevator set to get to this floor?" id="INPUT45" style="position: absolute; top: 335px; left: 110px; z-index: 49; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+<div title="Is elevator set to get to this floor?" id="INPUT44" style="position: absolute; top: 335px; left: 110px; z-index: 46; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[8]/@VALUE = 0">
-<div title="Is elevator set to get to this floor?" id="INPUT46" style="position: absolute; top: 470px; left: 110px; z-index: 50; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+<div title="Is elevator set to get to this floor?" id="INPUT45" style="position: absolute; top: 470px; left: 110px; z-index: 47; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[8]/@VALUE != 0">
-<div title="Is elevator set to get to this floor?" id="INPUT46" style="position: absolute; top: 470px; left: 110px; z-index: 50; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+<div title="Is elevator set to get to this floor?" id="INPUT45" style="position: absolute; top: 470px; left: 110px; z-index: 47; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[9]/@VALUE = 0">
-<div title="Is elevator set to get to this floor?" id="INPUT47" style="position: absolute; top: 605px; left: 110px; z-index: 51; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+<div title="Is elevator set to get to this floor?" id="INPUT46" style="position: absolute; top: 605px; left: 110px; z-index: 48; background-image: url(IMAGES/BU73FF_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
 </xsl:if>
 <xsl:if test="INPUT[9]/@VALUE != 0">
-<div title="Is elevator set to get to this floor?" id="INPUT47" style="position: absolute; top: 605px; left: 110px; z-index: 51; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
+<div title="Is elevator set to get to this floor?" id="INPUT46" style="position: absolute; top: 605px; left: 110px; z-index: 48; background-image: url(IMAGES/BU0EEE_1.PNG); line-height: 10px; height: 10px; width: 35px;"></div>
 </xsl:if>
 <xsl:choose>
-<xsl:when test="INPUT[28]/@VALUE = 0">
-<div id="INPUT48" style="position: absolute; top: 175px; left: 120px; z-index: 52; background-image: url(IMAGES/ELAAEA_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 0">
+<div id="INPUT47" style="position: absolute; top: 175px; left: 120px; z-index: 49; background-image: url(IMAGES/ELAAEA_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
-<xsl:when test="INPUT[28]/@VALUE = 1">
-<div id="INPUT48" style="position: absolute; top: 175px; left: 120px; z-index: 52; background-image: url(IMAGES/ELE644_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 1">
+<div id="INPUT47" style="position: absolute; top: 175px; left: 120px; z-index: 49; background-image: url(IMAGES/ELE644_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
-<xsl:when test="INPUT[28]/@VALUE = 2">
-<div id="INPUT48" style="position: absolute; top: 175px; left: 120px; z-index: 52; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 2">
+<div id="INPUT47" style="position: absolute; top: 175px; left: 120px; z-index: 49; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
 <xsl:otherwise>
-<div id="INPUT48" style="position: absolute; top: 175px; left: 120px; z-index: 52; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<div id="INPUT47" style="position: absolute; top: 175px; left: 120px; z-index: 49; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:otherwise>
 </xsl:choose>
 <xsl:choose>
-<xsl:when test="INPUT[28]/@VALUE = 0">
-<div id="INPUT49" style="position: absolute; top: 40px; left: 120px; z-index: 53; background-image: url(IMAGES/ELAAEA_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 0">
+<div id="INPUT48" style="position: absolute; top: 40px; left: 120px; z-index: 50; background-image: url(IMAGES/ELAAEA_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
-<xsl:when test="INPUT[28]/@VALUE = 1">
-<div id="INPUT49" style="position: absolute; top: 40px; left: 120px; z-index: 53; background-image: url(IMAGES/ELE644_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 1">
+<div id="INPUT48" style="position: absolute; top: 40px; left: 120px; z-index: 50; background-image: url(IMAGES/ELE644_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
-<xsl:when test="INPUT[28]/@VALUE = 2">
-<div id="INPUT49" style="position: absolute; top: 40px; left: 120px; z-index: 53; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 2">
+<div id="INPUT48" style="position: absolute; top: 40px; left: 120px; z-index: 50; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
 <xsl:otherwise>
-<div id="INPUT49" style="position: absolute; top: 40px; left: 120px; z-index: 53; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<div id="INPUT48" style="position: absolute; top: 40px; left: 120px; z-index: 50; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:otherwise>
 </xsl:choose>
 <xsl:choose>
-<xsl:when test="INPUT[28]/@VALUE = 0">
-<div id="INPUT50" style="position: absolute; top: 310px; left: 120px; z-index: 54; background-image: url(IMAGES/ELAAEA_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 0">
+<div id="INPUT49" style="position: absolute; top: 310px; left: 120px; z-index: 51; background-image: url(IMAGES/ELAAEA_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
-<xsl:when test="INPUT[28]/@VALUE = 1">
-<div id="INPUT50" style="position: absolute; top: 310px; left: 120px; z-index: 54; background-image: url(IMAGES/ELE644_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 1">
+<div id="INPUT49" style="position: absolute; top: 310px; left: 120px; z-index: 51; background-image: url(IMAGES/ELE644_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
-<xsl:when test="INPUT[28]/@VALUE = 2">
-<div id="INPUT50" style="position: absolute; top: 310px; left: 120px; z-index: 54; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 2">
+<div id="INPUT49" style="position: absolute; top: 310px; left: 120px; z-index: 51; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
 <xsl:otherwise>
-<div id="INPUT50" style="position: absolute; top: 310px; left: 120px; z-index: 54; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<div id="INPUT49" style="position: absolute; top: 310px; left: 120px; z-index: 51; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:otherwise>
 </xsl:choose>
 <xsl:choose>
-<xsl:when test="INPUT[28]/@VALUE = 0">
-<div id="INPUT51" style="position: absolute; top: 445px; left: 120px; z-index: 55; background-image: url(IMAGES/ELAAEA_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 0">
+<div id="INPUT50" style="position: absolute; top: 445px; left: 120px; z-index: 52; background-image: url(IMAGES/ELAAEA_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
-<xsl:when test="INPUT[28]/@VALUE = 1">
-<div id="INPUT51" style="position: absolute; top: 445px; left: 120px; z-index: 55; background-image: url(IMAGES/ELE644_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 1">
+<div id="INPUT50" style="position: absolute; top: 445px; left: 120px; z-index: 52; background-image: url(IMAGES/ELE644_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
-<xsl:when test="INPUT[28]/@VALUE = 2">
-<div id="INPUT51" style="position: absolute; top: 445px; left: 120px; z-index: 55; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 2">
+<div id="INPUT50" style="position: absolute; top: 445px; left: 120px; z-index: 52; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
 <xsl:otherwise>
-<div id="INPUT51" style="position: absolute; top: 445px; left: 120px; z-index: 55; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<div id="INPUT50" style="position: absolute; top: 445px; left: 120px; z-index: 52; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:otherwise>
 </xsl:choose>
 <xsl:choose>
-<xsl:when test="INPUT[28]/@VALUE = 0">
-<div id="INPUT52" style="position: absolute; top: 580px; left: 120px; z-index: 56; background-image: url(IMAGES/ELAAEA_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 0">
+<div id="INPUT51" style="position: absolute; top: 580px; left: 120px; z-index: 53; background-image: url(IMAGES/ELAAEA_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
-<xsl:when test="INPUT[28]/@VALUE = 1">
-<div id="INPUT52" style="position: absolute; top: 580px; left: 120px; z-index: 56; background-image: url(IMAGES/ELE644_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 1">
+<div id="INPUT51" style="position: absolute; top: 580px; left: 120px; z-index: 53; background-image: url(IMAGES/ELE644_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
-<xsl:when test="INPUT[28]/@VALUE = 2">
-<div id="INPUT52" style="position: absolute; top: 580px; left: 120px; z-index: 56; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 2">
+<div id="INPUT51" style="position: absolute; top: 580px; left: 120px; z-index: 53; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
 <xsl:otherwise>
-<div id="INPUT52" style="position: absolute; top: 580px; left: 120px; z-index: 56; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<div id="INPUT51" style="position: absolute; top: 580px; left: 120px; z-index: 53; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:otherwise>
 </xsl:choose>
 <xsl:choose>
-<xsl:when test="INPUT[28]/@VALUE = 0">
-<div id="INPUT53" style="position: absolute; top: 225px; left: 590px; z-index: 57; background-image: url(IMAGES/ELAAEA_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 0">
+<div id="INPUT52" style="position: absolute; top: 225px; left: 590px; z-index: 54; background-image: url(IMAGES/ELAAEA_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
-<xsl:when test="INPUT[28]/@VALUE = 1">
-<div id="INPUT53" style="position: absolute; top: 225px; left: 590px; z-index: 57; background-image: url(IMAGES/ELE644_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 1">
+<div id="INPUT52" style="position: absolute; top: 225px; left: 590px; z-index: 54; background-image: url(IMAGES/ELE644_1.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
-<xsl:when test="INPUT[28]/@VALUE = 2">
-<div id="INPUT53" style="position: absolute; top: 225px; left: 590px; z-index: 57; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<xsl:when test="INPUT[27]/@VALUE = 2">
+<div id="INPUT52" style="position: absolute; top: 225px; left: 590px; z-index: 54; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:when>
 <xsl:otherwise>
-<div id="INPUT53" style="position: absolute; top: 225px; left: 590px; z-index: 57; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
+<div id="INPUT52" style="position: absolute; top: 225px; left: 590px; z-index: 54; background-image: url(IMAGES/ELEVAT_4.PNG); line-height: 20px; height: 20px; width: 20px;"></div>
 </xsl:otherwise>
 </xsl:choose>
+<form action="javascript:PostXML53()" style="position: absolute; top: 180px; left: 355px; z-index: 55; font-size: 13px;">
+<input title="Mód výtahu (0: podle pořadí zmáčknutých tlačítek, 1: od nejvyššího patra, 2:  preferovat cestu dolu)" id="INPUT53" onfocus="document.getElementById('INPUT53x').style.visibility='visible';SetInputEdited(53, event);" onblur="InputFocused[52]=0" onkeydown="SetInputEdited(53, event);" class="mono" tabindex="14" type="text" style="width: 22px; background-color: #FFFFFF;" name="{INPUT[28]/@NAME}" value="{INPUT[28]/@VALUE}" />
+<input type="submit" id="INPUT53x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
+</form>
+<form style="position: absolute; top: 215px; left: 195px; z-index: 57;">
+<xsl:if test="INPUT[30]/@VALUE = 0">
+<input id="INPUT55h" type="hidden" name="{INPUT[30]/@NAME}" value="1" />
+<div title="Třídit pořadí vyšších pater (pouze pro možnost 2)" id="INPUT55" class="imgsub" onclick="PostXML55()" style="background-image: url(IMAGES/SPINAC0.PNG); line-height: 64px; height: 64px; width: 64px;"></div>
+</xsl:if>
+<xsl:if test="INPUT[30]/@VALUE != 0">
+<input id="INPUT55h" type="hidden" name="{INPUT[30]/@NAME}" value="0" />
+<div title="Třídit pořadí vyšších pater (pouze pro možnost 2)" id="INPUT55" class="imgsub" onclick="PostXML55()" style="background-image: url(IMAGES/SPINAC1.PNG); line-height: 64px; height: 64px; width: 64px;"></div>
+</xsl:if>
+</form>
+<form style="position: absolute; top: 215px; left: 340px; z-index: 58;">
+<xsl:if test="INPUT[31]/@VALUE = 0">
+<input id="INPUT56h" type="hidden" name="{INPUT[31]/@NAME}" value="1" />
+<div title="Třídit pořadí nizších pater (pouze pro možnost 2)" id="INPUT56" class="imgsub" onclick="PostXML56()" style="background-image: url(IMAGES/SPINAC0.PNG); line-height: 64px; height: 64px; width: 64px;"></div>
+</xsl:if>
+<xsl:if test="INPUT[31]/@VALUE != 0">
+<input id="INPUT56h" type="hidden" name="{INPUT[31]/@NAME}" value="0" />
+<div title="Třídit pořadí nizších pater (pouze pro možnost 2)" id="INPUT56" class="imgsub" onclick="PostXML56()" style="background-image: url(IMAGES/SPINAC1.PNG); line-height: 64px; height: 64px; width: 64px;"></div>
+</xsl:if>
+</form>
 </div>
 </td>
 </tr>

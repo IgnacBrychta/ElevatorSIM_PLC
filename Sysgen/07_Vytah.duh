@@ -1,9 +1,52 @@
 
 
+FUNCTION BubbleSortQueue : BOOL
+(**)
+  VAR
+    i : INT;
+    j : INT;
+    itemLeft : INT;
+    itemRight : INT;
+    temp : INT;
+  END_VAR
+END_FUNCTION 
+
+FUNCTION BubbleSortQueueLower : BOOL
+(**)
+  VAR
+    i : INT;
+    j : INT;
+    itemLeft : INT;
+    itemRight : INT;
+    temp : INT;
+  END_VAR
+END_FUNCTION 
+
+FUNCTION BubbleSortQueueUpper : BOOL
+(**)
+  VAR
+    i : INT;
+    j : INT;
+    itemLeft : INT;
+    itemRight : INT;
+    temp : INT;
+  END_VAR
+END_FUNCTION 
+
 FUNCTION CloseAllDoors : BOOL
 (**)
   VAR
     index : INT;
+  END_VAR
+END_FUNCTION 
+
+FUNCTION CloseAllDoorsExceptForArg : BOOL
+(**)
+  VAR
+    index : INT;
+  END_VAR
+  VAR_INPUT
+    floorDoorToOpen : INT;
   END_VAR
 END_FUNCTION 
 
@@ -14,7 +57,43 @@ FUNCTION DequeueFloor : INT
   END_VAR
 END_FUNCTION 
 
+FUNCTION ElevatorSortQueue : BOOL
+(**)
+  VAR
+    index : INT;
+    item : INT;
+    index2 : INT;
+  END_VAR
+END_FUNCTION 
+
+FUNCTION EmptyUpperAndLowerQueue : BOOL
+(**)
+  VAR
+    index : INT;
+  END_VAR
+END_FUNCTION 
+
 FUNCTION EnqueueFloor : BOOL
+(**)
+  VAR_INPUT
+    floorToEnqueue : INT;
+  END_VAR
+  VAR
+    index : INT;
+  END_VAR
+END_FUNCTION 
+
+FUNCTION EnqueueLowerFloor : BOOL
+(**)
+  VAR_INPUT
+    floorToEnqueue : INT;
+  END_VAR
+  VAR
+    index : INT;
+  END_VAR
+END_FUNCTION 
+
+FUNCTION EnqueueUpperFloor : BOOL
 (**)
   VAR_INPUT
     floorToEnqueue : INT;
@@ -68,6 +147,14 @@ FUNCTION IsFloorAlreadyEnqueued : BOOL
   END_VAR
   VAR_INPUT
     floor : INT;
+  END_VAR
+END_FUNCTION 
+
+FUNCTION IsQueueEmpty : BOOL
+(**)
+  VAR
+    index : INT;
+    empty : BOOL := TRUE;
   END_VAR
 END_FUNCTION 
 

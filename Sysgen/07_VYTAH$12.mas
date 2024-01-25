@@ -24,21 +24,31 @@
 #reg  aligned bool floorSetAsElevStop[8]
 #reg  int targetFloor
 #reg  int floorDifference
+#reg  int waitTime
 #reg  string textElevatorWeight[81]
 #reg  string textMaxElevatorWeight[81]
+#reg  string textOperatingMode[81]
 #reg  bool stopSignActivated
 #reg  bool configured
 #reg  string stringQueueRepresentation[81]
 #reg  int elevatorDirectionIndicator
+#reg  int selectedSortOption
 #reg  int queue[5]  ; number of floors - 1
 #reg  int queueDefaultValue
 #reg  int queueSize
+#reg  int queueUpperFloors[5]
+#reg  int queueLowerFloors[5]
+#reg  int elevatorFloorStart
+#reg  bool sortUpperFloors
+#reg  bool sortLowerFloors
 #table byte __Init____textElevatorWeight = 
     'S','i','m','u','l','o','v','a','n','a',' ','v','a','h','a',' ','v','y','t','a','h',
     'u',' ','[','k','g',']',':';
 #table byte __Init____textMaxElevatorWeight = 
     'M','a','x','i','m','a','l','n','i',' ','v','a','h','a',' ','v','y','t','a','h','u',
     ' ','[','k','g',']',':';
+#table byte __Init____textOperatingMode = 
+    'M','o','d',' ','p','r','o','v','o','z','u';
 #table byte __Init____stringQueueRepresentation = 
     $00;
  
@@ -72,7 +82,7 @@ P     58
  WR   elevatorWeight
  LD   int 1
  WR   elevatorFloorTravelTime
- LD   int 2
+ LD   int 5
  WR   elevatorFloorDoorsOpenTime
  LD   int 5
  WR   highestFloor
@@ -84,6 +94,8 @@ P     58
  WR   targetFloor
  LD   int -10
  WR   floorDifference
+ LD   int 1
+ WR   waitTime
  LD   0
  SRC  byte __Init____textElevatorWeight
  LD   0
@@ -94,6 +106,11 @@ P     58
  LD   0
  LD   81
  MOV  byte textMaxElevatorWeight
+ LD   0
+ SRC  byte __Init____textOperatingMode
+ LD   0
+ LD   81
+ MOV  byte textOperatingMode
  LD   bool -1   ; true
  WR   stopSignActivated
  LD   bool 0   ; false
@@ -105,10 +122,18 @@ P     58
  MOV  byte stringQueueRepresentation
  LD   int 1
  WR   elevatorDirectionIndicator
+ LD   int 2
+ WR   selectedSortOption
  LD   int -1
  WR   queueDefaultValue
  LD   int 5
  WR   queueSize
+ LD   int -1
+ WR   elevatorFloorStart
+ LD   bool -1   ; true
+ WR   sortUpperFloors
+ LD   bool -1   ; true
+ WR   sortLowerFloors
 E     58
 
 
