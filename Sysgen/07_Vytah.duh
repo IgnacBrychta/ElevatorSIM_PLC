@@ -63,6 +63,7 @@ FUNCTION ElevatorSortQueue : BOOL
     index : INT;
     item : INT;
     index2 : INT;
+    changes : INT := 0;
   END_VAR
 END_FUNCTION 
 
@@ -130,6 +131,13 @@ FUNCTION IsAnyButtonPressed : BOOL
 (**)
   VAR
     index : INT;
+  END_VAR
+END_FUNCTION 
+
+FUNCTION IsAnyDoorOpened : BOOL
+(**)
+  VAR
+    index : INT; (* Comment *)
   END_VAR
 END_FUNCTION 
 

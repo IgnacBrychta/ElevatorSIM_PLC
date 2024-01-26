@@ -3,10 +3,10 @@ Version="xPRO","4.3.00"
 [/desktop]
 
 [dockinfo]
-centralpc=53572396,1,0,0
-leftpane=53598796,0,1,1,167,1
-bottompane=53606032,1,157
-rightpane=53607316,0,167,1
+centralpc=54817396,1,0,0
+leftpane=54844816,0,1,1,167,1
+bottompane=54852052,1,161
+rightpane=54811408,0,167,1
 [/dockinfo]
 
 [closedtextpaneleditors]
@@ -127,15 +127,15 @@ nodeplus="PlcDoc"
 [/prjmngr]
 
 [msgwin2]
-window=53606032,1,0,0,127,1101,39,651,127,850,0,0,1
+window=54852052,1,0,0,131,1101,39,571,131,850,0,0,1
 [/msgwin2]
 
 [msgwin1]
-window=53606032,1,0,0,127,1101,39,651,127,850,0,0,0
+window=54852052,1,0,0,131,1101,39,571,131,850,0,0,0
 [/msgwin1]
 
 [breakswin]
-window=53606032,1,0,0,127,1101,39,651,127,850,0,0,2
+window=54852052,1,0,0,131,1101,39,571,131,850,0,0,2
 hdrwidth0=200
 hdrwidth1=30
 hdrwidth2=80
@@ -173,7 +173,7 @@ font="Courier New",1,0,10,-13,-2147483640,0,0
 [/memwin2]
 
 [watch2win]
-window=53606032,1,0,0,127,1101,39,651,127,850,0,0,3
+window=54852052,1,0,0,131,1101,39,571,131,850,0,0,3
 hdrnamew=240,60,0
 font="Courier New",10
 hiresreadability=0
@@ -187,34 +187,34 @@ mem1w=192
 mem1visible=0
 mem2w=190
 mem2visible=0
-storednames="queueLowerFloors","queueUpperFloors","forceOpenCurrentElevatorFloorDoor","targetFloor","switchCase","floorDifference","elevatorDirection","elevatorFloor","stringQueueRepresentation","queue"
+storednames="queueLowerFloors","queueUpperFloors","sortLowerFloors","elevatorFloorStart","forceOpenCurrentElevatorFloorDoor","targetFloor","switchCase","floorDifference","elevatorDirection","elevatorFloor","stringQueueRepresentation","queue"
 [/watch2win]
 
 [weblc]
-lastfile="NONAME1.txt"
+lastfile=""
 listwidth=121
 findhistory=""
 replacehistory=""
-window=0,0,59,58,516,960,336,260,516,960,0,0,-1
+window=0,0,60,53,516,960,336,180,516,960,0,0,-1
 [/weblc]
 
 [evalmodifdlg]
 [/evalmodifdlg]
 
 [paneltexted]
-editor="XClip-Panel",1,0,1,1,1,1,5095806,1701416,199603932,1701808,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-window=0,0,0,94,313,483,313,463,313,483,0,0,-1
+editor="XClip-Panel",1,0,1,1,1,1,5095806,1700704,205369412,1701096,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+window=0,0,0,94,313,483,313,383,313,483,0,0,-1
 font="Lucida Console",11
 [/paneltexted]
 
 [ctrlswin]
-window=53598796,1,0,0,646,159,676,42,676,159,0,0,0
+window=54844816,1,0,0,566,159,676,20,676,159,0,0,0
 [/ctrlswin]
 
 [prjfileswin]
-window=53598796,1,0,0,646,159,676,100,676,159,0,0,1
+window=54844816,1,0,0,566,159,676,20,676,159,0,0,1
 filesheight=409
-relatedheight=160
+relatedheight=80
 relatedcnt=3
 relfile0="Sysgen\07_Vytah.map"
 relfile1="SendRoot\iFoxtrot.pub"
@@ -222,24 +222,24 @@ relfile2="SendRoot\TecoApi.pub"
 [/prjfileswin]
 
 [Datalogger]
-window=53572396,0,0,0,646,1101,187,259,517,1109,0,0,0
+window=54817396,0,0,0,423,1101,187,179,517,1109,0,0,0
 [/Datalogger]
 
 [CFC_Editors]
 [/CFC_Editors]
 
 [PanelSIM_1]
-window=0,0,822,386,196,352,519,257,519,392,0,0,-1
+window=0,0,823,348,196,352,519,177,519,392,0,0,-1
 [/PanelSIM_1]
 
 [FormRegMngr1]
-window=0,0,695,273,317,233,317,233,317,233,0,0,-1
+window=54844816,1,0,0,566,159,596,167,317,159,0,0,5
 [/FormRegMngr1]
 
 [PlcNetManager]
 SortItems=1
 SortPlcs=1
-window=53598796,0,0,0,646,159,676,100,676,159,0,0,4
+window=54844816,0,0,0,566,159,596,167,676,159,0,0,4
 [/PlcNetManager]
 
 [SelectPLC]
@@ -247,12 +247,12 @@ IOSetupColW="188,190,72,72,72,72,64,140,"
 [/SelectPLC]
 
 [FormDesign1]
-window=53572396,1,0,0,485,1101,676,1280,676,1109,0,0,1
+window=54817396,1,0,0,401,1101,596,1280,676,1109,0,0,1
 [/FormDesign1]
 
 [textsyneditor]
-editor="prgMain.ST",1,0,0,286,14,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53572396,1,0,0,485,1101,676,1280,676,1109,0,0,2
+editor="prgMain.ST",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=54817396,1,0,0,401,1101,596,1280,676,1109,0,0,2
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
@@ -261,8 +261,8 @@ debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
-editor="07_VYTAH.ST",1,0,0,36,108,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=53572396,1,0,0,485,1101,676,1280,676,1109,0,0,3
+editor="07_VYTAH.ST",1,0,0,10,32,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=54817396,1,0,0,401,1101,596,1280,676,1109,0,0,3
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0

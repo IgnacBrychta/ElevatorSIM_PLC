@@ -26,7 +26,6 @@ VAR_GLOBAL
   floorSetAsElevStop : array[0..4] OF BOOL;
   // movement handlers
   targetFloor : INT := -1;
-  floorDifference : INT := -10;
   waitTime : INT := 1;
   // text info
   textElevatorWeight : STRING := 'Simulovana vaha vytahu [kg]:';
@@ -47,6 +46,8 @@ VAR_GLOBAL
   elevatorFloorStart : INT := -1;
   sortUpperFloors : BOOL := TRUE;
   sortLowerFloors : BOOL := TRUE;
+  // debug
+  pressedButtonsQueueDebug : STRING := '';
 END_VAR
 
 

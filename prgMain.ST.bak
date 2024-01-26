@@ -81,6 +81,7 @@ FUNCTION ShiftQueueLeft : BOOL
   END_FOR;
 END_FUNCTION
 
+(* not used *)
 FUNCTION DequeueFloor : INT
   VAR
     dequeuedFloor : INT;
@@ -108,59 +109,6 @@ FUNCTION IsFloorAlreadyEnqueued : BOOL
   END_FOR; 
 END_FUNCTION
 
-FUNCTION IsFloorAlreadyEnqueuedLower : BOOL
-  VAR
-    index : INT;
-  END_VAR
-  VAR_INPUT
-    floor : INT;
-  END_VAR
-
-  FOR index := 0 TO queueSize - 1 DO
-    IF queueLowerFloors[index] = floor THEN
-      IsFloorAlreadyEnqueuedLower := TRUE;
-      EXIT;
-    END_IF;
-  END_FOR; 
-END_FUNCTION
-
-FUNCTION IsFloorAlreadyEnqueuedUpper : BOOL
-  VAR
-    index : INT;
-  END_VAR
-  VAR_INPUT
-    floor : INT;
-  END_VAR
-
-  FOR index := 0 TO queueSize - 1 DO
-    IF queueUpperFloors[index] = floor THEN
-      IsFloorAlreadyEnqueuedUpper := TRUE;
-      EXIT;
-    END_IF;
-  END_FOR; 
-END_FUNCTION
-
-(*FUNCTION FindIndexOfBiggestNumberSmallerThanArg : INT
-  VAR_INPUT
-    floorArg : INT;
-  END_VAR
-  VAR
-    biggestSmallerNumber : INT := queueDefaultValue;  "biggest smaller" 
-    index : INT;
-    indexedNumber : INT;
-    biggestSmallerNumberIndex : INT := queueDefaultValue;
-  END_VAR
-
-  FOR index := 0 TO queueSize - 1 DO
-    indexedNumber := queue[index];
-    IF indexedNumber > biggestSmallerNumber AND indexedNumber < floorArg THEN
-      biggestSmallerNumber := indexedNumber;
-      biggestSmallerNumberIndex := index;
-    END_IF;
-  END_FOR;
-  FindIndexOfBiggestNumberSmallerThanArg := biggestSmallerNumberIndex;
-END_FUNCTION*)
-
 FUNCTION IsQueueEmpty : BOOL
   VAR
     index : INT;
@@ -175,10 +123,7 @@ FUNCTION IsQueueEmpty : BOOL
   IsQueueEmpty := empty;
 END_FUNCTION
 
-FUNCTION BubbleSortArray : BOOL
-  VAR_INPUT 
-    arrayToSort : array[1..5] OF INT;
-  END_VAR
+FUNCTION BubbleSortQueueLower : BOOL
   VAR
     i : INT;
     j : INT;
@@ -188,31 +133,59 @@ FUNCTION BubbleSortArray : BOOL
   END_VAR
   FOR i := 0 TO queueSize - 2 DO
     FOR j := 0 TO queueSize - 2 DO
-      itemLeft := arrayToSort[j];
-      itemRight := arrayToSort[j + 1];
+      itemLeft := queueLowerFloors[j];
+      itemRight := queueLowerFloors[j + 1];
       IF itemLeft < itemRight THEN
-        temp := arrayToSort[j];
-        arrayToSort[j] := arrayToSort[j + 1];
-        arrayToSort[j + 1] := temp;
+        temp := queueLowerFloors[j];
+        queueLowerFloors[j] := queueLowerFloors[j + 1];
+        queueLowerFloors[j + 1] := temp;
       END_IF;
     END_FOR;
   END_FOR;
-  
 END_FUNCTION
-// (2) 0 1 3 4
-// 1 0 4 3
-//--------------------------
-// (3) 0 2 4
-// 2 0 4
 
-// (3) 0 4 2
-// 2 0 4
+FUNCTION BubbleSortQueueUpper : BOOL
+  VAR
+    i : INT;
+    j : INT;
+    itemLeft : INT;
+    itemRight : INT;
+    temp : INT;
+  END_VAR
+  FOR i := 0 TO queueSize - 2 DO
+    FOR j := 0 TO queueSize - 2 DO
+      itemLeft := queueUpperFloors[j];
+      itemRight := queueUpperFloors[j + 1];
+      IF itemLeft < itemRight THEN
+        temp := queueUpperFloors[j];
+        queueUpperFloors[j] := queueUpperFloors[j + 1];
+        queueUpperFloors[j + 1] := temp;
+      END_IF;
+    END_FOR;
+  END_FOR;
+END_FUNCTION
 
-// (3) 4 2 0
-// 2 0 4
+FUNCTION BubbleSortQueue : BOOL
+  VAR
+    i : INT;
+    j : INT;
+    itemLeft : INT;
+    itemRight : INT;
+    temp : INT;
+  END_VAR
+  FOR i := 0 TO queueSize - 2 DO
+    FOR j := 0 TO queueSize - 2 DO
+      itemLeft := queue[j];
+      itemRight := queue[j + 1];
+      IF itemLeft < itemRight THEN
+        temp := queue[j];
+        queue[j] := queue[j + 1];
+        queue[j + 1] := temp;
+      END_IF;
+    END_FOR;
+  END_FOR;
+END_FUNCTION
 
-// (3) 2 4 0
-// 2 0 4
 FUNCTION ElevatorSortQueue : BOOL
   VAR
     index : INT;
@@ -222,42 +195,38 @@ FUNCTION ElevatorSortQueue : BOOL
   FOR index := 0 TO queueSize - 1 DO
     item := queue[index];
     IF item > elevatorFloorStart THEN
-      //IF NOT IsFloorAlreadyEnqueuedUpper(item) THEN
-        EnqueueUpperFloor(item);
-      //END_IF;
+      EnqueueUpperFloor(item);
     ELSIF item < elevatorFloorStart THEN
-      //IF NOT IsFloorAlreadyEnqueuedLower(item) THEN
-        EnqueueLowerFloor(item);
-      //END_IF;
+      EnqueueLowerFloor(item);
     END_IF;
   END_FOR;
 
-  BubbleSortArray(queueLowerFloors);
-  BubbleSortArray(queueUpperFloors);
+  IF sortLowerFloors THEN BubbleSortQueueLower(); END_IF;
+  IF sortUpperFloors THEN BubbleSortQueueUpper(); END_IF;
 
   FOR index := 0 TO queueSize - 1 DO
-    item := queueLowerFloors[index]; // not sorted
+    item := queueLowerFloors[index];
     IF NOT item = queueDefaultValue THEN
       queue[index] := item;
-    ELSE
+    ELSE      
+      //index := 1000;
       EXIT;
     END_IF;
   END_FOR;
 
-  FOR index2 := index TO queueSize - 1 DO
-    item := queueUpperFloors[index]; // not sorted
+  //IF NOT index = 0 THEN index := index + 1; END_IF;
+// 3 2 4 1 0
+  FOR index2 := index + 1 TO queueSize - 1 DO
+    item := queueUpperFloors[index];
     IF NOT item = queueDefaultValue THEN
       queue[index] := item;
     ELSE
+      //index := 1000;
       EXIT;
     END_IF;
   END_FOR;
   EmptyUpperAndLowerQueue();
 END_FUNCTION
-
-FUNCTION Test : BOOL
-END_FUNCTION
-
 
 (* End of queue code *)
 
@@ -296,7 +265,6 @@ FUNCTION HandleDoors : BOOL
     CloseAllDoors();
   END_IF;
 END_FUNCTION
-
 
 FUNCTION ResetAllButtons : BOOL
   VAR
@@ -353,9 +321,8 @@ FUNCTION HandleButtons : BOOL
   END_FOR;
 END_FUNCTION
 
-
 FUNCTION HandleMovement : BOOL  
-  IF NOT stopSignActivated THEN //AND NOT elevatorDirection = 0 THEN
+  IF NOT stopSignActivated THEN
     IF NOT queue[0] = elevatorFloor THEN
       IF elevatorDirection = -1 THEN
         elevatorFloor := elevatorFloor - 1;
@@ -370,8 +337,10 @@ FUNCTION HandleMovement : BOOL
       elevatorDirection := 0;
       HandleMovement := TRUE; // floor stop
     END_IF;
-  END_IF;
-  
+  ELSE
+    // obstacle detected, wait for doors
+    HandleMovement := TRUE;
+  END_IF; 
 END_FUNCTION
 
 FUNCTION IsAnyObstaclePresent : BOOL
@@ -413,8 +382,7 @@ PROGRAM prgMain
       queueLowerFloors[index] := queueDefaultValue;
       queueUpperFloors[index] := queueDefaultValue;
     END_FOR;
-    elevatorDoorsOpened[0] := TRUE;
-    
+    elevatorDoorsOpened[elevatorFloor] := TRUE;
     configured := TRUE;
   END_IF;
 
@@ -422,12 +390,12 @@ PROGRAM prgMain
   HandleStopConditions();
   HandleButtons();
   IF NOT IsQueueEmpty() THEN
-    // store movement start floor
+    // store movement start floor - for queue sorting (option 2)
     IF elevatorDirection = 0 THEN
       elevatorFloorStart := elevatorFloor;
     END_IF;
 
-    IF selectedSortOption = 1 THEN BubbleSortArray(arrayToSort);
+    IF selectedSortOption = 1 THEN BubbleSortQueue();
     ELSIF selectedSortOption = 2 THEN ElevatorSortQueue();
     END_IF;
     queuedFloor := queue[0];
@@ -437,8 +405,8 @@ PROGRAM prgMain
     ELSE
       elevatorDirection := 1;
     END_IF;
-    
   END_IF;
+  VisualizeQueue();
   HandleDoors();
   elevatorDirectionIndicator := elevatorDirection + 1;
 
@@ -453,25 +421,11 @@ PROGRAM prgMain
         IF HandleMovement() THEN
           waitTime := elevatorFloorDoorsOpenTime;
           forceOpenCurrentElevatorFloorDoor := TRUE;
-          
-          //CloseAllDoorsExceptForArg(elevatorFloor);
         ELSE
           forceOpenCurrentElevatorFloorDoor := FALSE;
         END_IF;
         switchCase := 0;
       END_IF;
   END_CASE;
-
-  //VisualizeQueue();
-(* 
-1. nosort
-2. bubble sort (výtah se otočí i uprostřed cesty)
-3. lepší sort (výtah pokračuje určitým směrem) <--
-
-opravit čas na zavírání dveří při STOP
-
- *)  
-  
-
 END_PROGRAM
 

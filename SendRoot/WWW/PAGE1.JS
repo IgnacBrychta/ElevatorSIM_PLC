@@ -45,7 +45,7 @@ if(xmlhttpGET.status != 200){
 alert('Problem retrieving XML data ' + xmlhttpGET.statusText + '(' + xmlhttpGET.status + ')');
 document.location.reload(true)
 return;}
-var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1706185047) {document.location.reload(true); return;}
+var access = xmlhttpGET.responseXML.documentElement.getElementsByTagName('ACCESS')[0]; if(!access || access.getAttribute('UCID') != 1706295561) {document.location.reload(true); return;}
 var pd = '';
 var x=xmlhttpGET.responseXML.documentElement.getElementsByTagName('INPUT');
 if(x[0]) {
@@ -416,6 +416,12 @@ SetBg('INPUT56', 'SPINAC0.PNG');
 } else {
 SetBg('INPUT56', 'SPINAC1.PNG');
 }}
+var Input57 = document.getElementById('INPUT57');
+Input57.value = x[31].getAttribute('VALUE');
+var Input58 = document.getElementById('INPUT58');
+Input58.value = x[32].getAttribute('VALUE');
+var Input64 = document.getElementById('INPUT64');
+Input64.value = x[33].getAttribute('VALUE');
 } else {document.location.reload(true); return;}
 } catch(err) {console.log(err.message)}
 if(pd!=''){setTimeout("GetXML('PAGE1.XML','"+pd+"')",1);}else{setTimeout("GetXML('PAGE1.XML')",1000);}}
@@ -533,6 +539,31 @@ PostXML('PAGE1.XML', encodeURIComponent(Input55h.name+'='+Input55h.value));
 function PostXML56() {
 var Input56h = document.getElementById('INPUT56h');
 PostXML('PAGE1.XML', encodeURIComponent(Input56h.name+'='+Input56h.value));
+}
+function PostXML59() {
+PostXML('PAGE1.XML', encodeURIComponent('__R88.3_BOOL_i=1')); 
+SetBg('INPUT59', 'BU98A7_1.PNG');
+setTimeout("SetBg('INPUT59', 'BUF2B2_1.PNG');",500);
+}
+function PostXML60() {
+PostXML('PAGE1.XML', encodeURIComponent('__R88.2_BOOL_i=1')); 
+SetBg('INPUT60', 'BU98A7_1.PNG');
+setTimeout("SetBg('INPUT60', 'BUF2B2_1.PNG');",500);
+}
+function PostXML61() {
+PostXML('PAGE1.XML', encodeURIComponent('__R88.1_BOOL_i=1')); 
+SetBg('INPUT61', 'BU98A7_1.PNG');
+setTimeout("SetBg('INPUT61', 'BUF2B2_1.PNG');",500);
+}
+function PostXML62() {
+PostXML('PAGE1.XML', encodeURIComponent('__R88.0_BOOL_i=1')); 
+SetBg('INPUT62', 'BU98A7_1.PNG');
+setTimeout("SetBg('INPUT62', 'BUF2B2_1.PNG');",500);
+}
+function PostXML63() {
+PostXML('PAGE1.XML', encodeURIComponent('__R88.4_BOOL_i=1')); 
+SetBg('INPUT63', 'BU98A7_1.PNG');
+setTimeout("SetBg('INPUT63', 'BUF2B2_1.PNG');",500);
 }
 
 function PostGlobal() {

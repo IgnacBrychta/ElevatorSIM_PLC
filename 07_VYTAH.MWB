@@ -6,13 +6,15 @@ contentversion=1
 [Watch2Bank0]
 bankname="Bank1"
 shortcut=1
-watchcnt=3
+watchcnt=4
 bindfile=""
 watchobjEx0=0,"queue|"
 watchobj0="queue",1,0,0,""
-watchobjEx1=0,"queueUpperFloors|"
-watchobj1="queueUpperFloors",1,0,0,""
-watchobjEx2=0,"queueLowerFloors|"
-watchobj2="queueLowerFloors",1,0,0,""
+watchobjEx1=0,"elevatorFloorStart|"
+watchobj1="elevatorFloorStart",1,0,0,""
+watchobjEx2=0,"queueUpperFloors|"
+watchobj2="queueUpperFloors",1,0,0,""
+watchobjEx3=0,"queueLowerFloors|"
+watchobj3="queueLowerFloors",1,0,0,""
 [/Watch2Bank0]
 

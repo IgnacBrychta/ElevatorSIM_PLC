@@ -4,7 +4,7 @@
 <xsl:template match="/PAGE">
 <html>
 <head>
-<meta name="viewport" content="width=976" />
+<meta name="viewport" content="width=1026" />
 <meta name="generator" content="WebMaker" />
 <meta name="author" content="Teco a.s." />
 <meta http-equiv="pragma" content="no-cache" />
@@ -15,18 +15,18 @@
 <title>
 <xsl:value-of select="/PAGE/@TITLE" />
 Index</title>
-<script src="PAGE1.JS?U=1706185047" language="JavaScript" charset="utf-8" />
+<script src="PAGE1.JS?U=1706295561" language="JavaScript" charset="utf-8" />
 <style type="text/css">.mono {font-family: Verdana, Arial, FreeSans, sans-serif;}</style>
 </head>
 <body onload="GetXML('PAGE1.XML'); FunWatchDog();">
-<xsl:if test="1706185047 != ACCESS/@UCID">
+<xsl:if test="1706295561 != ACCESS/@UCID">
 <xsl:attribute name="onload">
 null;
 </xsl:attribute>
 <div id="cachewarning" style="text-align: left;"></div>
 <script src="REFCLR.JS" language="JavaScript" charset="utf-8"></script>
 </xsl:if>
-<xsl:if test="1706185047 = ACCESS/@UCID">
+<xsl:if test="1706295561 = ACCESS/@UCID">
 <table cellpadding="0" cellspacing="0">
 <tr style="height: 40px;">
 <!--logo-->
@@ -54,21 +54,24 @@ Index</span>
 </td>
 <!--plan-->
 <td id="page">
-<div style="background-color:#FFFFFF;position: relative; width: 800px; height: 683px;">
+<div style="background-color:#FFFFFF;position: relative; width: 850px; height: 683px;">
 <form action="javascript:PostGlobal();">
-<input class="mono" tabindex="1" type="text" id="INPUT22" style="position: absolute; top: 15px; left: 60px; width: 22px; z-index: 23; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="8" type="text" id="INPUT23" style="position: absolute; top: 150px; left: 60px; width: 22px; z-index: 24; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="9" type="text" id="INPUT24" style="position: absolute; top: 285px; left: 60px; width: 22px; z-index: 25; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="10" type="text" id="INPUT25" style="position: absolute; top: 420px; left: 60px; width: 22px; z-index: 26; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="11" type="text" id="INPUT26" style="position: absolute; top: 555px; left: 60px; width: 22px; z-index: 27; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="12" type="text" id="INPUT27" style="position: absolute; top: 165px; left: 545px; width: 22px; z-index: 28; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="2" type="text" id="INPUT30" style="position: absolute; top: 20px; left: 195px; width: 229px; z-index: 31; background-color: #FFFFFF;" value="{INPUT[15]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="3" type="text" id="INPUT31" style="position: absolute; top: 80px; left: 195px; width: 229px; z-index: 32; background-color: #FFFFFF;" value="{INPUT[16]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="7" type="text" id="INPUT32" style="position: absolute; top: 110px; left: 195px; width: 31px; z-index: 33; background-color: #FFFFFF;" value="{INPUT[17]/@VALUE}" readonly="readonly" />
-<input title="timeLPC" class="mono" tabindex="6" type="text" id="INPUT39" style="position: absolute; top: 395px; left: 610px; width: 40px; z-index: 41; background-color: #FFFFFF;" value="{INPUT[24]/@VALUE}" readonly="readonly" />
-<input title="timeDelayed" class="mono" tabindex="5" type="text" id="INPUT40" style="position: absolute; top: 420px; left: 610px; width: 40px; z-index: 42; background-color: #FFFFFF;" value="{INPUT[25]/@VALUE}" readonly="readonly" />
-<input title="elevator direction" class="mono" tabindex="4" type="text" id="INPUT41" style="position: absolute; top: 405px; left: 650px; width: 40px; z-index: 43; background-color: #FFFFFF;" value="{INPUT[26]/@VALUE}" readonly="readonly" />
-<input class="mono" tabindex="15" type="text" id="INPUT54" style="position: absolute; top: 180px; left: 195px; width: 139px; z-index: 56; background-color: #FFFFFF;" value="{INPUT[29]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="1" type="text" id="INPUT22" style="position: absolute; top: 15px; left: 60px; width: 20px; z-index: 23; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="8" type="text" id="INPUT23" style="position: absolute; top: 150px; left: 60px; width: 20px; z-index: 24; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="9" type="text" id="INPUT24" style="position: absolute; top: 285px; left: 60px; width: 20px; z-index: 25; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="10" type="text" id="INPUT25" style="position: absolute; top: 420px; left: 60px; width: 20px; z-index: 26; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="11" type="text" id="INPUT26" style="position: absolute; top: 555px; left: 60px; width: 20px; z-index: 27; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="12" type="text" id="INPUT27" style="position: absolute; top: 165px; left: 545px; width: 20px; z-index: 28; background-color: #FFFFFF;" value="{INPUT[12]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="2" type="text" id="INPUT30" style="position: absolute; top: 20px; left: 195px; width: 204px; z-index: 31; background-color: #FFFFFF;" value="{INPUT[15]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="3" type="text" id="INPUT31" style="position: absolute; top: 80px; left: 195px; width: 204px; z-index: 32; background-color: #FFFFFF;" value="{INPUT[16]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="7" type="text" id="INPUT32" style="position: absolute; top: 110px; left: 195px; width: 28px; z-index: 33; background-color: #FFFFFF;" value="{INPUT[17]/@VALUE}" readonly="readonly" />
+<input title="timeLPC" class="mono" tabindex="6" type="text" id="INPUT39" style="position: absolute; top: 395px; left: 610px; width: 36px; z-index: 41; background-color: #FFFFFF;" value="{INPUT[24]/@VALUE}" readonly="readonly" />
+<input title="timeDelayed" class="mono" tabindex="5" type="text" id="INPUT40" style="position: absolute; top: 420px; left: 610px; width: 36px; z-index: 42; background-color: #FFFFFF;" value="{INPUT[25]/@VALUE}" readonly="readonly" />
+<input title="elevator direction" class="mono" tabindex="4" type="text" id="INPUT41" style="position: absolute; top: 405px; left: 650px; width: 36px; z-index: 43; background-color: #FFFFFF;" value="{INPUT[26]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="15" type="text" id="INPUT54" style="position: absolute; top: 180px; left: 195px; width: 124px; z-index: 56; background-color: #FFFFFF;" value="{INPUT[29]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="16" type="text" id="INPUT57" style="position: absolute; top: 295px; left: 180px; width: 244px; z-index: 59; background-color: #FFFFFF;" value="{INPUT[32]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="18" type="text" id="INPUT58" style="position: absolute; top: 330px; left: 180px; width: 244px; z-index: 60; background-color: #FFFFFF;" value="{INPUT[33]/@VALUE}" readonly="readonly" />
+<input class="mono" tabindex="17" type="text" id="INPUT64" style="position: absolute; top: 450px; left: 245px; width: 244px; z-index: 66; background-color: #FFFFFF;" value="{INPUT[34]/@VALUE}" readonly="readonly" />
 </form>
 <xsl:if test="INPUT[1]/@VALUE = 0">
 <div id="INPUT1" style="position: absolute; top: 150px; left: 20px; z-index: 1; background-image: url(IMAGES/VYTAHZ_2.PNG); line-height: 128px; height: 128px; width: 128px;"></div>
@@ -186,7 +189,7 @@ Index</span>
 <div id="INPUT28" style="position: absolute; top: 150px; left: 585px; z-index: 29; background-image: url(IMAGES/STOPSI_2.PNG); line-height: 70px; height: 70px; width: 70px;"></div>
 </xsl:if>
 <form action="javascript:PostXML29()" style="position: absolute; top: 50px; left: 195px; z-index: 30; font-size: 13px;">
-<input title="Enter the weight of all people and cargo" id="INPUT29" onfocus="document.getElementById('INPUT29x').style.visibility='visible';SetInputEdited(29, event);" onblur="InputFocused[28]=0" onkeydown="SetInputEdited(29, event);" class="mono" tabindex="13" type="text" style="width: 40px; background-color: #FFFFFF;" name="{INPUT[14]/@NAME}" value="{INPUT[14]/@VALUE}" />
+<input title="Enter the weight of all people and cargo" id="INPUT29" onfocus="document.getElementById('INPUT29x').style.visibility='visible';SetInputEdited(29, event);" onblur="InputFocused[28]=0" onkeydown="SetInputEdited(29, event);" class="mono" tabindex="13" type="text" style="width: 36px; background-color: #FFFFFF;" name="{INPUT[14]/@NAME}" value="{INPUT[14]/@VALUE}" />
 <input type="submit" id="INPUT29x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <div style="position: absolute; top: 10px; left: 715px; z-index: 34; background-image: url(IMAGES/STOPSI_2.PNG); line-height: 70px; height: 70px; width: 70px;"></div>
@@ -365,7 +368,7 @@ Index</span>
 </xsl:otherwise>
 </xsl:choose>
 <form action="javascript:PostXML53()" style="position: absolute; top: 180px; left: 355px; z-index: 55; font-size: 13px;">
-<input title="Mód výtahu (0: podle pořadí zmáčknutých tlačítek, 1: od nejvyššího patra, 2:  preferovat cestu dolu)" id="INPUT53" onfocus="document.getElementById('INPUT53x').style.visibility='visible';SetInputEdited(53, event);" onblur="InputFocused[52]=0" onkeydown="SetInputEdited(53, event);" class="mono" tabindex="14" type="text" style="width: 22px; background-color: #FFFFFF;" name="{INPUT[28]/@NAME}" value="{INPUT[28]/@VALUE}" />
+<input title="Mód výtahu (0: podle pořadí zmáčknutých tlačítek, 1: od nejvyššího patra, 2:  preferovat cestu dolu)" id="INPUT53" onfocus="document.getElementById('INPUT53x').style.visibility='visible';SetInputEdited(53, event);" onblur="InputFocused[52]=0" onkeydown="SetInputEdited(53, event);" class="mono" tabindex="14" type="text" style="width: 20px; background-color: #FFFFFF;" name="{INPUT[28]/@NAME}" value="{INPUT[28]/@VALUE}" />
 <input type="submit" id="INPUT53x" style="position: absolute; top: 0px; height: 22px; width: 22px; visibility: hidden;" value="&gt;" />
 </form>
 <form style="position: absolute; top: 215px; left: 195px; z-index: 57;">
@@ -388,6 +391,21 @@ Index</span>
 <div title="Třídit pořadí nizších pater (pouze pro možnost 2)" id="INPUT56" class="imgsub" onclick="PostXML56()" style="background-image: url(IMAGES/SPINAC1.PNG); line-height: 64px; height: 64px; width: 64px;"></div>
 </xsl:if>
 </form>
+<div style="position: absolute; top: 160px; left: 815px; z-index: 61;">
+<div onclick="PostXML59()" id="INPUT59" class="imgsub" style="background-image: url(IMAGES/BUF2B2_1.PNG); height: 35px; width: 35px; line-height: 35px;"></div>
+</div>
+<div style="position: absolute; top: 185px; left: 815px; z-index: 62;">
+<div onclick="PostXML60()" id="INPUT60" class="imgsub" style="background-image: url(IMAGES/BUF2B2_1.PNG); height: 35px; width: 35px; line-height: 35px;"></div>
+</div>
+<div style="position: absolute; top: 209px; left: 813px; z-index: 63;">
+<div onclick="PostXML61()" id="INPUT61" class="imgsub" style="background-image: url(IMAGES/BUF2B2_1.PNG); height: 35px; width: 35px; line-height: 35px;"></div>
+</div>
+<div style="position: absolute; top: 235px; left: 815px; z-index: 64;">
+<div onclick="PostXML62()" id="INPUT62" class="imgsub" style="background-image: url(IMAGES/BUF2B2_1.PNG); height: 35px; width: 35px; line-height: 35px;"></div>
+</div>
+<div style="position: absolute; top: 135px; left: 815px; z-index: 65;">
+<div onclick="PostXML63()" id="INPUT63" class="imgsub" style="background-image: url(IMAGES/BUF2B2_1.PNG); height: 35px; width: 35px; line-height: 35px;"></div>
+</div>
 </div>
 </td>
 </tr>

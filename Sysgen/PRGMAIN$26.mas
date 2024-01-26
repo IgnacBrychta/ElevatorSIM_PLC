@@ -41,6 +41,12 @@
 #reg ShiftQueueLeft  __Instance__ShiftQueueLeft
 
 
+#defpou IsAnyDoorOpened
+  bool __fc__IsAnyDoorOpened,
+  int index  ; Comment 
+#reg IsAnyDoorOpened  __Instance__IsAnyDoorOpened
+
+
 #defpou DequeueFloor
   int __fc__DequeueFloor,
   int dequeuedFloor
@@ -95,7 +101,8 @@
   bool __fc__ElevatorSortQueue,
   int index,
   int item,
-  int index2
+  int index2,
+  int changes
 #reg ElevatorSortQueue  __Instance__ElevatorSortQueue
 
 
@@ -158,7 +165,8 @@
 
 #defpou prgMain
   int index,
-  int queuedFloor
+  int queuedFloor,
+  int floorDifference
 
  
 #srcfile 'C:\USERS\IGN·C\DOCUMENTS\PLC\WINTER_PLC\07_VYTAH\PRGMAIN.ST'
@@ -709,8 +717,84 @@ RET
 E     61
 #endpou 
 
+#pou IsAnyDoorOpened
+#srcline 85 ;FUNCTION IsAnyDoorOpened : BOOL
+
+#struct IsAnyDoorOpened__temp__
+  int P0__st__
+P     61
+IsAnyDoorOpened_L0:
+ LINK __SizeOf(IsAnyDoorOpened__temp__)
+ NXT
+; Initialize - variables
+ LD   0
+ WRX  __fc__IsAnyDoorOpened
+ WRX  index
+; End initialize - variables
+; Initialize - dynamic variables
+; End initialize - dynamic variables
+#srcline 90 ;  IsAnyDoorOpened := FALSE;
+ LD   bool 0       ; false
+ WRX  __fc__IsAnyDoorOpened
+#debug_left bool IsAnyDoorOpened
+#srcline 91 ;  FOR index := 0 TO highestFloor - 1 DO
+ LD   int 0
+ WRX  index
+ LD   highestFloor
+#debug int highestFloor
+ EXTW 
+ LD   int 1
+ SUB
+ EXTW
+ WRY  P0__st__
+IsAnyDoorOpened_L1:
+ LDX  index
+ EXTW 
+ LDY  P0__st__
+ EXTW 
+ GTS  
+ JMD  IsAnyDoorOpened_L2
+ DBG  
+#srcline 92 ;    IF elevatorDoorsOpened[index] THEN
+ LEA  elevatorDoorsOpened
+ LDX  index
+#debug int index
+ EXTW 
+ RCHK 4   ; Range Check
+ ADD     ; + offset 
+ LDIB 
+#debug bool elevatorDoorsOpened[index]
+ JMC  IsAnyDoorOpened_L3
+#srcline 93 ;      IsAnyDoorOpened := TRUE;
+ LD   bool -1       ; true
+ WRX  __fc__IsAnyDoorOpened
+#debug_left bool IsAnyDoorOpened
+#srcline 94 ;    ELSE
+ JMP  IsAnyDoorOpened_L4
+IsAnyDoorOpened_L3:
+#srcline 95 ;      EXIT;
+ JMP  IsAnyDoorOpened_L2
+#srcline 96 ;    END_IF;
+IsAnyDoorOpened_L4:
+#srcline 97 ;  END_FOR;
+ LDX  index
+ LD   1
+ ADD  
+ EXTW 
+ WRX  index
+ JMP  IsAnyDoorOpened_L1
+IsAnyDoorOpened_L2:
+ NOP  -1
+#srcline 98 ;END_FUNCTION
+ PRV  
+ LDX  __fc__IsAnyDoorOpened
+ ULNK
+RET
+E     61
+#endpou 
+
 #pou DequeueFloor
-#srcline 85 ;FUNCTION DequeueFloor : INT
+#srcline 100 ;FUNCTION DequeueFloor : INT
 P     61
 DequeueFloor_L0:
  LINK 0
@@ -720,29 +804,29 @@ DequeueFloor_L0:
  WRX  __fc__DequeueFloor
  WRX  dequeuedFloor
 ; End initialize - variables
-#srcline 88 ;  END_VAR;
-#srcline 90 ;  dequeuedFloor := queue[0];
+#srcline 103 ;  END_VAR;
+#srcline 105 ;  dequeuedFloor := queue[0];
  LD   queue[0]
 #debug int queue[0]
  EXTW 
  WRX  dequeuedFloor
 #debug_left int dequeuedFloor
-#srcline 91 ;  queue[0] := queueDefaultValue;
+#srcline 106 ;  queue[0] := queueDefaultValue;
  LD   queueDefaultValue
 #debug int queueDefaultValue
  EXTW 
  WR   queue[0]
 #debug_left int queue[0]
-#srcline 92 ;  ShiftQueueLeft();
+#srcline 107 ;  ShiftQueueLeft();
  LEA  __Instance__ShiftQueueLeft
  CAL  ShiftQueueLeft_L0
-#srcline 93 ;  DequeueFloor := dequeuedFloor;
+#srcline 108 ;  DequeueFloor := dequeuedFloor;
  LDX  dequeuedFloor
 #debug int dequeuedFloor
  EXTW 
  WRX  __fc__DequeueFloor
 #debug_left int DequeueFloor
-#srcline 94 ;END_FUNCTION
+#srcline 109 ;END_FUNCTION
  PRV  
  LDX  __fc__DequeueFloor
  EXTW 
@@ -752,7 +836,7 @@ E     61
 #endpou 
 
 #pou IsFloorAlreadyEnqueued
-#srcline 96 ;FUNCTION IsFloorAlreadyEnqueued : BOOL
+#srcline 111 ;FUNCTION IsFloorAlreadyEnqueued : BOOL
 
 #struct IsFloorAlreadyEnqueued__temp__
   int P0__st__
@@ -767,7 +851,11 @@ IsFloorAlreadyEnqueued_L0:
 ; End initialize - variables
 ; Initialize - dynamic variables
 ; End initialize - dynamic variables
-#srcline 104 ;  FOR index := 0 TO queueSize - 1 DO
+#srcline 119 ;  IsFloorAlreadyEnqueued := FALSE;
+ LD   bool 0       ; false
+ WRX  __fc__IsFloorAlreadyEnqueued
+#debug_left bool IsFloorAlreadyEnqueued
+#srcline 120 ;  FOR index := 0 TO queueSize - 1 DO
  LD   int 0
  WRX  index
  LD   queueSize
@@ -785,7 +873,7 @@ IsFloorAlreadyEnqueued_L1:
  GTS  
  JMD  IsFloorAlreadyEnqueued_L2
  DBG  
-#srcline 105 ;    IF queue[index] = floor THEN
+#srcline 121 ;    IF queue[index] = floor THEN
  LEA  queue
  LDX  index
 #debug int index
@@ -801,15 +889,15 @@ IsFloorAlreadyEnqueued_L1:
  EXTW 
  EQ
  JMC  IsFloorAlreadyEnqueued_L3
-#srcline 106 ;      IsFloorAlreadyEnqueued := TRUE;
+#srcline 122 ;      IsFloorAlreadyEnqueued := TRUE;
  LD   bool -1       ; true
  WRX  __fc__IsFloorAlreadyEnqueued
 #debug_left bool IsFloorAlreadyEnqueued
-#srcline 107 ;      EXIT;
+#srcline 123 ;      EXIT;
  JMP  IsFloorAlreadyEnqueued_L2
-#srcline 108 ;    END_IF;
+#srcline 124 ;    END_IF;
 IsFloorAlreadyEnqueued_L3:
-#srcline 109 ;  END_FOR; 
+#srcline 125 ;  END_FOR; 
  LDX  index
  LD   1
  ADD  
@@ -818,7 +906,7 @@ IsFloorAlreadyEnqueued_L3:
  JMP  IsFloorAlreadyEnqueued_L1
 IsFloorAlreadyEnqueued_L2:
  NOP  -1
-#srcline 110 ;END_FUNCTION
+#srcline 126 ;END_FUNCTION
  PRV  
  LDX  __fc__IsFloorAlreadyEnqueued
  ULNK
@@ -827,7 +915,7 @@ E     61
 #endpou 
 
 #pou IsQueueEmpty
-#srcline 112 ;FUNCTION IsQueueEmpty : BOOL
+#srcline 128 ;FUNCTION IsQueueEmpty : BOOL
 
 #struct IsQueueEmpty__temp__
   int P0__st__
@@ -844,7 +932,7 @@ IsQueueEmpty_L0:
 ; End initialize - variables
 ; Initialize - dynamic variables
 ; End initialize - dynamic variables
-#srcline 117 ;  FOR index := 0 TO queueSize - 1 DO
+#srcline 133 ;  FOR index := 0 TO queueSize - 1 DO
  LD   int 0
  WRX  index
  LD   queueSize
@@ -862,7 +950,7 @@ IsQueueEmpty_L1:
  GTS  
  JMD  IsQueueEmpty_L2
  DBG  
-#srcline 118 ;    IF NOT queue[index] = queueDefaultValue THEN
+#srcline 134 ;    IF NOT queue[index] = queueDefaultValue THEN
  LEA  queue
  LDX  index
 #debug int index
@@ -879,17 +967,17 @@ IsQueueEmpty_L1:
  EQ
  NEG
  JMC  IsQueueEmpty_L3
-#srcline 119 ;      empty := FALSE;
+#srcline 135 ;      empty := FALSE;
  LD   bool 0       ; false
  WRX  empty
 #debug_left bool empty
-#srcline 120 ;      index := 1000;
+#srcline 136 ;      index := 1000;
  LD   int 1000
  WRX  index
 #debug_left int index
-#srcline 121 ;    END_IF; 
+#srcline 137 ;    END_IF; 
 IsQueueEmpty_L3:
-#srcline 122 ;  END_FOR;
+#srcline 138 ;  END_FOR;
  LDX  index
  LD   1
  ADD  
@@ -898,12 +986,12 @@ IsQueueEmpty_L3:
  JMP  IsQueueEmpty_L1
 IsQueueEmpty_L2:
  NOP  -1
-#srcline 123 ;  IsQueueEmpty := empty;
+#srcline 139 ;  IsQueueEmpty := empty;
  LDX  empty
 #debug bool empty
  WRX  __fc__IsQueueEmpty
 #debug_left bool IsQueueEmpty
-#srcline 124 ;END_FUNCTION
+#srcline 140 ;END_FUNCTION
  PRV  
  LDX  __fc__IsQueueEmpty
  ULNK
@@ -912,7 +1000,7 @@ E     61
 #endpou 
 
 #pou BubbleSortQueueLower
-#srcline 126 ;FUNCTION BubbleSortQueueLower : BOOL
+#srcline 142 ;FUNCTION BubbleSortQueueLower : BOOL
 
 #struct BubbleSortQueueLower__temp__
   int P0__st__,
@@ -932,7 +1020,7 @@ BubbleSortQueueLower_L0:
 ; End initialize - variables
 ; Initialize - dynamic variables
 ; End initialize - dynamic variables
-#srcline 134 ;  FOR i := 0 TO queueSize - 2 DO
+#srcline 150 ;  FOR i := 0 TO queueSize - 2 DO
  LD   int 0
  WRX  i
  LD   queueSize
@@ -950,7 +1038,7 @@ BubbleSortQueueLower_L1:
  GTS  
  JMD  BubbleSortQueueLower_L2
  DBG  
-#srcline 135 ;    FOR j := 0 TO queueSize - 2 DO
+#srcline 151 ;    FOR j := 0 TO queueSize - 2 DO
  LD   int 0
  WRX  j
  LD   queueSize
@@ -968,7 +1056,7 @@ BubbleSortQueueLower_L3:
  GTS  
  JMD  BubbleSortQueueLower_L4
  DBG  
-#srcline 136 ;      itemLeft := queueLowerFloors[j];
+#srcline 152 ;      itemLeft := queueLowerFloors[j];
  LEA  queueLowerFloors
  LDX  j
 #debug int j
@@ -981,7 +1069,7 @@ BubbleSortQueueLower_L3:
  EXTW 
  WRX  itemLeft
 #debug_left int itemLeft
-#srcline 137 ;      itemRight := queueLowerFloors[j + 1];
+#srcline 153 ;      itemRight := queueLowerFloors[j + 1];
  LEA  queueLowerFloors
  LDX  j
 #debug int j
@@ -997,7 +1085,7 @@ BubbleSortQueueLower_L3:
  EXTW 
  WRX  itemRight
 #debug_left int itemRight
-#srcline 138 ;      IF itemLeft < itemRight THEN
+#srcline 154 ;      IF itemLeft < itemRight THEN
  LDX  itemLeft
 #debug int itemLeft
  EXTW 
@@ -1006,7 +1094,7 @@ BubbleSortQueueLower_L3:
  EXTW 
  LTS
  JMC  BubbleSortQueueLower_L5
-#srcline 139 ;        temp := queueLowerFloors[j];
+#srcline 155 ;        temp := queueLowerFloors[j];
  LEA  queueLowerFloors
  LDX  j
 #debug int j
@@ -1019,7 +1107,7 @@ BubbleSortQueueLower_L3:
  EXTW 
  WRX  temp
 #debug_left int temp
-#srcline 140 ;        queueLowerFloors[j] := queueLowerFloors[j + 1];
+#srcline 156 ;        queueLowerFloors[j] := queueLowerFloors[j + 1];
  LEA  queueLowerFloors
  LDX  j
 #debug int j
@@ -1042,7 +1130,7 @@ BubbleSortQueueLower_L3:
  ADD     ; + offset 
  WRIW 
 #debug_left int queueLowerFloors[j]
-#srcline 141 ;        queueLowerFloors[j + 1] := temp;
+#srcline 157 ;        queueLowerFloors[j + 1] := temp;
  LDX  temp
 #debug int temp
  EXTW 
@@ -1058,9 +1146,9 @@ BubbleSortQueueLower_L3:
  ADD     ; + offset 
  WRIW 
 #debug_left int queueLowerFloors[j+1]
-#srcline 142 ;      END_IF;
+#srcline 158 ;      END_IF;
 BubbleSortQueueLower_L5:
-#srcline 143 ;    END_FOR;
+#srcline 159 ;    END_FOR;
  LDX  j
  LD   1
  ADD  
@@ -1069,7 +1157,7 @@ BubbleSortQueueLower_L5:
  JMP  BubbleSortQueueLower_L3
 BubbleSortQueueLower_L4:
  NOP  -1
-#srcline 144 ;  END_FOR;
+#srcline 160 ;  END_FOR;
  LDX  i
  LD   1
  ADD  
@@ -1078,7 +1166,7 @@ BubbleSortQueueLower_L4:
  JMP  BubbleSortQueueLower_L1
 BubbleSortQueueLower_L2:
  NOP  -1
-#srcline 145 ;END_FUNCTION
+#srcline 161 ;END_FUNCTION
  PRV  
  LDX  __fc__BubbleSortQueueLower
  ULNK
@@ -1087,7 +1175,7 @@ E     61
 #endpou 
 
 #pou BubbleSortQueueUpper
-#srcline 147 ;FUNCTION BubbleSortQueueUpper : BOOL
+#srcline 163 ;FUNCTION BubbleSortQueueUpper : BOOL
 
 #struct BubbleSortQueueUpper__temp__
   int P0__st__,
@@ -1107,7 +1195,7 @@ BubbleSortQueueUpper_L0:
 ; End initialize - variables
 ; Initialize - dynamic variables
 ; End initialize - dynamic variables
-#srcline 155 ;  FOR i := 0 TO queueSize - 2 DO
+#srcline 171 ;  FOR i := 0 TO queueSize - 2 DO
  LD   int 0
  WRX  i
  LD   queueSize
@@ -1125,7 +1213,7 @@ BubbleSortQueueUpper_L1:
  GTS  
  JMD  BubbleSortQueueUpper_L2
  DBG  
-#srcline 156 ;    FOR j := 0 TO queueSize - 2 DO
+#srcline 172 ;    FOR j := 0 TO queueSize - 2 DO
  LD   int 0
  WRX  j
  LD   queueSize
@@ -1143,7 +1231,7 @@ BubbleSortQueueUpper_L3:
  GTS  
  JMD  BubbleSortQueueUpper_L4
  DBG  
-#srcline 157 ;      itemLeft := queueUpperFloors[j];
+#srcline 173 ;      itemLeft := queueUpperFloors[j];
  LEA  queueUpperFloors
  LDX  j
 #debug int j
@@ -1156,7 +1244,7 @@ BubbleSortQueueUpper_L3:
  EXTW 
  WRX  itemLeft
 #debug_left int itemLeft
-#srcline 158 ;      itemRight := queueUpperFloors[j + 1];
+#srcline 174 ;      itemRight := queueUpperFloors[j + 1];
  LEA  queueUpperFloors
  LDX  j
 #debug int j
@@ -1172,7 +1260,7 @@ BubbleSortQueueUpper_L3:
  EXTW 
  WRX  itemRight
 #debug_left int itemRight
-#srcline 159 ;      IF itemLeft < itemRight THEN
+#srcline 175 ;      IF itemLeft < itemRight THEN
  LDX  itemLeft
 #debug int itemLeft
  EXTW 
@@ -1181,7 +1269,7 @@ BubbleSortQueueUpper_L3:
  EXTW 
  LTS
  JMC  BubbleSortQueueUpper_L5
-#srcline 160 ;        temp := queueUpperFloors[j];
+#srcline 176 ;        temp := queueUpperFloors[j];
  LEA  queueUpperFloors
  LDX  j
 #debug int j
@@ -1194,7 +1282,7 @@ BubbleSortQueueUpper_L3:
  EXTW 
  WRX  temp
 #debug_left int temp
-#srcline 161 ;        queueUpperFloors[j] := queueUpperFloors[j + 1];
+#srcline 177 ;        queueUpperFloors[j] := queueUpperFloors[j + 1];
  LEA  queueUpperFloors
  LDX  j
 #debug int j
@@ -1217,7 +1305,7 @@ BubbleSortQueueUpper_L3:
  ADD     ; + offset 
  WRIW 
 #debug_left int queueUpperFloors[j]
-#srcline 162 ;        queueUpperFloors[j + 1] := temp;
+#srcline 178 ;        queueUpperFloors[j + 1] := temp;
  LDX  temp
 #debug int temp
  EXTW 
@@ -1233,9 +1321,9 @@ BubbleSortQueueUpper_L3:
  ADD     ; + offset 
  WRIW 
 #debug_left int queueUpperFloors[j+1]
-#srcline 163 ;      END_IF;
+#srcline 179 ;      END_IF;
 BubbleSortQueueUpper_L5:
-#srcline 164 ;    END_FOR;
+#srcline 180 ;    END_FOR;
  LDX  j
  LD   1
  ADD  
@@ -1244,7 +1332,7 @@ BubbleSortQueueUpper_L5:
  JMP  BubbleSortQueueUpper_L3
 BubbleSortQueueUpper_L4:
  NOP  -1
-#srcline 165 ;  END_FOR;
+#srcline 181 ;  END_FOR;
  LDX  i
  LD   1
  ADD  
@@ -1253,7 +1341,7 @@ BubbleSortQueueUpper_L4:
  JMP  BubbleSortQueueUpper_L1
 BubbleSortQueueUpper_L2:
  NOP  -1
-#srcline 166 ;END_FUNCTION
+#srcline 182 ;END_FUNCTION
  PRV  
  LDX  __fc__BubbleSortQueueUpper
  ULNK
@@ -1262,7 +1350,7 @@ E     61
 #endpou 
 
 #pou BubbleSortQueue
-#srcline 168 ;FUNCTION BubbleSortQueue : BOOL
+#srcline 184 ;FUNCTION BubbleSortQueue : BOOL
 
 #struct BubbleSortQueue__temp__
   int P0__st__,
@@ -1282,7 +1370,7 @@ BubbleSortQueue_L0:
 ; End initialize - variables
 ; Initialize - dynamic variables
 ; End initialize - dynamic variables
-#srcline 176 ;  FOR i := 0 TO queueSize - 2 DO
+#srcline 192 ;  FOR i := 0 TO queueSize - 2 DO
  LD   int 0
  WRX  i
  LD   queueSize
@@ -1300,7 +1388,7 @@ BubbleSortQueue_L1:
  GTS  
  JMD  BubbleSortQueue_L2
  DBG  
-#srcline 177 ;    FOR j := 0 TO queueSize - 2 DO
+#srcline 193 ;    FOR j := 0 TO queueSize - 2 DO
  LD   int 0
  WRX  j
  LD   queueSize
@@ -1318,7 +1406,7 @@ BubbleSortQueue_L3:
  GTS  
  JMD  BubbleSortQueue_L4
  DBG  
-#srcline 178 ;      itemLeft := queue[j];
+#srcline 194 ;      itemLeft := queue[j];
  LEA  queue
  LDX  j
 #debug int j
@@ -1331,7 +1419,7 @@ BubbleSortQueue_L3:
  EXTW 
  WRX  itemLeft
 #debug_left int itemLeft
-#srcline 179 ;      itemRight := queue[j + 1];
+#srcline 195 ;      itemRight := queue[j + 1];
  LEA  queue
  LDX  j
 #debug int j
@@ -1347,7 +1435,7 @@ BubbleSortQueue_L3:
  EXTW 
  WRX  itemRight
 #debug_left int itemRight
-#srcline 180 ;      IF itemLeft < itemRight THEN
+#srcline 196 ;      IF itemLeft < itemRight THEN
  LDX  itemLeft
 #debug int itemLeft
  EXTW 
@@ -1356,7 +1444,7 @@ BubbleSortQueue_L3:
  EXTW 
  LTS
  JMC  BubbleSortQueue_L5
-#srcline 181 ;        temp := queue[j];
+#srcline 197 ;        temp := queue[j];
  LEA  queue
  LDX  j
 #debug int j
@@ -1369,7 +1457,7 @@ BubbleSortQueue_L3:
  EXTW 
  WRX  temp
 #debug_left int temp
-#srcline 182 ;        queue[j] := queue[j + 1];
+#srcline 198 ;        queue[j] := queue[j + 1];
  LEA  queue
  LDX  j
 #debug int j
@@ -1392,7 +1480,7 @@ BubbleSortQueue_L3:
  ADD     ; + offset 
  WRIW 
 #debug_left int queue[j]
-#srcline 183 ;        queue[j + 1] := temp;
+#srcline 199 ;        queue[j + 1] := temp;
  LDX  temp
 #debug int temp
  EXTW 
@@ -1408,9 +1496,9 @@ BubbleSortQueue_L3:
  ADD     ; + offset 
  WRIW 
 #debug_left int queue[j+1]
-#srcline 184 ;      END_IF;
+#srcline 200 ;      END_IF;
 BubbleSortQueue_L5:
-#srcline 185 ;    END_FOR;
+#srcline 201 ;    END_FOR;
  LDX  j
  LD   1
  ADD  
@@ -1419,7 +1507,7 @@ BubbleSortQueue_L5:
  JMP  BubbleSortQueue_L3
 BubbleSortQueue_L4:
  NOP  -1
-#srcline 186 ;  END_FOR;
+#srcline 202 ;  END_FOR;
  LDX  i
  LD   1
  ADD  
@@ -1428,7 +1516,7 @@ BubbleSortQueue_L4:
  JMP  BubbleSortQueue_L1
 BubbleSortQueue_L2:
  NOP  -1
-#srcline 187 ;END_FUNCTION
+#srcline 203 ;END_FUNCTION
  PRV  
  LDX  __fc__BubbleSortQueue
  ULNK
@@ -1437,7 +1525,7 @@ E     61
 #endpou 
 
 #pou ElevatorSortQueue
-#srcline 189 ;FUNCTION ElevatorSortQueue : BOOL
+#srcline 205 ;FUNCTION ElevatorSortQueue : BOOL
 
 #struct ElevatorSortQueue__temp__
   int P0__st__,
@@ -1453,10 +1541,12 @@ ElevatorSortQueue_L0:
  WRX  index
  WRX  item
  WRX  index2
+ LD   int 0
+ WRX  changes
 ; End initialize - variables
 ; Initialize - dynamic variables
 ; End initialize - dynamic variables
-#srcline 195 ;  FOR index := 0 TO queueSize - 1 DO
+#srcline 212 ;  FOR index := 0 TO queueSize - 1 DO
  LD   int 0
  WRX  index
  LD   queueSize
@@ -1474,7 +1564,7 @@ ElevatorSortQueue_L1:
  GTS  
  JMD  ElevatorSortQueue_L2
  DBG  
-#srcline 196 ;    item := queue[index];
+#srcline 213 ;    item := queue[index];
  LEA  queue
  LDX  index
 #debug int index
@@ -1487,7 +1577,7 @@ ElevatorSortQueue_L1:
  EXTW 
  WRX  item
 #debug_left int item
-#srcline 197 ;    IF item > elevatorFloorStart THEN
+#srcline 214 ;    IF item > elevatorFloorStart THEN
  LDX  item
 #debug int item
  EXTW 
@@ -1496,7 +1586,7 @@ ElevatorSortQueue_L1:
  EXTW 
  GTS
  JMC  ElevatorSortQueue_L3
-#srcline 198 ;      EnqueueUpperFloor(item);
+#srcline 215 ;      EnqueueUpperFloor(item);
  NXT
  LDX  item
 #debug int item
@@ -1506,7 +1596,7 @@ ElevatorSortQueue_L1:
  PRV
  LEA  __Instance__EnqueueUpperFloor
  CAL  EnqueueUpperFloor_L0
-#srcline 199 ;    ELSIF item < elevatorFloorStart THEN
+#srcline 216 ;    ELSIF item < elevatorFloorStart THEN
  JMP  ElevatorSortQueue_L4
 ElevatorSortQueue_L3:
  LDX  item
@@ -1517,7 +1607,7 @@ ElevatorSortQueue_L3:
  EXTW 
  LTS
  JMC  ElevatorSortQueue_L5
-#srcline 200 ;      EnqueueLowerFloor(item);
+#srcline 217 ;      EnqueueLowerFloor(item);
  NXT
  LDX  item
 #debug int item
@@ -1527,11 +1617,11 @@ ElevatorSortQueue_L3:
  PRV
  LEA  __Instance__EnqueueLowerFloor
  CAL  EnqueueLowerFloor_L0
-#srcline 201 ;    END_IF;
+#srcline 218 ;    END_IF;
  JMP  ElevatorSortQueue_L4
 ElevatorSortQueue_L5:
 ElevatorSortQueue_L4:
-#srcline 202 ;  END_FOR;
+#srcline 219 ;  END_FOR;
  LDX  index
  LD   1
  ADD  
@@ -1540,21 +1630,21 @@ ElevatorSortQueue_L4:
  JMP  ElevatorSortQueue_L1
 ElevatorSortQueue_L2:
  NOP  -1
-#srcline 204 ;  IF sortLowerFloors THEN BubbleSortQueueLower(); END_IF;
+#srcline 221 ;  IF sortLowerFloors THEN BubbleSortQueueLower(); END_IF;
  LD   sortLowerFloors
 #debug bool sortLowerFloors
  JMC  ElevatorSortQueue_L6
  LEA  __Instance__BubbleSortQueueLower
  CAL  BubbleSortQueueLower_L0
 ElevatorSortQueue_L6:
-#srcline 205 ;  IF sortUpperFloors THEN BubbleSortQueueUpper(); END_IF;
+#srcline 222 ;  IF sortUpperFloors THEN BubbleSortQueueUpper(); END_IF;
  LD   sortUpperFloors
 #debug bool sortUpperFloors
  JMC  ElevatorSortQueue_L8
  LEA  __Instance__BubbleSortQueueUpper
  CAL  BubbleSortQueueUpper_L0
 ElevatorSortQueue_L8:
-#srcline 207 ;  FOR index := 0 TO queueSize - 1 DO
+#srcline 224 ;  FOR index := 0 TO queueSize - 1 DO
  LD   int 0
  WRX  index
  LD   queueSize
@@ -1572,7 +1662,7 @@ ElevatorSortQueue_L10:
  GTS  
  JMD  ElevatorSortQueue_L11
  DBG  
-#srcline 208 ;    item := queueLowerFloors[index];
+#srcline 225 ;    item := queueLowerFloors[index];
  LEA  queueLowerFloors
  LDX  index
 #debug int index
@@ -1585,7 +1675,7 @@ ElevatorSortQueue_L10:
  EXTW 
  WRX  item
 #debug_left int item
-#srcline 209 ;    IF NOT item = queueDefaultValue THEN
+#srcline 226 ;    IF NOT item = queueDefaultValue THEN
  LDX  item
 #debug int item
  EXTW 
@@ -1595,7 +1685,7 @@ ElevatorSortQueue_L10:
  EQ
  NEG
  JMC  ElevatorSortQueue_L12
-#srcline 210 ;      queue[index] := item;
+#srcline 227 ;      queue[index] := item;
  LDX  item
 #debug int item
  EXTW 
@@ -1608,18 +1698,23 @@ ElevatorSortQueue_L10:
  ADD     ; + offset 
  WRIW 
 #debug_left int queue[index]
-#srcline 211 ;    ELSE      
+#srcline 228 ;      changes := changes + 1;
+ LDX  changes
+#debug int changes
+ EXTW 
+ LD   int 1
+ ADD
+ EXTW
+ WRX  changes
+#debug_left int changes
+#srcline 229 ;    ELSE      
  JMP  ElevatorSortQueue_L13
 ElevatorSortQueue_L12:
-#srcline 212 ;      index := 1000;
- LD   int 1000
- WRX  index
-#debug_left int index
-#srcline 213 ;      EXIT;
+#srcline 230 ;      EXIT;
  JMP  ElevatorSortQueue_L11
-#srcline 214 ;    END_IF;
+#srcline 231 ;    END_IF;
 ElevatorSortQueue_L13:
-#srcline 215 ;  END_FOR;
+#srcline 232 ;  END_FOR;
  LDX  index
  LD   1
  ADD  
@@ -1628,13 +1723,8 @@ ElevatorSortQueue_L13:
  JMP  ElevatorSortQueue_L10
 ElevatorSortQueue_L11:
  NOP  -1
-#srcline 217 ;  FOR index2 := index + 1 TO queueSize - 1 DO
- LDX  index
-#debug int index
- EXTW 
- LD   int 1
- ADD
- EXTW
+#srcline 234 ;  FOR index2 := 0 TO queueSize - 1 DO
+ LD   int 0
  WRX  index2
  LD   queueSize
 #debug int queueSize
@@ -1651,20 +1741,20 @@ ElevatorSortQueue_L14:
  GTS  
  JMD  ElevatorSortQueue_L15
  DBG  
-#srcline 218 ;    item := queueUpperFloors[index];
+#srcline 235 ;    item := queueUpperFloors[index2];
  LEA  queueUpperFloors
- LDX  index
-#debug int index
+ LDX  index2
+#debug int index2
  EXTW 
  RCHK 4   ; Range Check
  MUL  2   ; SizeOf(...)
  ADD     ; + offset 
  LDIW 
-#debug int queueUpperFloors[index]
+#debug int queueUpperFloors[index2]
  EXTW 
  WRX  item
 #debug_left int item
-#srcline 219 ;    IF NOT item = queueDefaultValue THEN
+#srcline 236 ;    IF NOT item = queueDefaultValue THEN
  LDX  item
 #debug int item
  EXTW 
@@ -1674,31 +1764,32 @@ ElevatorSortQueue_L14:
  EQ
  NEG
  JMC  ElevatorSortQueue_L16
-#srcline 220 ;      queue[index] := item;
+#srcline 237 ;      queue[index2 + changes] := item;
  LDX  item
 #debug int item
  EXTW 
  LEA  queue
- LDX  index
-#debug int index
+ LDX  index2
+#debug int index2
  EXTW 
+ LDX  changes
+#debug int changes
+ EXTW 
+ ADD
+ EXTW
  RCHK 4   ; Range Check
  MUL  2   ; SizeOf(...)
  ADD     ; + offset 
  WRIW 
-#debug_left int queue[index]
-#srcline 221 ;    ELSE
+#debug_left int queue[index2+changes]
+#srcline 238 ;    ELSE
  JMP  ElevatorSortQueue_L17
 ElevatorSortQueue_L16:
-#srcline 222 ;      index := 1000;
- LD   int 1000
- WRX  index
-#debug_left int index
-#srcline 223 ;      EXIT;
+#srcline 239 ;      EXIT;
  JMP  ElevatorSortQueue_L15
-#srcline 224 ;    END_IF;
+#srcline 240 ;    END_IF;
 ElevatorSortQueue_L17:
-#srcline 225 ;  END_FOR;
+#srcline 241 ;  END_FOR;
  LDX  index2
  LD   1
  ADD  
@@ -1707,10 +1798,10 @@ ElevatorSortQueue_L17:
  JMP  ElevatorSortQueue_L14
 ElevatorSortQueue_L15:
  NOP  -1
-#srcline 226 ;  EmptyUpperAndLowerQueue();
+#srcline 242 ;  EmptyUpperAndLowerQueue();
  LEA  __Instance__EmptyUpperAndLowerQueue
  CAL  EmptyUpperAndLowerQueue_L0
-#srcline 227 ;END_FUNCTION
+#srcline 243 ;END_FUNCTION
  PRV  
  LDX  __fc__ElevatorSortQueue
  ULNK
@@ -1719,7 +1810,7 @@ E     61
 #endpou 
 
 #pou CloseAllDoors
-#srcline 231 ;FUNCTION CloseAllDoors : BOOL
+#srcline 247 ;FUNCTION CloseAllDoors : BOOL
 
 #struct CloseAllDoors__temp__
   int P0__st__
@@ -1734,7 +1825,7 @@ CloseAllDoors_L0:
 ; End initialize - variables
 ; Initialize - dynamic variables
 ; End initialize - dynamic variables
-#srcline 235 ;  FOR index := 0 TO highestFloor - 1 DO
+#srcline 251 ;  FOR index := 0 TO highestFloor - 1 DO
  LD   int 0
  WRX  index
  LD   highestFloor
@@ -1752,7 +1843,7 @@ CloseAllDoors_L1:
  GTS  
  JMD  CloseAllDoors_L2
  DBG  
-#srcline 236 ;    elevatorDoorsOpened[index] := FALSE;
+#srcline 252 ;    elevatorDoorsOpened[index] := FALSE;
  LD   bool 0       ; false
  LEA  elevatorDoorsOpened
  LDX  index
@@ -1762,7 +1853,7 @@ CloseAllDoors_L1:
  ADD     ; + offset 
  WRIB 
 #debug_left bool elevatorDoorsOpened[index]
-#srcline 237 ;  END_FOR;
+#srcline 253 ;  END_FOR;
  LDX  index
  LD   1
  ADD  
@@ -1771,7 +1862,7 @@ CloseAllDoors_L1:
  JMP  CloseAllDoors_L1
 CloseAllDoors_L2:
  NOP  -1
-#srcline 238 ;END_FUNCTION
+#srcline 254 ;END_FUNCTION
  PRV  
  LDX  __fc__CloseAllDoors
  ULNK
@@ -1780,7 +1871,7 @@ E     61
 #endpou 
 
 #pou CloseAllDoorsExceptForArg
-#srcline 240 ;FUNCTION CloseAllDoorsExceptForArg : BOOL
+#srcline 256 ;FUNCTION CloseAllDoorsExceptForArg : BOOL
 
 #struct CloseAllDoorsExceptForArg__temp__
   int P0__st__
@@ -1795,7 +1886,7 @@ CloseAllDoorsExceptForArg_L0:
 ; End initialize - variables
 ; Initialize - dynamic variables
 ; End initialize - dynamic variables
-#srcline 247 ;  FOR index := 0 TO highestFloor - 1 DO
+#srcline 263 ;  FOR index := 0 TO highestFloor - 1 DO
  LD   int 0
  WRX  index
  LD   highestFloor
@@ -1813,7 +1904,7 @@ CloseAllDoorsExceptForArg_L1:
  GTS  
  JMD  CloseAllDoorsExceptForArg_L2
  DBG  
-#srcline 248 ;    IF index = floorDoorToOpen THEN
+#srcline 264 ;    IF index = floorDoorToOpen THEN
  LDX  index
 #debug int index
  EXTW 
@@ -1822,7 +1913,7 @@ CloseAllDoorsExceptForArg_L1:
  EXTW 
  EQ
  JMC  CloseAllDoorsExceptForArg_L3
-#srcline 249 ;      elevatorDoorsOpened[index] := TRUE;
+#srcline 265 ;      elevatorDoorsOpened[index] := TRUE;
  LD   bool -1       ; true
  LEA  elevatorDoorsOpened
  LDX  index
@@ -1832,10 +1923,10 @@ CloseAllDoorsExceptForArg_L1:
  ADD     ; + offset 
  WRIB 
 #debug_left bool elevatorDoorsOpened[index]
-#srcline 250 ;    ELSE
+#srcline 266 ;    ELSE
  JMP  CloseAllDoorsExceptForArg_L4
 CloseAllDoorsExceptForArg_L3:
-#srcline 251 ;      elevatorDoorsOpened[index] := FALSE;
+#srcline 267 ;      elevatorDoorsOpened[index] := FALSE;
  LD   bool 0       ; false
  LEA  elevatorDoorsOpened
  LDX  index
@@ -1845,9 +1936,9 @@ CloseAllDoorsExceptForArg_L3:
  ADD     ; + offset 
  WRIB 
 #debug_left bool elevatorDoorsOpened[index]
-#srcline 252 ;    END_IF;
+#srcline 268 ;    END_IF;
 CloseAllDoorsExceptForArg_L4:
-#srcline 253 ;  END_FOR;
+#srcline 269 ;  END_FOR;
  LDX  index
  LD   1
  ADD  
@@ -1856,7 +1947,7 @@ CloseAllDoorsExceptForArg_L4:
  JMP  CloseAllDoorsExceptForArg_L1
 CloseAllDoorsExceptForArg_L2:
  NOP  -1
-#srcline 254 ;END_FUNCTION
+#srcline 270 ;END_FUNCTION
  PRV  
  LDX  __fc__CloseAllDoorsExceptForArg
  ULNK
@@ -1865,7 +1956,7 @@ E     61
 #endpou 
 
 #pou HandleDoors
-#srcline 256 ;FUNCTION HandleDoors : BOOL
+#srcline 272 ;FUNCTION HandleDoors : BOOL
 P     61
 HandleDoors_L0:
  LINK 0
@@ -1874,14 +1965,14 @@ HandleDoors_L0:
  LD   0
  WRX  __fc__HandleDoors
 ; End initialize - variables
-#srcline 257 ;  IF forceOpenCurrentElevatorFloorDoor OR stopSignActivated THEN
+#srcline 273 ;  IF forceOpenCurrentElevatorFloorDoor OR stopSignActivated THEN
  LD   forceOpenCurrentElevatorFloorDoor
 #debug bool forceOpenCurrentElevatorFloorDoor
  LD   stopSignActivated
 #debug bool stopSignActivated
  OR  
  JMC  HandleDoors_L1
-#srcline 258 ;    elevatorDoorsOpened[elevatorFloor] := TRUE;
+#srcline 274 ;    elevatorDoorsOpened[elevatorFloor] := TRUE;
  LD   bool -1       ; true
  LEA  elevatorDoorsOpened
  LD   elevatorFloor
@@ -1891,7 +1982,7 @@ HandleDoors_L0:
  ADD     ; + offset 
  WRIB 
 #debug_left bool elevatorDoorsOpened[elevatorFloor]
-#srcline 259 ;  ELSIF elevatorDirection = 0 THEN
+#srcline 275 ;  ELSIF elevatorDirection = 0 THEN
  JMP  HandleDoors_L2
 HandleDoors_L1:
  LD   elevatorDirection
@@ -1900,8 +1991,8 @@ HandleDoors_L1:
  LD   int 0
  EQ
  JMC  HandleDoors_L3
-#srcline 260 ;    // open doors of the floor the elevator is at
-#srcline 261 ;    CloseAllDoorsExceptForArg(elevatorFloor);
+#srcline 276 ;    // open doors of the floor the elevator is at
+#srcline 277 ;    CloseAllDoorsExceptForArg(elevatorFloor);
  NXT
  LD   elevatorFloor
 #debug int elevatorFloor
@@ -1911,15 +2002,15 @@ HandleDoors_L1:
  PRV
  LEA  __Instance__CloseAllDoorsExceptForArg
  CAL  CloseAllDoorsExceptForArg_L0
-#srcline 262 ;  ELSE
+#srcline 278 ;  ELSE
  JMP  HandleDoors_L2
 HandleDoors_L3:
-#srcline 263 ;    CloseAllDoors();
+#srcline 279 ;    CloseAllDoors();
  LEA  __Instance__CloseAllDoors
  CAL  CloseAllDoors_L0
-#srcline 264 ;  END_IF;
+#srcline 280 ;  END_IF;
 HandleDoors_L2:
-#srcline 265 ;END_FUNCTION
+#srcline 281 ;END_FUNCTION
  PRV  
  LDX  __fc__HandleDoors
  ULNK
@@ -1928,7 +2019,7 @@ E     61
 #endpou 
 
 #pou ResetAllButtons
-#srcline 267 ;FUNCTION ResetAllButtons : BOOL
+#srcline 283 ;FUNCTION ResetAllButtons : BOOL
 
 #struct ResetAllButtons__temp__
   int P0__st__
@@ -1943,7 +2034,7 @@ ResetAllButtons_L0:
 ; End initialize - variables
 ; Initialize - dynamic variables
 ; End initialize - dynamic variables
-#srcline 271 ;  FOR index := 0 TO highestFloor - 1 DO
+#srcline 287 ;  FOR index := 0 TO highestFloor - 1 DO
  LD   int 0
  WRX  index
  LD   highestFloor
@@ -1961,7 +2052,7 @@ ResetAllButtons_L1:
  GTS  
  JMD  ResetAllButtons_L2
  DBG  
-#srcline 272 ;    elevatorButtonsPressed[index] := FALSE;
+#srcline 288 ;    elevatorButtonsPressed[index] := FALSE;
  LD   bool 0       ; false
  LEA  elevatorButtonsPressed
  LDX  index
@@ -1971,7 +2062,7 @@ ResetAllButtons_L1:
  ADD     ; + offset 
  WRIB 
 #debug_left bool elevatorButtonsPressed[index]
-#srcline 273 ;  END_FOR;
+#srcline 289 ;  END_FOR;
  LDX  index
  LD   1
  ADD  
@@ -1980,7 +2071,7 @@ ResetAllButtons_L1:
  JMP  ResetAllButtons_L1
 ResetAllButtons_L2:
  NOP  -1
-#srcline 274 ;END_FUNCTION
+#srcline 290 ;END_FUNCTION
  PRV  
  LDX  __fc__ResetAllButtons
  ULNK
@@ -1989,16 +2080,20 @@ E     61
 #endpou 
 
 #pou HandleFloorSelection
-#srcline 276 ;FUNCTION HandleFloorSelection : BOOL
+#srcline 292 ;FUNCTION HandleFloorSelection : BOOL
+
+#struct HandleFloorSelection__temp__
+  string[82] PS0__st__,
+  string[82] PSC__st__
 P     61
 HandleFloorSelection_L0:
- LINK 0
+ LINK __SizeOf(HandleFloorSelection__temp__)
  NXT
 ; Initialize - variables
  LD   0
  WRX  __fc__HandleFloorSelection
 ; End initialize - variables
-#srcline 277 ;  IF NOT elevatorFloor = targetFloor AND NOT IsFloorAlreadyEnqueued(targetFloor) THEN
+#srcline 293 ;  IF NOT elevatorFloor = targetFloor AND NOT IsFloorAlreadyEnqueued(targetFloor) THEN
  LD   elevatorFloor
 #debug int elevatorFloor
  EXTW 
@@ -2019,25 +2114,7 @@ HandleFloorSelection_L0:
  NEG
  AND
  JMC  HandleFloorSelection_L1
-#srcline 278 ;    floorDifference := elevatorFloor - targetFloor;
- LD   elevatorFloor
-#debug int elevatorFloor
- EXTW 
- LD   targetFloor
-#debug int targetFloor
- EXTW 
- SUB
- EXTW
- WR   floorDifference
-#debug_left int floorDifference
-#srcline 279 ;    IF floorDifference > 0 THEN
- LD   floorDifference
-#debug int floorDifference
- EXTW 
- LD   int 0
- GTS
- JMC  HandleFloorSelection_L3
-#srcline 280 ;      EnqueueFloor(targetFloor);
+#srcline 294 ;    EnqueueFloor(targetFloor);
  NXT
  LD   targetFloor
 #debug int targetFloor
@@ -2047,7 +2124,7 @@ HandleFloorSelection_L0:
  PRV
  LEA  __Instance__EnqueueFloor
  CAL  EnqueueFloor_L0
-#srcline 281 ;      floorSetAsElevStop[targetFloor] := TRUE;
+#srcline 295 ;    floorSetAsElevStop[targetFloor] := TRUE;
  LD   bool -1       ; true
  LEA  floorSetAsElevStop
  LD   targetFloor
@@ -2057,61 +2134,53 @@ HandleFloorSelection_L0:
  ADD     ; + offset 
  WRIB 
 #debug_left bool floorSetAsElevStop[targetFloor]
-#srcline 282 ;    ELSIF floorDifference < 0 THEN
- JMP  HandleFloorSelection_L4
-HandleFloorSelection_L3:
- LD   floorDifference
-#debug int floorDifference
- EXTW 
- LD   int 0
- LTS
- JMC  HandleFloorSelection_L5
-#srcline 283 ;      EnqueueFloor(targetFloor);
- NXT
+#srcline 296 ;    pressedButtonsQueueDebug := pressedButtonsQueueDebug + INT_TO_STRING(targetFloor);
+ LD   0   ; null string
+ WRY  PS0__st__[0]
+ LEAY PS0__st__[0]
+ LD   80
+ DST    ; Level 1
+ LEA  pressedButtonsQueueDebug
+#debug string pressedButtonsQueueDebug
+ SCON 
+ LD   0   ; null string
+ WRY  PSC__st__[0]
+ LEAY PSC__st__[0]
+ LD   80
+ DST    ; Level 2
  LD   targetFloor
 #debug int targetFloor
  EXTW 
- WR   __Instance__EnqueueFloor~floorToEnqueue
-#debug_left int __Instance__EnqueueFloor~floorToEnqueue
- PRV
- LEA  __Instance__EnqueueFloor
- CAL  EnqueueFloor_L0
-#srcline 284 ;      floorSetAsElevStop[targetFloor] := TRUE;
- LD   bool -1       ; true
- LEA  floorSetAsElevStop
- LD   targetFloor
-#debug int targetFloor
- EXTW 
- RCHK 4   ; Range Check
- ADD     ; + offset 
- WRIB 
-#debug_left bool floorSetAsElevStop[targetFloor]
-#srcline 285 ;    END_IF;
- JMP  HandleFloorSelection_L4
-HandleFloorSelection_L5:
-HandleFloorSelection_L4:
-#srcline 286 ;    
-#srcline 287 ;  ELSE
+ SCNV $0B30;  IEC_INT _TO_ IEC_STRING
+ PDST   ; Level 2
+ LEAY PSC__st__[0]
+
+ SCON 
+ PDST   ; Level 1
+ LD   0   ; null string
+ LEA  pressedButtonsQueueDebug
+ WRI  
+ LEA  pressedButtonsQueueDebug
+ LD   80
+ DST    ; Level 1
+ LEAY PS0__st__[0]
+ SCON 
+#debug_left string pressedButtonsQueueDebug
+ PDST   ; Level 1
+#srcline 297 ;  ELSE
  JMP  HandleFloorSelection_L2
 HandleFloorSelection_L1:
-#srcline 288 ;    elevatorDirectionIndicator := 1;
+#srcline 298 ;    elevatorDirectionIndicator := 1;
  LD   int 1
  WR   elevatorDirectionIndicator
 #debug_left int elevatorDirectionIndicator
-#srcline 289 ;  END_IF;
+#srcline 299 ;  END_IF;
 HandleFloorSelection_L2:
-#srcline 290 ;  
-#srcline 291 ;  floorDifference := ABS(floorDifference);
- LD   floorDifference
-#debug int floorDifference
- EXTW 
- ABSL
- WR   floorDifference
-#debug_left int floorDifference
-#srcline 292 ;  ResetAllButtons();
+#srcline 300 ;  
+#srcline 301 ;  ResetAllButtons();
  LEA  __Instance__ResetAllButtons
  CAL  ResetAllButtons_L0
-#srcline 293 ;END_FUNCTION
+#srcline 302 ;END_FUNCTION
  PRV  
  LDX  __fc__HandleFloorSelection
  ULNK
@@ -2120,7 +2189,7 @@ E     61
 #endpou 
 
 #pou IsAnyButtonPressed
-#srcline 295 ;FUNCTION IsAnyButtonPressed : BOOL
+#srcline 304 ;FUNCTION IsAnyButtonPressed : BOOL
 
 #struct IsAnyButtonPressed__temp__
   int P0__st__
@@ -2135,8 +2204,8 @@ IsAnyButtonPressed_L0:
 ; End initialize - variables
 ; Initialize - dynamic variables
 ; End initialize - dynamic variables
-#srcline 298 ;  END_VAR;
-#srcline 299 ;  FOR index := 0 TO highestFloor - 1 DO
+#srcline 307 ;  END_VAR;
+#srcline 308 ;  FOR index := 0 TO highestFloor - 1 DO
  LD   int 0
  WRX  index
  LD   highestFloor
@@ -2154,7 +2223,7 @@ IsAnyButtonPressed_L1:
  GTS  
  JMD  IsAnyButtonPressed_L2
  DBG  
-#srcline 300 ;    IF elevatorButtonsPressed[index] THEN
+#srcline 309 ;    IF elevatorButtonsPressed[index] THEN
  LEA  elevatorButtonsPressed
  LDX  index
 #debug int index
@@ -2164,17 +2233,17 @@ IsAnyButtonPressed_L1:
  LDIB 
 #debug bool elevatorButtonsPressed[index]
  JMC  IsAnyButtonPressed_L3
-#srcline 301 ;      anyFloorButtonPressed := TRUE;
+#srcline 310 ;      anyFloorButtonPressed := TRUE;
  LD   bool -1       ; true
  WR   anyFloorButtonPressed
 #debug_left bool anyFloorButtonPressed
-#srcline 302 ;      IsAnyButtonPressed := TRUE;
+#srcline 311 ;      IsAnyButtonPressed := TRUE;
  LD   bool -1       ; true
  WRX  __fc__IsAnyButtonPressed
 #debug_left bool IsAnyButtonPressed
-#srcline 303 ;    END_IF;
+#srcline 312 ;    END_IF;
 IsAnyButtonPressed_L3:
-#srcline 304 ;  END_FOR;
+#srcline 313 ;  END_FOR;
  LDX  index
  LD   1
  ADD  
@@ -2183,7 +2252,7 @@ IsAnyButtonPressed_L3:
  JMP  IsAnyButtonPressed_L1
 IsAnyButtonPressed_L2:
  NOP  -1
-#srcline 305 ;END_FUNCTION
+#srcline 314 ;END_FUNCTION
  PRV  
  LDX  __fc__IsAnyButtonPressed
  ULNK
@@ -2192,7 +2261,7 @@ E     61
 #endpou 
 
 #pou HandleButtons
-#srcline 307 ;FUNCTION HandleButtons : BOOL
+#srcline 316 ;FUNCTION HandleButtons : BOOL
 
 #struct HandleButtons__temp__
   int P0__st__
@@ -2207,10 +2276,10 @@ HandleButtons_L0:
 ; End initialize - variables
 ; Initialize - dynamic variables
 ; End initialize - dynamic variables
-#srcline 312 ;  IsAnyButtonPressed();
+#srcline 321 ;  IsAnyButtonPressed();
  LEA  __Instance__IsAnyButtonPressed
  CAL  IsAnyButtonPressed_L0
-#srcline 314 ;  FOR index := 0 TO highestFloor - 1 DO
+#srcline 323 ;  FOR index := 0 TO highestFloor - 1 DO
  LD   int 0
  WRX  index
  LD   highestFloor
@@ -2228,7 +2297,7 @@ HandleButtons_L1:
  GTS  
  JMD  HandleButtons_L2
  DBG  
-#srcline 315 ;    IF elevatorButtonsPressed[index] THEN
+#srcline 324 ;    IF elevatorButtonsPressed[index] THEN
  LEA  elevatorButtonsPressed
  LDX  index
 #debug int index
@@ -2238,18 +2307,18 @@ HandleButtons_L1:
  LDIB 
 #debug bool elevatorButtonsPressed[index]
  JMC  HandleButtons_L3
-#srcline 316 ;      targetFloor := index;
+#srcline 325 ;      targetFloor := index;
  LDX  index
 #debug int index
  EXTW 
  WR   targetFloor
 #debug_left int targetFloor
-#srcline 317 ;      HandleFloorSelection();
+#srcline 326 ;      HandleFloorSelection();
  LEA  __Instance__HandleFloorSelection
  CAL  HandleFloorSelection_L0
-#srcline 318 ;    END_IF;
+#srcline 327 ;    END_IF;
 HandleButtons_L3:
-#srcline 319 ;  END_FOR;
+#srcline 328 ;  END_FOR;
  LDX  index
  LD   1
  ADD  
@@ -2258,7 +2327,7 @@ HandleButtons_L3:
  JMP  HandleButtons_L1
 HandleButtons_L2:
  NOP  -1
-#srcline 320 ;END_FUNCTION
+#srcline 329 ;END_FUNCTION
  PRV  
  LDX  __fc__HandleButtons
  ULNK
@@ -2267,7 +2336,7 @@ E     61
 #endpou 
 
 #pou HandleMovement
-#srcline 322 ;FUNCTION HandleMovement : BOOL  
+#srcline 331 ;FUNCTION HandleMovement : BOOL  
 P     61
 HandleMovement_L0:
  LINK 0
@@ -2276,12 +2345,12 @@ HandleMovement_L0:
  LD   0
  WRX  __fc__HandleMovement
 ; End initialize - variables
-#srcline 323 ;  IF NOT stopSignActivated THEN
+#srcline 332 ;  IF NOT stopSignActivated THEN
  LD   stopSignActivated
 #debug bool stopSignActivated
  NEG
  JMC  HandleMovement_L1
-#srcline 324 ;    IF NOT queue[0] = elevatorFloor THEN
+#srcline 333 ;    IF NOT queue[0] = elevatorFloor THEN
  LD   queue[0]
 #debug int queue[0]
  EXTW 
@@ -2291,14 +2360,14 @@ HandleMovement_L0:
  EQ
  NEG
  JMC  HandleMovement_L3
-#srcline 325 ;      IF elevatorDirection = -1 THEN
+#srcline 334 ;      IF elevatorDirection = -1 THEN
  LD   elevatorDirection
 #debug int elevatorDirection
  EXTW 
  LD   int -1
  EQ
  JMC  HandleMovement_L5
-#srcline 326 ;        elevatorFloor := elevatorFloor - 1;
+#srcline 335 ;        elevatorFloor := elevatorFloor - 1;
  LD   elevatorFloor
 #debug int elevatorFloor
  EXTW 
@@ -2307,7 +2376,7 @@ HandleMovement_L0:
  EXTW
  WR   elevatorFloor
 #debug_left int elevatorFloor
-#srcline 327 ;      ELSIF elevatorDirection = 1 THEN
+#srcline 336 ;      ELSIF elevatorDirection = 1 THEN
  JMP  HandleMovement_L6
 HandleMovement_L5:
  LD   elevatorDirection
@@ -2316,7 +2385,7 @@ HandleMovement_L5:
  LD   int 1
  EQ
  JMC  HandleMovement_L7
-#srcline 328 ;        elevatorFloor := elevatorFloor + 1;
+#srcline 337 ;        elevatorFloor := elevatorFloor + 1;
  LD   elevatorFloor
 #debug int elevatorFloor
  EXTW 
@@ -2325,18 +2394,18 @@ HandleMovement_L5:
  EXTW
  WR   elevatorFloor
 #debug_left int elevatorFloor
-#srcline 329 ;      END_IF;
+#srcline 338 ;      END_IF;
  JMP  HandleMovement_L6
 HandleMovement_L7:
 HandleMovement_L6:
-#srcline 330 ;      HandleMovement := FALSE;
+#srcline 339 ;      HandleMovement := FALSE;
  LD   bool 0       ; false
  WRX  __fc__HandleMovement
 #debug_left bool HandleMovement
-#srcline 331 ;    ELSE 
+#srcline 340 ;    ELSE 
  JMP  HandleMovement_L4
 HandleMovement_L3:
-#srcline 332 ;      floorSetAsElevStop[elevatorFloor] := FALSE;
+#srcline 341 ;      floorSetAsElevStop[elevatorFloor] := FALSE;
  LD   bool 0       ; false
  LEA  floorSetAsElevStop
  LD   elevatorFloor
@@ -2346,36 +2415,36 @@ HandleMovement_L3:
  ADD     ; + offset 
  WRIB 
 #debug_left bool floorSetAsElevStop[elevatorFloor]
-#srcline 333 ;      queue[0] := queueDefaultValue;
+#srcline 342 ;      queue[0] := queueDefaultValue;
  LD   queueDefaultValue
 #debug int queueDefaultValue
  EXTW 
  WR   queue[0]
 #debug_left int queue[0]
-#srcline 334 ;      ShiftQueueLeft();
+#srcline 343 ;      ShiftQueueLeft();
  LEA  __Instance__ShiftQueueLeft
  CAL  ShiftQueueLeft_L0
-#srcline 335 ;      elevatorDirection := 0;
+#srcline 344 ;      elevatorDirection := 0;
  LD   int 0
  WR   elevatorDirection
 #debug_left int elevatorDirection
-#srcline 336 ;      HandleMovement := TRUE; // floor stop
+#srcline 345 ;      HandleMovement := TRUE; // floor stop
  LD   bool -1       ; true
  WRX  __fc__HandleMovement
 #debug_left bool HandleMovement
-#srcline 337 ;    END_IF;
+#srcline 346 ;    END_IF;
 HandleMovement_L4:
-#srcline 338 ;  ELSE
+#srcline 347 ;  ELSE
  JMP  HandleMovement_L2
 HandleMovement_L1:
-#srcline 339 ;    // obstacle detected, wait for doors
-#srcline 340 ;    HandleMovement := TRUE;
+#srcline 348 ;    // obstacle detected, wait for doors
+#srcline 349 ;    HandleMovement := TRUE;
  LD   bool -1       ; true
  WRX  __fc__HandleMovement
 #debug_left bool HandleMovement
-#srcline 341 ;  END_IF; 
+#srcline 350 ;  END_IF; 
 HandleMovement_L2:
-#srcline 342 ;END_FUNCTION
+#srcline 351 ;END_FUNCTION
  PRV  
  LDX  __fc__HandleMovement
  ULNK
@@ -2384,7 +2453,7 @@ E     61
 #endpou 
 
 #pou IsAnyObstaclePresent
-#srcline 344 ;FUNCTION IsAnyObstaclePresent : BOOL
+#srcline 353 ;FUNCTION IsAnyObstaclePresent : BOOL
 
 #struct IsAnyObstaclePresent__temp__
   int P0__st__
@@ -2399,11 +2468,11 @@ IsAnyObstaclePresent_L0:
 ; End initialize - variables
 ; Initialize - dynamic variables
 ; End initialize - dynamic variables
-#srcline 349 ;  anyObstacleDetected := FALSE;
+#srcline 358 ;  anyObstacleDetected := FALSE;
  LD   bool 0       ; false
  WR   anyObstacleDetected
 #debug_left bool anyObstacleDetected
-#srcline 350 ;  FOR index := 0 TO highestFloor - 1 DO
+#srcline 359 ;  FOR index := 0 TO highestFloor - 1 DO
  LD   int 0
  WRX  index
  LD   highestFloor
@@ -2421,7 +2490,7 @@ IsAnyObstaclePresent_L1:
  GTS  
  JMD  IsAnyObstaclePresent_L2
  DBG  
-#srcline 351 ;    IF obstaclesBlockingDoors[index] OR obstacleElevator THEN
+#srcline 360 ;    IF obstaclesBlockingDoors[index] OR obstacleElevator THEN
  LEA  obstaclesBlockingDoors
  LDX  index
 #debug int index
@@ -2434,13 +2503,13 @@ IsAnyObstaclePresent_L1:
 #debug bool obstacleElevator
  OR  
  JMC  IsAnyObstaclePresent_L3
-#srcline 352 ;      anyObstacleDetected := TRUE;
+#srcline 361 ;      anyObstacleDetected := TRUE;
  LD   bool -1       ; true
  WR   anyObstacleDetected
 #debug_left bool anyObstacleDetected
-#srcline 353 ;    END_IF;
+#srcline 362 ;    END_IF;
 IsAnyObstaclePresent_L3:
-#srcline 354 ;  END_FOR;
+#srcline 363 ;  END_FOR;
  LDX  index
  LD   1
  ADD  
@@ -2449,7 +2518,7 @@ IsAnyObstaclePresent_L3:
  JMP  IsAnyObstaclePresent_L1
 IsAnyObstaclePresent_L2:
  NOP  -1
-#srcline 355 ;END_FUNCTION
+#srcline 364 ;END_FUNCTION
  PRV  
  LDX  __fc__IsAnyObstaclePresent
  ULNK
@@ -2458,7 +2527,7 @@ E     61
 #endpou 
 
 #pou HandleStopConditions
-#srcline 357 ;FUNCTION HandleStopConditions : BOOL
+#srcline 366 ;FUNCTION HandleStopConditions : BOOL
 P     61
 HandleStopConditions_L0:
  LINK 0
@@ -2467,12 +2536,12 @@ HandleStopConditions_L0:
  LD   0
  WRX  __fc__HandleStopConditions
 ; End initialize - variables
-#srcline 358 ;  stopSignActivated := 
-#srcline 359 ;    anyObstacleDetected 
-#srcline 360 ;    OR elevatorButtonStopPressed
+#srcline 367 ;  stopSignActivated := 
+#srcline 368 ;    anyObstacleDetected 
+#srcline 369 ;    OR elevatorButtonStopPressed
  LD   anyObstacleDetected
 #debug bool anyObstacleDetected
-#srcline 361 ;    OR elevatorWeight > elevatorMaximumWeight;
+#srcline 370 ;    OR elevatorWeight > elevatorMaximumWeight;
  LD   elevatorButtonStopPressed
 #debug bool elevatorButtonStopPressed
  OR  
@@ -2486,7 +2555,7 @@ HandleStopConditions_L0:
  OR  
  WR   stopSignActivated
 #debug_left bool stopSignActivated
-#srcline 362 ;END_FUNCTION
+#srcline 371 ;END_FUNCTION
  PRV  
  LDX  __fc__HandleStopConditions
  ULNK
@@ -2495,7 +2564,7 @@ E     61
 #endpou 
 
 #pou prgMain
-#srcline 364 ;PROGRAM prgMain
+#srcline 373 ;PROGRAM prgMain
 
 #struct prgMain__temp__
   int P0__st__,
@@ -2505,12 +2574,12 @@ prgMain_L0:
  LINK __SizeOf(prgMain__temp__)
 ; Initialize - dynamic variables
 ; End initialize - dynamic variables
-#srcline 377 ;  IF NOT configured THEN
+#srcline 387 ;  IF NOT configured THEN
  LD   configured
 #debug bool configured
  NEG
  JMC  prgMain_L1
-#srcline 378 ;    FOR index := 0 TO queueSize - 1 DO
+#srcline 388 ;    FOR index := 0 TO queueSize - 1 DO
  LD   int 0
  WRX  index
  LD   queueSize
@@ -2528,7 +2597,7 @@ prgMain_L3:
  GTS  
  JMD  prgMain_L4
  DBG  
-#srcline 379 ;      queue[index] := queueDefaultValue;
+#srcline 389 ;      queue[index] := queueDefaultValue;
  LD   queueDefaultValue
 #debug int queueDefaultValue
  EXTW 
@@ -2541,7 +2610,7 @@ prgMain_L3:
  ADD     ; + offset 
  WRIW 
 #debug_left int queue[index]
-#srcline 380 ;      queueLowerFloors[index] := queueDefaultValue;
+#srcline 390 ;      queueLowerFloors[index] := queueDefaultValue;
  LD   queueDefaultValue
 #debug int queueDefaultValue
  EXTW 
@@ -2554,7 +2623,7 @@ prgMain_L3:
  ADD     ; + offset 
  WRIW 
 #debug_left int queueLowerFloors[index]
-#srcline 381 ;      queueUpperFloors[index] := queueDefaultValue;
+#srcline 391 ;      queueUpperFloors[index] := queueDefaultValue;
  LD   queueDefaultValue
 #debug int queueDefaultValue
  EXTW 
@@ -2567,7 +2636,7 @@ prgMain_L3:
  ADD     ; + offset 
  WRIW 
 #debug_left int queueUpperFloors[index]
-#srcline 382 ;    END_FOR;
+#srcline 392 ;    END_FOR;
  LDX  index
  LD   1
  ADD  
@@ -2576,7 +2645,7 @@ prgMain_L3:
  JMP  prgMain_L3
 prgMain_L4:
  NOP  -1
-#srcline 383 ;    elevatorDoorsOpened[elevatorFloor] := TRUE;
+#srcline 393 ;    elevatorDoorsOpened[elevatorFloor] := TRUE;
  LD   bool -1       ; true
  LEA  elevatorDoorsOpened
  LD   elevatorFloor
@@ -2586,43 +2655,43 @@ prgMain_L4:
  ADD     ; + offset 
  WRIB 
 #debug_left bool elevatorDoorsOpened[elevatorFloor]
-#srcline 384 ;    configured := TRUE;
+#srcline 394 ;    configured := TRUE;
  LD   bool -1       ; true
  WR   configured
 #debug_left bool configured
-#srcline 385 ;  END_IF;
+#srcline 395 ;  END_IF;
 prgMain_L1:
-#srcline 387 ;  IsAnyObstaclePresent();
+#srcline 397 ;  IsAnyObstaclePresent();
  LEA  __Instance__IsAnyObstaclePresent
  CAL  IsAnyObstaclePresent_L0
-#srcline 388 ;  HandleStopConditions();
+#srcline 398 ;  HandleStopConditions();
  LEA  __Instance__HandleStopConditions
  CAL  HandleStopConditions_L0
-#srcline 389 ;  HandleButtons();
+#srcline 399 ;  HandleButtons();
  LEA  __Instance__HandleButtons
  CAL  HandleButtons_L0
-#srcline 390 ;  IF NOT IsQueueEmpty() THEN
+#srcline 400 ;  IF NOT IsQueueEmpty() THEN
  LEA  __Instance__IsQueueEmpty
  CAL  IsQueueEmpty_L0
  NEG
  JMC  prgMain_L5
-#srcline 391 ;    // store movement start floor - for queue sorting (option 2)
-#srcline 392 ;    IF elevatorDirection = 0 THEN
+#srcline 401 ;    // store movement start floor - for queue sorting (option 2)
+#srcline 402 ;    IF elevatorDirection = 0 THEN
  LD   elevatorDirection
 #debug int elevatorDirection
  EXTW 
  LD   int 0
  EQ
  JMC  prgMain_L7
-#srcline 393 ;      elevatorFloorStart := elevatorFloor;
+#srcline 403 ;      elevatorFloorStart := elevatorFloor;
  LD   elevatorFloor
 #debug int elevatorFloor
  EXTW 
  WR   elevatorFloorStart
 #debug_left int elevatorFloorStart
-#srcline 394 ;    END_IF;
+#srcline 404 ;    END_IF;
 prgMain_L7:
-#srcline 396 ;    IF selectedSortOption = 1 THEN BubbleSortQueue();
+#srcline 406 ;    IF selectedSortOption = 1 THEN BubbleSortQueue();
  LD   selectedSortOption
 #debug int selectedSortOption
  EXTW 
@@ -2631,7 +2700,7 @@ prgMain_L7:
  JMC  prgMain_L9
  LEA  __Instance__BubbleSortQueue
  CAL  BubbleSortQueue_L0
-#srcline 397 ;    ELSIF selectedSortOption = 2 THEN ElevatorSortQueue();
+#srcline 407 ;    ELSIF selectedSortOption = 2 THEN ElevatorSortQueue();
  JMP  prgMain_L10
 prgMain_L9:
  LD   selectedSortOption
@@ -2642,17 +2711,17 @@ prgMain_L9:
  JMC  prgMain_L11
  LEA  __Instance__ElevatorSortQueue
  CAL  ElevatorSortQueue_L0
-#srcline 398 ;    END_IF;
+#srcline 408 ;    END_IF;
  JMP  prgMain_L10
 prgMain_L11:
 prgMain_L10:
-#srcline 399 ;    queuedFloor := queue[0];
+#srcline 409 ;    queuedFloor := queue[0];
  LD   queue[0]
 #debug int queue[0]
  EXTW 
  WRX  queuedFloor
 #debug_left int queuedFloor
-#srcline 400 ;    floorDifference := elevatorFloor - queuedFloor;
+#srcline 410 ;    floorDifference := elevatorFloor - queuedFloor;
  LD   elevatorFloor
 #debug int elevatorFloor
  EXTW 
@@ -2661,34 +2730,37 @@ prgMain_L10:
  EXTW 
  SUB
  EXTW
- WR   floorDifference
+ WRX  floorDifference
 #debug_left int floorDifference
-#srcline 401 ;    IF floorDifference > 0 THEN
- LD   floorDifference
+#srcline 411 ;    IF floorDifference > 0 THEN
+ LDX  floorDifference
 #debug int floorDifference
  EXTW 
  LD   int 0
  GTS
  JMC  prgMain_L12
-#srcline 402 ;      elevatorDirection := -1;
+#srcline 412 ;      elevatorDirection := -1;
  LD   int -1
  WR   elevatorDirection
 #debug_left int elevatorDirection
-#srcline 403 ;    ELSE
+#srcline 413 ;    ELSE
  JMP  prgMain_L13
 prgMain_L12:
-#srcline 404 ;      elevatorDirection := 1;
+#srcline 414 ;      elevatorDirection := 1;
  LD   int 1
  WR   elevatorDirection
 #debug_left int elevatorDirection
-#srcline 405 ;    END_IF;
+#srcline 415 ;    END_IF;
 prgMain_L13:
-#srcline 406 ;  END_IF;
+#srcline 416 ;  END_IF;
 prgMain_L5:
-#srcline 408 ;  HandleDoors();
+#srcline 417 ;  VisualizeQueue();
+ LEA  __Instance__VisualizeQueue
+ CAL  VisualizeQueue_L0
+#srcline 418 ;  HandleDoors();
  LEA  __Instance__HandleDoors
  CAL  HandleDoors_L0
-#srcline 409 ;  elevatorDirectionIndicator := elevatorDirection + 1;
+#srcline 419 ;  elevatorDirectionIndicator := elevatorDirection + 1;
  LD   elevatorDirection
 #debug int elevatorDirection
  EXTW 
@@ -2697,7 +2769,8 @@ prgMain_L5:
  EXTW
  WR   elevatorDirectionIndicator
 #debug_left int elevatorDirectionIndicator
-#srcline 411 ;  CASE switchCase OF
+#srcline 420 ;  // patro 1 smƒõr dolu patra 0 4 2 -> 2 2 ve queue ahahahahaaaaaaaaaaa
+#srcline 421 ;  CASE switchCase OF
  LD   switchCase
 #debug int switchCase
  EXTW 
@@ -2706,8 +2779,8 @@ prgMain_L5:
  LDY  P1__st__
  EQ  
  JMC  prgMain_L15
-#srcline 412 ;    0: 
-#srcline 413 ;      timeDelayed := timePLC + waitTime;
+#srcline 422 ;    0: 
+#srcline 423 ;      timeDelayed := timePLC + waitTime;
  LD   timePLC
 #debug int timePLC
  EXTW 
@@ -2718,11 +2791,11 @@ prgMain_L5:
  EXTW
  WR   timeDelayed
 #debug_left int timeDelayed
-#srcline 414 ;      switchCase := 1;
+#srcline 424 ;      switchCase := 1;
  LD   int 1
  WR   switchCase
 #debug_left int switchCase
-#srcline 415 ;      waitTime := elevatorFloorTravelTime;
+#srcline 425 ;      waitTime := elevatorFloorTravelTime;
  LD   elevatorFloorTravelTime
 #debug int elevatorFloorTravelTime
  EXTW 
@@ -2734,8 +2807,8 @@ prgMain_L15:
  LDY  P1__st__
  EQ  
  JMC  prgMain_L16
-#srcline 416 ;    1:
-#srcline 417 ;      IF timeDelayed = timePLC THEN
+#srcline 426 ;    1:
+#srcline 427 ;      IF timeDelayed = timePLC THEN
  LD   timeDelayed
 #debug int timeDelayed
  EXTW 
@@ -2744,40 +2817,41 @@ prgMain_L15:
  EXTW 
  EQ
  JMC  prgMain_L17
-#srcline 418 ;        // floor stop
-#srcline 419 ;        IF HandleMovement() THEN
+#srcline 428 ;        // floor stop
+#srcline 429 ;        IF HandleMovement() THEN
  LEA  __Instance__HandleMovement
  CAL  HandleMovement_L0
  JMC  prgMain_L19
-#srcline 420 ;          waitTime := elevatorFloorDoorsOpenTime;
+#srcline 430 ;          // at floor queue[0] (first desired)
+#srcline 431 ;          waitTime := elevatorFloorDoorsOpenTime;
  LD   elevatorFloorDoorsOpenTime
 #debug int elevatorFloorDoorsOpenTime
  EXTW 
  WR   waitTime
 #debug_left int waitTime
-#srcline 421 ;          forceOpenCurrentElevatorFloorDoor := TRUE;
+#srcline 432 ;          forceOpenCurrentElevatorFloorDoor := TRUE;
  LD   bool -1       ; true
  WR   forceOpenCurrentElevatorFloorDoor
 #debug_left bool forceOpenCurrentElevatorFloorDoor
-#srcline 422 ;        ELSE
+#srcline 433 ;        ELSE
  JMP  prgMain_L20
 prgMain_L19:
-#srcline 423 ;          forceOpenCurrentElevatorFloorDoor := FALSE;
+#srcline 434 ;          forceOpenCurrentElevatorFloorDoor := FALSE;
  LD   bool 0       ; false
  WR   forceOpenCurrentElevatorFloorDoor
 #debug_left bool forceOpenCurrentElevatorFloorDoor
-#srcline 424 ;        END_IF;
+#srcline 435 ;        END_IF;
 prgMain_L20:
-#srcline 425 ;        switchCase := 0;
+#srcline 436 ;        switchCase := 0;
  LD   int 0
  WR   switchCase
 #debug_left int switchCase
-#srcline 426 ;      END_IF;
+#srcline 437 ;      END_IF;
 prgMain_L17:
  JMP  prgMain_L14
 prgMain_L16:
 prgMain_L14:
-#srcline 428 ;END_PROGRAM
+#srcline 439 ;END_PROGRAM
  ULNK
 RET
 E     61

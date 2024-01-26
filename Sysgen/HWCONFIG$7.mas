@@ -60,11 +60,6 @@
   usint ERR,
   udint trueMes,
   udint falseMes
-#struct  TETHStatistic_BACnet
-  usint STAT,
-  usint ERR,
-  udint trueMes,
-  udint falseMes
 #struct  TCHControl
   uint CONTROL
 

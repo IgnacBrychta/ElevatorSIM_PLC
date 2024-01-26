@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="windows-1250" ?>
-<web version="8.1" propfont="true" foot="© 2007 - 2020 Teco a.s." dwMode="1" MaxUid="15797">
+<web version="8.1" propfont="true" foot="© 2007 - 2020 Teco a.s." dwMode="1" MaxUid="15805">
 	<panels></panels>
 	<Grid Enable="1" X="5" Y="5" />
 	<globalset newdim="1" />
 	<group caption="" Uid="15721">
-		<page caption="Index" name="PAGE1.XML" ajax="true" pause="1000" default="true" Uid="15720" ucid="1706184156" width="785" height="683">
+		<page caption="Index" name="PAGE1.XML" ajax="true" pause="1000" default="true" Uid="15720" ucid="1706295561" width="850" height="683">
 			<object caption="" X="3" Y="19" xoff="4" yoff="6" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15722">
 				<image optcap="" variable="elevatorDoorsOpened[3]" type="BOOL" on="VYTAHO_4.PNG" off="VYTAHZ_2.PNG" />
 			</object>
@@ -72,37 +72,37 @@
 				<imagebtn variable="elevatorButtonsPressed[4]" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
 			</object>
 			<object caption="" X="8" Y="2" xoff="4" yoff="7" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15745">
-				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="28" height="22" tabindex="1" />
+				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="26" height="22" tabindex="1" />
 			</object>
 			<object caption="" X="8" Y="19" xoff="4" yoff="6" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15748">
-				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="28" height="22" tabindex="8" />
+				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="26" height="22" tabindex="8" />
 			</object>
 			<object caption="" X="8" Y="36" xoff="4" yoff="5" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15749">
-				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="28" height="22" tabindex="9" />
+				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="26" height="22" tabindex="9" />
 			</object>
 			<object caption="" X="8" Y="53" xoff="4" yoff="4" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15750">
-				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="28" height="22" tabindex="10" />
+				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="26" height="22" tabindex="10" />
 			</object>
 			<object caption="" X="8" Y="70" xoff="4" yoff="3" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15751">
-				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="28" height="22" tabindex="11" />
+				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="26" height="22" tabindex="11" />
 			</object>
 			<object caption="" X="69" Y="21" xoff="1" yoff="5" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15752">
-				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="28" height="22" tabindex="12" />
+				<edit variable="elevatorFloor" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="true" border="true" width="26" height="22" tabindex="12" />
 			</object>
 			<object caption="" X="74" Y="19" xoff="1" yoff="6" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15753">
 				<image optcap="" variable="stopSignActivated" type="BOOL" on="STOPSI_2.PNG" off="" />
 			</object>
 			<object caption="" X="25" Y="7" xoff="3" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15754" hint="Enter the weight of all people and cargo">
-				<edit variable="elevatorWeight" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="false" border="true" width="46" height="22" tabindex="13" />
+				<edit variable="elevatorWeight" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="false" border="true" width="42" height="22" tabindex="13" />
 			</object>
 			<object caption="" X="25" Y="3" xoff="3" yoff="4" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15755">
-				<edit variable="textElevatorWeight" type="STRING" intf="0" timf="" align="left" zero="false" prec="-1" size="25" global="true" border="true" width="235" height="22" tabindex="2" />
+				<edit variable="textElevatorWeight" type="STRING" intf="0" timf="" align="left" zero="false" prec="-1" size="25" global="true" border="true" width="210" height="22" tabindex="2" />
 			</object>
 			<object caption="" X="25" Y="11" xoff="3" yoff="0" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15756">
-				<edit variable="textMaxElevatorWeight" type="STRING" intf="0" timf="" align="left" zero="false" prec="-1" size="25" global="true" border="true" width="235" height="22" tabindex="3" />
+				<edit variable="textMaxElevatorWeight" type="STRING" intf="0" timf="" align="left" zero="false" prec="-1" size="25" global="true" border="true" width="210" height="22" tabindex="3" />
 			</object>
 			<object caption="" X="25" Y="14" xoff="3" yoff="6" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15757">
-				<edit variable="elevatorMaximumWeight" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="3" global="true" border="true" width="37" height="22" tabindex="7" />
+				<edit variable="elevatorMaximumWeight" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="3" global="true" border="true" width="34" height="22" tabindex="7" />
 			</object>
 			<object caption="" X="90" Y="2" xoff="3" yoff="2" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15758">
 				<picture href="" img="STOPSI_2.PNG" />
@@ -126,13 +126,13 @@
 				<image optcap="" variable="obstacleElevator" type="BOOL" on="PREKAZKA.PNG" off="" />
 			</object>
 			<object caption="" X="77" Y="50" xoff="2" yoff="3" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15766" hint="timeLPC">
-				<edit variable="timePLC" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="46" height="22" tabindex="6" />
+				<edit variable="timePLC" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="42" height="22" tabindex="6" />
 			</object>
 			<object caption="" X="77" Y="53" xoff="2" yoff="4" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15767" hint="timeDelayed">
-				<edit variable="timeDelayed" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="46" height="22" tabindex="5" />
+				<edit variable="timeDelayed" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="42" height="22" tabindex="5" />
 			</object>
 			<object caption="" X="82" Y="51" xoff="2" yoff="5" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15768" hint="elevator direction">
-				<edit variable="elevatorDirection" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="46" height="22" tabindex="4" />
+				<edit variable="elevatorDirection" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="4" global="true" border="true" width="42" height="22" tabindex="4" />
 			</object>
 			<object caption="" X="14" Y="9" xoff="6" yoff="1" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15773" hint="Is elevator set to get to this floor?">
 				<image optcap="" variable="floorSetAsElevStop[4]" type="BOOL" on="BU0EEE_1.PNG" off="BU73FF_1.PNG" />
@@ -191,32 +191,41 @@
 					<img name="ELEVAT_4.PNG" />
 				</mulimg>
 			</object>
-			<object caption="" X="31" Y="19" xoff="5" yoff="6" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15788" hint="Select elevator movement priorities (0 = NoSort; 1 = BubbleSort; 2 = PseudoBubbleSort)">
-				<edit variable="selectedSortOption" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="false" border="true" width="28" height="22" tabindex="14" />
+			<object caption="" X="45" Y="23" xoff="3" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15788" hint="Mód výtahu (0: podle pořadí zmáčknutých tlačítek, 1: od nejvyššího patra, 2:  preferovat cestu dolu)">
+				<edit variable="selectedSortOption" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="2" global="false" border="true" width="26" height="22" tabindex="14" />
 			</object>
-			<object caption="" X="25" Y="19" xoff="3" yoff="6" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15789">
-				<edit variable="textOperatingMode" type="STRING" intf="0" timf="" align="left" zero="false" prec="-1" size="3" global="true" border="true" width="37" height="22" tabindex="15" />
+			<object caption="" X="25" Y="23" xoff="3" yoff="4" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15789">
+				<edit variable="textOperatingMode" type="STRING" intf="0" timf="" align="left" zero="false" prec="-1" size="15" global="true" border="true" width="130" height="22" tabindex="15" />
 			</object>
-			<object caption="" X="37" Y="45" xoff="2" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15790" hint="Toggle obstacle">
+			<object caption="" X="25" Y="27" xoff="3" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15790" hint="Třídit pořadí vyšších pater (pouze pro možnost 2)">
 				<image optcap="" variable="sortUpperFloors" type="BOOL" on="SPINAC1.PNG" off="SPINAC0.PNG" />
 			</object>
-			<object caption="" X="37" Y="58" xoff="2" yoff="4" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15791" hint="Toggle obstacle">
+			<object caption="" X="43" Y="27" xoff="4" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15791" hint="Třídit pořadí nizších pater (pouze pro možnost 2)">
 				<image optcap="" variable="sortLowerFloors" type="BOOL" on="SPINAC1.PNG" off="SPINAC0.PNG" />
 			</object>
-			<object caption="" X="25" Y="23" xoff="3" yoff="4" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15792">
-				<edit variable="textModeZero" type="STRING" intf="0" timf="" align="left" zero="false" prec="-1" size="30" global="true" border="true" width="280" height="22" tabindex="16" />
+			<object caption="" X="23" Y="37" xoff="4" yoff="7" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15797">
+				<edit variable="stringQueueRepresentation" type="STRING" intf="0" timf="" align="left" zero="false" prec="-1" size="30" global="true" border="true" width="250" height="22" tabindex="16" />
 			</object>
-			<object caption="" X="25" Y="27" xoff="3" yoff="7" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15793">
-				<edit variable="textModeOne" type="STRING" intf="0" timf="" align="left" zero="false" prec="-1" size="30" global="true" border="true" width="280" height="22" tabindex="20" />
+			<object caption="" X="23" Y="42" xoff="4" yoff="2" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15798">
+				<edit variable="pressedButtonsQueueDebug" type="STRING" intf="0" timf="" align="left" zero="false" prec="-1" size="30" global="true" border="true" width="250" height="22" tabindex="18" />
 			</object>
-			<object caption="" X="25" Y="32" xoff="3" yoff="2" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15794">
-				<edit variable="textModeTwo" type="STRING" intf="0" timf="" align="left" zero="false" prec="-1" size="30" global="true" border="true" width="280" height="22" tabindex="19" />
+			<object caption="" X="102" Y="21" xoff="7" yoff="0" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15799">
+				<imagebtn variable="elevatorButtonsPressed[3]" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
 			</object>
-			<object caption="" X="25" Y="41" xoff="3" yoff="5" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15795">
-				<edit variable="textModeThree" type="STRING" intf="0" timf="" align="left" zero="false" prec="-1" size="30" global="true" border="true" width="280" height="22" tabindex="17" />
+			<object caption="" X="102" Y="24" xoff="7" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15800">
+				<imagebtn variable="elevatorButtonsPressed[2]" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
 			</object>
-			<object caption="" X="25" Y="54" xoff="3" yoff="1" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15796">
-				<edit variable="textModeFour" type="STRING" intf="0" timf="" align="left" zero="false" prec="-1" size="30" global="true" border="true" width="280" height="22" tabindex="18" />
+			<object caption="" X="102" Y="27" xoff="5" yoff="1" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15801">
+				<imagebtn variable="elevatorButtonsPressed[1]" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+			</object>
+			<object caption="" X="102" Y="30" xoff="7" yoff="3" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15802">
+				<imagebtn variable="elevatorButtonsPressed[0]" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+			</object>
+			<object caption="" X="102" Y="17" xoff="7" yoff="7" level="0" readonly="false" front="0" back="16777215" strong="false" italic="false" size="13" transparent="true" visneg="false" Uid="15803">
+				<imagebtn variable="elevatorButtonsPressed[4]" value="1" timeout="500" type="BOOL" on="BU98A7_1.PNG" off="BUF2B2_1.PNG" />
+			</object>
+			<object caption="" X="31" Y="57" xoff="5" yoff="2" level="0" readonly="true" front="0" back="16777215" strong="false" italic="false" size="13" transparent="false" visneg="false" Uid="15804">
+				<edit variable="switchCase" type="INT" intf="0" timf="" align="left" zero="false" prec="-1" size="30" global="true" border="true" width="250" height="22" tabindex="17" />
 			</object>
 		</page>
 	</group>
