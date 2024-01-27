@@ -28,7 +28,7 @@ fifwhere=0
 fifsubdirs=0
 fif2ndmsg=1
 fif2ndmsg=1
-findhistory=""
+findhistory="IsAnyDoorOpened"
 replacehistory=""
 dirhistory=""
 maskhistory=""
@@ -70,9 +70,10 @@ sbackword=0
 sseltext=0
 sglobal=0
 sprompt=0
-iecoperands=0
-ieccomments=0
+iecoperands=1
+ieccomments=1
 implicitseltext=1
+findhistory="IsAnyDoorOpened"
 fifmatchcase=0
 fifwholewords=0
 fifoutinstr=0
@@ -127,15 +128,15 @@ nodeplus="PlcDoc"
 [/prjmngr]
 
 [msgwin2]
-window=54852052,1,0,0,131,1101,39,571,131,850,0,0,1
+window=54852052,1,0,0,131,1741,39,571,131,850,0,0,1
 [/msgwin2]
 
 [msgwin1]
-window=54852052,1,0,0,131,1101,39,571,131,850,0,0,0
+window=54852052,1,0,0,131,1741,39,571,131,850,0,0,0
 [/msgwin1]
 
 [breakswin]
-window=54852052,1,0,0,131,1101,39,571,131,850,0,0,2
+window=54852052,1,0,0,131,1741,39,571,131,850,0,0,2
 hdrwidth0=200
 hdrwidth1=30
 hdrwidth2=80
@@ -173,7 +174,7 @@ font="Courier New",1,0,10,-13,-2147483640,0,0
 [/memwin2]
 
 [watch2win]
-window=54852052,1,0,0,131,1101,39,571,131,850,0,0,3
+window=54852052,1,0,0,131,1741,39,571,131,850,0,0,3
 hdrnamew=240,60,0
 font="Courier New",10
 hiresreadability=0
@@ -187,7 +188,7 @@ mem1w=192
 mem1visible=0
 mem2w=190
 mem2visible=0
-storednames="queueLowerFloors","queueUpperFloors","sortLowerFloors","elevatorFloorStart","forceOpenCurrentElevatorFloorDoor","targetFloor","switchCase","floorDifference","elevatorDirection","elevatorFloor","stringQueueRepresentation","queue"
+storednames="anyDoorOpened","elevatorDoorsOpened","queueLowerFloors","queueUpperFloors","sortLowerFloors","elevatorFloorStart","forceOpenCurrentElevatorFloorDoor","targetFloor","switchCase","floorDifference","elevatorDirection","elevatorFloor","stringQueueRepresentation","queue"
 [/watch2win]
 
 [weblc]
@@ -195,7 +196,7 @@ lastfile=""
 listwidth=121
 findhistory=""
 replacehistory=""
-window=0,0,60,53,516,960,336,180,516,960,0,0,-1
+window=0,0,91,80,516,960,336,180,516,960,0,0,-1
 [/weblc]
 
 [evalmodifdlg]
@@ -208,13 +209,13 @@ font="Lucida Console",11
 [/paneltexted]
 
 [ctrlswin]
-window=54844816,1,0,0,566,159,676,20,676,159,0,0,0
+window=54844816,1,0,0,926,159,676,20,676,159,0,0,0
 [/ctrlswin]
 
 [prjfileswin]
-window=54844816,1,0,0,566,159,676,20,676,159,0,0,1
+window=54844816,1,0,0,926,159,676,20,676,159,0,0,1
 filesheight=409
-relatedheight=80
+relatedheight=440
 relatedcnt=3
 relfile0="Sysgen\07_Vytah.map"
 relfile1="SendRoot\iFoxtrot.pub"
@@ -229,11 +230,11 @@ window=54817396,0,0,0,423,1101,187,179,517,1109,0,0,0
 [/CFC_Editors]
 
 [PanelSIM_1]
-window=0,0,823,348,196,352,519,177,519,392,0,0,-1
+window=0,0,1235,523,196,352,519,177,519,392,0,0,-1
 [/PanelSIM_1]
 
 [FormRegMngr1]
-window=54844816,1,0,0,566,159,596,167,317,159,0,0,5
+window=54844816,1,0,0,926,159,596,167,317,159,0,0,5
 [/FormRegMngr1]
 
 [PlcNetManager]
@@ -247,26 +248,26 @@ IOSetupColW="188,190,72,72,72,72,64,140,"
 [/SelectPLC]
 
 [FormDesign1]
-window=54817396,1,0,0,401,1101,596,1280,676,1109,0,0,1
+window=54817396,1,0,0,761,1741,596,1280,676,1109,0,0,1
 [/FormDesign1]
 
 [textsyneditor]
-editor="prgMain.ST",1,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=54817396,1,0,0,401,1101,596,1280,676,1109,0,0,2
+editor="prgMain.ST",1,0,0,246,35,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+window=54817396,1,0,0,761,1741,596,1280,676,1109,0,0,2
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
-inspectorctx=""
+inspectorctx="Main"
 debugparams=1,0,1
 [/textsyneditor]
 
 [textsyneditor]
 editor="07_VYTAH.ST",1,0,0,10,32,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
-window=54817396,1,0,0,401,1101,596,1280,676,1109,0,0,3
+window=54817396,1,0,0,761,1741,596,1280,676,1109,0,0,3
 localparams=0,1,1,1,1,30,0,80,1,2,1,0,0
 font="Courier New",10
 relay=0,0,0,0,0,"",0,0
-inspectorctx=""
+inspectorctx="Main"
 debugparams=1,0,1
 [/textsyneditor]
 

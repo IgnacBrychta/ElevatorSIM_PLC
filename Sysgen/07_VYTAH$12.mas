@@ -16,14 +16,14 @@
 #reg  aligned bool obstaclesBlockingDoors[8]
 #reg  int elevatorMaximumWeight
 #reg  int elevatorWeight
-#reg  int elevatorFloorTravelTime
-#reg  int elevatorFloorDoorsOpenTime
+#reg  int floorTravelTime
+#reg  int doorsOpenTime
 #reg  int highestFloor
 #reg  int targetFloorDefaultValue
-#reg  bool anyFloorButtonPressed
 #reg  aligned bool floorSetAsElevStop[8]
 #reg  int targetFloor
 #reg  int waitTime
+#reg  int waitedTime
 #reg  string textElevatorWeight[81]
 #reg  string textMaxElevatorWeight[81]
 #reg  string textOperatingMode[81]
@@ -41,6 +41,7 @@
 #reg  bool sortUpperFloors
 #reg  bool sortLowerFloors
 #reg  string pressedButtonsQueueDebug[81]
+#reg  bool anyDoorOpened
 #table byte __Init____textElevatorWeight = 
     'S','i','m','u','l','o','v','a','n','a',' ','v','a','h','a',' ','v','y','t','a','h',
     'u',' ','[','k','g',']',':';
@@ -83,19 +84,19 @@ P     58
  LD   int 0
  WR   elevatorWeight
  LD   int 1
- WR   elevatorFloorTravelTime
- LD   int 5
- WR   elevatorFloorDoorsOpenTime
+ WR   floorTravelTime
+ LD   int 2
+ WR   doorsOpenTime
  LD   int 5
  WR   highestFloor
  LD   int -1
  WR   targetFloorDefaultValue
- LD   bool 0   ; false
- WR   anyFloorButtonPressed
  LD   int -1
  WR   targetFloor
  LD   int 1
  WR   waitTime
+ LD   int -1
+ WR   waitedTime
  LD   0
  SRC  byte __Init____textElevatorWeight
  LD   0
@@ -139,6 +140,8 @@ P     58
  LD   0
  LD   81
  MOV  byte pressedButtonsQueueDebug
+ LD   bool 0   ; false
+ WR   anyDoorOpened
 E     58
 
 

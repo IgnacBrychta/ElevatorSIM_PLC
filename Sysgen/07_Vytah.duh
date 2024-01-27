@@ -127,17 +127,10 @@ FUNCTION HandleStopConditions : BOOL
 (**)
 END_FUNCTION 
 
-FUNCTION IsAnyButtonPressed : BOOL
-(**)
-  VAR
-    index : INT;
-  END_VAR
-END_FUNCTION 
-
 FUNCTION IsAnyDoorOpened : BOOL
 (**)
   VAR
-    index : INT; (* Comment *)
+    index : INT;
   END_VAR
 END_FUNCTION 
 

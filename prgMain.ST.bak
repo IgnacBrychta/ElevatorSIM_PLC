@@ -82,6 +82,7 @@ FUNCTION ShiftQueueLeft : BOOL
 END_FUNCTION
 
 (* not used *)
+
 FUNCTION DequeueFloor : INT
   VAR
     dequeuedFloor : INT;
@@ -101,6 +102,7 @@ FUNCTION IsFloorAlreadyEnqueued : BOOL
     floor : INT;
   END_VAR
 
+  IsFloorAlreadyEnqueued := FALSE;
   FOR index := 0 TO queueSize - 1 DO
     IF queue[index] = floor THEN
       IsFloorAlreadyEnqueued := TRUE;
@@ -191,6 +193,7 @@ FUNCTION ElevatorSortQueue : BOOL
     index : INT;
     item : INT;
     index2 : INT;
+    changes : INT := 0;
   END_VAR
   FOR index := 0 TO queueSize - 1 DO
     item := queue[index];
@@ -208,20 +211,17 @@ FUNCTION ElevatorSortQueue : BOOL
     item := queueLowerFloors[index];
     IF NOT item = queueDefaultValue THEN
       queue[index] := item;
+      changes := changes + 1;
     ELSE      
-      //index := 1000;
       EXIT;
     END_IF;
   END_FOR;
 
-  //IF NOT index = 0 THEN index := index + 1; END_IF;
-// 3 2 4 1 0
-  FOR index2 := index + 1 TO queueSize - 1 DO
-    item := queueUpperFloors[index];
+  FOR index2 := 0 TO queueSize - 1 DO
+    item := queueUpperFloors[index2];
     IF NOT item = queueDefaultValue THEN
-      queue[index] := item;
+      queue[index2 + changes] := item;
     ELSE
-      //index := 1000;
       EXIT;
     END_IF;
   END_FOR;
@@ -229,6 +229,22 @@ FUNCTION ElevatorSortQueue : BOOL
 END_FUNCTION
 
 (* End of queue code *)
+
+FUNCTION IsAnyDoorOpened : BOOL
+  VAR
+    index: INT;
+    anyDoorOpened : BOOL := FALSE;
+  END_VAR
+
+  FOR index := 0 TO highestFloor - 1 DO
+    IF elevatorDoorsOpened[index] THEN
+      anyDoorOpened := TRUE;
+    ELSE
+      EXIT;
+    END_IF;
+  END_FOR;
+  IsAnyDoorOpened := anyDoorOpened;
+END_FUNCTION
 
 FUNCTION CloseAllDoors : BOOL
   VAR
@@ -277,20 +293,13 @@ END_FUNCTION
 
 FUNCTION HandleFloorSelection : BOOL
   IF NOT elevatorFloor = targetFloor AND NOT IsFloorAlreadyEnqueued(targetFloor) THEN
-    floorDifference := elevatorFloor - targetFloor;
-    IF floorDifference > 0 THEN
-      EnqueueFloor(targetFloor);
-      floorSetAsElevStop[targetFloor] := TRUE;
-    ELSIF floorDifference < 0 THEN
-      EnqueueFloor(targetFloor);
-      floorSetAsElevStop[targetFloor] := TRUE;
-    END_IF;
-    
+    EnqueueFloor(targetFloor);
+    floorSetAsElevStop[targetFloor] := TRUE;
+    pressedButtonsQueueDebug := pressedButtonsQueueDebug + INT_TO_STRING(targetFloor);
   ELSE
     elevatorDirectionIndicator := 1;
   END_IF;
   
-  floorDifference := ABS(floorDifference);
   ResetAllButtons();
 END_FUNCTION
 
@@ -371,6 +380,8 @@ PROGRAM prgMain
   VAR
     index : INT; 
     queuedFloor : INT;
+    floorDifference : INT;
+    anyDoorOpened : BOOL := FALSE;
   END_VAR
   VAR_TEMP
   END_VAR
@@ -417,13 +428,28 @@ PROGRAM prgMain
       waitTime := elevatorFloorTravelTime;
     1:
       IF timeDelayed = timePLC THEN
-        // floor stop
-        IF HandleMovement() THEN
-          waitTime := elevatorFloorDoorsOpenTime;
-          forceOpenCurrentElevatorFloorDoor := TRUE;
-        ELSE
-          forceOpenCurrentElevatorFloorDoor := FALSE;
+        IF NOT elevatorDirection = 0 THEN
+          anyDoorOpened := IsAnyDoorOpened();
+          IF NOT anyDoorOpened THEN
+            // floor stop
+            IF HandleMovement() THEN
+              // at floor queue[0] (first desired)
+              waitTime := elevatorFloorDoorsOpenTime;
+              forceOpenCurrentElevatorFloorDoor := TRUE;
+            ELSE
+              forceOpenCurrentElevatorFloorDoor := FALSE;
+            END_IF;
+            switchCase := 0;
+          ELSE
+            forceOpenCurrentElevatorFloorDoor := TRUE;
+            timeDelayed := timeDelayed + elevatorFloorDoorsOpenTime;
+            switchCase := 2;
+          END_IF;
         END_IF;
+      END_IF;
+    2:
+      IF timeDelayed = timePLC THEN
+        forceOpenCurrentElevatorFloorDoor := FALSE;
         switchCase := 0;
       END_IF;
   END_CASE;

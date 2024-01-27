@@ -82,20 +82,6 @@ FUNCTION ShiftQueueLeft : BOOL
 END_FUNCTION
 
 (* not used *)
-FUNCTION IsAnyDoorOpened : BOOL
-  VAR
-    index: INT; (* Comment *)
-  END_VAR
-
-  IsAnyDoorOpened := FALSE;
-  FOR index := 0 TO highestFloor - 1 DO
-    IF elevatorDoorsOpened[index] THEN
-      IsAnyDoorOpened := TRUE;
-    ELSE
-      EXIT;
-    END_IF;
-  END_FOR;
-END_FUNCTION
 
 FUNCTION DequeueFloor : INT
   VAR
@@ -244,6 +230,19 @@ END_FUNCTION
 
 (* End of queue code *)
 
+FUNCTION IsAnyDoorOpened : BOOL
+  VAR
+    index: INT;
+  END_VAR
+  IsAnyDoorOpened := FALSE;
+  FOR index := 0 TO highestFloor - 1 DO
+    IF elevatorDoorsOpened[index] THEN
+      IsAnyDoorOpened := TRUE;
+      EXIT;
+    END_IF;
+  END_FOR;
+END_FUNCTION
+
 FUNCTION CloseAllDoors : BOOL
   VAR
     index : INT;
@@ -301,24 +300,10 @@ FUNCTION HandleFloorSelection : BOOL
   ResetAllButtons();
 END_FUNCTION
 
-FUNCTION IsAnyButtonPressed : BOOL
-  VAR
-    index : INT;
-  END_VAR;
-  FOR index := 0 TO highestFloor - 1 DO
-    IF elevatorButtonsPressed[index] THEN
-      anyFloorButtonPressed := TRUE;
-      IsAnyButtonPressed := TRUE;
-    END_IF;
-  END_FOR;
-END_FUNCTION
-
 FUNCTION HandleButtons : BOOL
   VAR
     index : INT;
   END_VAR
-
-  IsAnyButtonPressed();
 
   FOR index := 0 TO highestFloor - 1 DO
     IF elevatorButtonsPressed[index] THEN
@@ -417,22 +402,43 @@ PROGRAM prgMain
   VisualizeQueue();
   HandleDoors();
   elevatorDirectionIndicator := elevatorDirection + 1;
-  // patro 1 směr dolu patra 0 4 2 -> 2 2 ve queue ahahahahaaaaaaaaaaa
+
+          anyDoorOpened := IsAnyDoorOpened();
   CASE switchCase OF
     0: 
       timeDelayed := timePLC + waitTime;
       switchCase := 1;
-      waitTime := elevatorFloorTravelTime;
+      waitTime := floorTravelTime;
     1:
       IF timeDelayed = timePLC THEN
-        // floor stop
-        IF HandleMovement() THEN
-          // at floor queue[0] (first desired)
-          waitTime := elevatorFloorDoorsOpenTime;
-          forceOpenCurrentElevatorFloorDoor := TRUE;
+        IF NOT elevatorDirection = 0 THEN
+          IF NOT anyDoorOpened THEN
+            // floor stop
+            IF HandleMovement() THEN
+              // at floor queue[0] (first desired)
+              waitTime := doorsOpenTime;
+              forceOpenCurrentElevatorFloorDoor := TRUE;
+            ELSE
+              forceOpenCurrentElevatorFloorDoor := FALSE;
+            END_IF;
+            switchCase := 0;
+          ELSE
+            forceOpenCurrentElevatorFloorDoor := TRUE;
+            timeDelayed := timePLC + floorTravelTime;//
+            switchCase := 2;
+          END_IF;
         ELSE
-          forceOpenCurrentElevatorFloorDoor := FALSE;
+          switchCase := 0;
         END_IF;
+      END_IF;
+    2:
+      IF timeDelayed = timePLC THEN
+        forceOpenCurrentElevatorFloorDoor := FALSE;
+        switchCase := 3;
+        timeDelayed := timePLC + floorTravelTime;
+      END_IF;
+    3:
+      IF timeDelayed = timePLC THEN
         switchCase := 0;
       END_IF;
   END_CASE;
