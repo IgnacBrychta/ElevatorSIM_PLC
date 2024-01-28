@@ -1,5 +1,5 @@
 # Elevator Control System
-![WebMaker Screenshot](https://media.discordapp.net/attachments/1076565079333548184/1200061368091541505/2024-01-25_13_38_41-Mosaic_2023.1.33_-_C__Users_Ignac_Documents_PLC_Winter_PLC.mpr__07_Vytah.png?ex=65c4cf3e&is=65b25a3e&hm=060f4ca441129125428d94fd0923871ee71fb4c9d639259556537ac53c60460b&=&format=webp&quality=lossless&width=1578&height=988)
+![WebMaker Screenshot]([https://media.discordapp.net/attachments/1076565079333548184/1200061368091541505/2024-01-25_13_38_41-Mosaic_2023.1.33_-_C__Users_Ignac_Documents_PLC_Winter_PLC.mpr__07_Vytah.png?ex=65c4cf3e&is=65b25a3e&hm=060f4ca441129125428d94fd0923871ee71fb4c9d639259556537ac53c60460b&=&format=webp&quality=lossless&width=1578&height=988](https://media.discordapp.net/attachments/1076565079333548184/1201199150730051594/2024-01-28_17_10_56-Mosaic_2023.1.33_-_C__Users_Ignac_Documents_PLC_Winter_PLC.mpr__07_Vytah.png?ex=65c8f2e2&is=65b67de2&hm=913d854063062551fd369ab0a5d04972f30d197f5d2b1689a8f8e2f1e5879f0f&=&format=webp&quality=lossless&width=1568&height=1325))
 The program orchestrates the operation of an elevator, managing various aspects such as floor selection, door control, obstacle detection, and stop conditions.
 
 1. **Initialization:**
