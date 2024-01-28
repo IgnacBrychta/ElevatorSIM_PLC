@@ -1,5 +1,5 @@
 # Elevator Control System
-![WebMaker Screenshot]([https://media.discordapp.net/attachments/1076565079333548184/1200061368091541505/2024-01-25_13_38_41-Mosaic_2023.1.33_-_C__Users_Ignac_Documents_PLC_Winter_PLC.mpr__07_Vytah.png](https://media.discordapp.net/attachments/1076565079333548184/1201202581029007450/thumbnail.png?ex=65c8f614&is=65b68114&hm=ba3de168c7958771cb6c640eeafe9a4e229fcd0326d0165547385a271e18fac2&=&format=webp&quality=lossless&width=1568&height=1325))
+![WebMaker Screenshot](https://media.discordapp.net/attachments/1076565079333548184/1201202581029007450/thumbnail.png?ex=65c8f614&is=65b68114&hm=ba3de168c7958771cb6c640eeafe9a4e229fcd0326d0165547385a271e18fac2&=&format=webp&quality=lossless&width=1568&height=1325)
 The program orchestrates the operation of an elevator, managing various aspects such as floor selection, door control, obstacle detection, and stop conditions.
 
 1. **Initialization:**
